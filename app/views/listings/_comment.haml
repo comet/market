@@ -9,5 +9,5 @@
       %span
         = l(comment.created_at, :format => :short) + ":"
     .comment_content_div
-      - text_with_line_breaks do  
+      - text_with_line_breaks do
         = comment.content

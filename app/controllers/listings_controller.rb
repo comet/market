@@ -10,26 +10,26 @@ class ListingsController < ApplicationController
 
   before_filter :save_current_path, :only => :show
   before_filter :ensure_authorized_to_view, :only => [ :show, :follow, :unfollow ]
-  
+
   before_filter :only => [ :close ] do |controller|
     controller.ensure_current_user_is_listing_author "only_listing_author_can_close_a_listing"
   end
-  
+
   before_filter :only => [ :edit, :update ] do |controller|
     controller.ensure_current_user_is_listing_author "only_listing_author_can_edit_a_listing"
   end
-  
+
   def index
     redirect_to root
   end
-  
+
   def requests
     params[:listing_type] = "request"
     @to_render = {:action => :index}
     @listing_style = "listing"
     load
   end
-  
+
   def offers
     params[:listing_type] = "offer"
     @to_render = {:action => :index}
@@ -42,24 +42,24 @@ class ListingsController < ApplicationController
     if APP_CONFIG.force_mobile_ui
         return true
     end
-    
-    mobile_browsers = ["android", "ipod", "opera mini", "blackberry", 
-"palm","hiptop","avantgo","plucker", "xiino","blazer","elaine", "windows ce; ppc;", 
-"windows ce; smartphone;","windows ce; iemobile", 
-"up.browser","up.link","mmp","symbian","smartphone", 
+
+    mobile_browsers = ["android", "ipod", "opera mini", "blackberry",
+"palm","hiptop","avantgo","plucker", "xiino","blazer","elaine", "windows ce; ppc;",
+"windows ce; smartphone;","windows ce; iemobile",
+"up.browser","up.link","mmp","symbian","smartphone",
 "midp","wap","vodafone","o2","pocket","kindle", "mobile","pda","psp","treo"]
     if request.headers["HTTP_USER_AGENT"]
 	    agent = request.headers["HTTP_USER_AGENT"].downcase
 	    mobile_browsers.each do |m|
 		    return true if agent.match(m)
-	    end    
+	    end
     end
     return false
   end
-    
+
 
   # Used to load listings to be shown
-  # How the results are rendered depends on 
+  # How the results are rendered depends on
   # the type of request and if @to_render is set
   def load
     @title = params[:listing_type]
@@ -72,8 +72,8 @@ class ListingsController < ApplicationController
     else
       render @to_render
     end
-  end 
-  
+  end
+
   def loadmap
     @title = params[:listing_type]
     @listings = Listing.open.order("created_at DESC").find_with(params, @current_user)
@@ -99,15 +99,15 @@ class ListingsController < ApplicationController
     @listing_style = "map"
     load
   end
-  
-  
+
+
   # A (stub) method for serving Listing data (with locations) as JSON through AJAX-requests.
   def serve_listing_data
     @listings = Listing.open.joins(:origin_loc).group("listings.id").
                 order("listings.created_at DESC").find_with(params, @current_user, @current_community).select("listings.id, listing_type, category, latitude, longitude")
     render :json => { :data => @listings }
   end
-  
+
   def listing_bubble
     if params[:id]
       @listing = Listing.find(params[:id])
@@ -116,9 +116,9 @@ class ListingsController < ApplicationController
       else
         render :partial => "bubble_listing_not_visible"
       end
-    end 
+    end
   end
-  
+
   # Used to show multiple listings in one bubble
   def listing_bubble_multiple
     @listings = Listing.visible_to(@current_user, @current_community, params[:ids])
@@ -132,8 +132,9 @@ class ListingsController < ApplicationController
   def show
     @listing.increment!(:times_viewed)
   end
-  
+
   def new
+    
     @listing = Listing.new
     @listing.listing_type = params[:type]
     @listing.category = params[:category] || "item"
@@ -155,14 +156,15 @@ class ListingsController < ApplicationController
       format.js {render :layout => false}
     end
   end
-  
+
   def create
-    if params[:listing][:origin_loc_attributes][:address].empty? || params[:listing][:origin_loc_attributes][:address].blank?
-      params[:listing].delete("origin_loc_attributes")
-    end
+    #if params[:listing][:origin_loc_attributes][:address].empty? || params[:listing][:origin_loc_attributes][:address].blank?
+    #  params[:listing].delete("origin_loc_attributes")
+    #end
     @listing = @current_user.create_listing params[:listing]
+
     if @listing.new_record?
-      1.times { @listing.listing_images.build } if @listing.listing_images.empty?
+    #  1.times { @listing.listing_images.build } if @listing.listing_images.empty?
       render :action => :new
     else
       path = new_request_category_path(:type => @listing.listing_type, :category => @listing.category)
@@ -171,14 +173,14 @@ class ListingsController < ApplicationController
       redirect_to @listing
     end
   end
-  
+
   def edit
 	  if !@listing.origin_loc
 	      @listing.build_origin_loc(:location_type => "origin_loc")
 	  end
     1.times { @listing.listing_images.build } if @listing.listing_images.empty?
   end
-  
+
   def update
     if (params[:listing][:origin] && (params[:listing][:origin_loc_attributes][:address].empty? || params[:listing][:origin].blank?))
       params[:listing].delete("origin_loc_attributes")
@@ -193,24 +195,24 @@ class ListingsController < ApplicationController
       redirect_to @listing
     else
       render :action => :edit
-    end    
+    end
   end
-  
+
   def close
     @listing.update_attribute(:open, false)
     notice = "#{@listing.listing_type}_closed"
     respond_to do |format|
-      format.html { 
+      format.html {
         flash[:notice] = notice
-        redirect_to @listing 
+        redirect_to @listing
       }
       format.js {
         flash.now[:notice] = notice
-        render :layout => false 
+        render :layout => false
       }
     end
   end
-  
+
   #shows a random listing from current community
   def random
     open_listings_ids = Listing.open.select("id").find_with(nil, @current_user, @current_community).all
@@ -223,24 +225,24 @@ class ListingsController < ApplicationController
     @listing = Listing.find_by_id(random_id)
     render :action => :show
   end
-  
+
   def ensure_current_user_is_listing_author(error_message)
     @listing = Listing.find(params[:id])
     return if current_user?(@listing.author) || @current_user.has_admin_rights_in?(@current_community)
     flash[:error] = error_message
     redirect_to @listing and return
   end
-  
+
   def follow
     change_follow_status("follow")
   end
-  
+
   def unfollow
     change_follow_status("unfollow")
   end
-  
+
   private
-  
+
   # Ensure that only users with appropriate visibility settings can view the listing
   def ensure_authorized_to_view
     @listing = Listing.find(params[:id])
@@ -260,18 +262,18 @@ class ListingsController < ApplicationController
       end
     end
   end
-  
+
   def change_follow_status(status)
     status.eql?("follow") ? @current_user.follow(@listing) : @current_user.unfollow(@listing)
     notice = "you_#{status}ed_listing"
     respond_to do |format|
-      format.html { 
+      format.html {
         flash[:notice] = notice
-        redirect_to @listing 
+        redirect_to @listing
       }
       format.js {
         flash.now[:notice] = notice
-        render :follow, :layout => false 
+        render :follow, :layout => false
       }
     end
   end

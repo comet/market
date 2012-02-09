@@ -2,20 +2,20 @@
 !!! xml
 %html{html_attrs(I18n.locale).merge({"xmlns:og"=>"http://ogp.me/ns#"})}
   %head
-    %title 
-      Kassi
+    %title
+      Sell A Solution
       - if @listing && action_name.eql?("show")
         = "- #{t("listings.show.#{@listing.category}_#{@listing.listing_type}")}: #{@listing.title}"
       - else
         = "- #{@current_community.name}"
-      
-    %meta{ :"http-equiv" => "Content-Type", :content => "text/html; charset=utf-8" } 
+
+    %meta{ :"http-equiv" => "Content-Type", :content => "text/html; charset=utf-8" }
     %meta{ :name => "description", :content => render(:file => community_file("fb_graph_description", false)) }
     %meta{ :name => "keywords", :content => t(".keywords") }
     - if @current_community.use_fb_like
-      %meta{ :property => "og:title", :content => render(:file => community_file("fb_graph_title", false))} 
+      %meta{ :property => "og:title", :content => render(:file => community_file("fb_graph_title", false))}
       %meta{ :property => "og:type", :content =>"website"}
-      %meta{ :property => "og:url", :content =>"http://#{@current_community.domain}.#{request.domain}"} 
+      %meta{ :property => "og:url", :content =>"http://#{@current_community.domain}.#{request.domain}"}
       %meta{ :property => "og:image", :content =>"http://#{@current_community.domain}.#{request.domain}/images/kassi_logo.png"}
       %meta{ :property => "og:site_name", :content =>"Kassi"}
       %meta{ :property => "fb:admins", :content =>"Gnomet,juhomakkonen"}
@@ -32,7 +32,7 @@
     -# %script{:type => "text/javascript", :src => "http://maps.google.com/maps/api/js?file=api&language=#{I18n.locale}&amp;v=2&amp;sensor=false"}
     :javascript
       $(document).ready(function() { initialize_defaults("#{t('header.search_kassi')}","#{t('layouts.application.default_feedback')}", "#{I18n.locale}"); #{yield :javascript} });
-    
+
     - unless I18n.locale.to_s.eql?("fi")
       - if I18n.locale.to_s.eql?("ru")
         %style{:type => "text/css"}
@@ -41,17 +41,17 @@
       - else
         %style{:type => "text/css"}
           a.handle { background-position: -80px 0; }
-          a.handle:hover { background-position: -120px 0; }  
-    
+          a.handle:hover { background-position: -120px 0; }
+
   %body
-  
+
     %noscript
       .js_enabled
         #no_javascript.container_24
           = render :partial => "layouts/no_javascript"
-        
+
     .wrapper
-    
+
       .feedback_div
         = link_to t(".feedback_handle"), "#", :class => "handle", :id => "Feedback"
         %h3= t(".give_feedback")
@@ -60,7 +60,7 @@
             - unless logged_in?
               = form.label :email, t(".your_email_address")
               = form.text_field :email, :class => "text_field"
-            = form.label :title, "You should not see this field, if CSS is working.", :class => "unwanted_text_field" 
+            = form.label :title, "You should not see this field, if CSS is working.", :class => "unwanted_text_field"
             = form.text_field :title, :class => "unwanted_text_field", :id => "error_feedback_unwanted_title"
             = form.label :content, t(".feedback")
             = form.text_area :content, :class => "feedback"
@@ -71,7 +71,7 @@
               = t(".or_check_our")
               = link_to t(".feedback_forum"), "http://kassi.uservoice.com"
               = t(".to_see_what_others_have_suggested")
-    
+
       #header.container_24
         .grid_3
           #logo
@@ -82,7 +82,7 @@
           .grid_6.omega
             #search
               = form_tag({ :action => :show, :controller => "/search" }, :method => "get") do
-                - one_line do              
+                - one_line do
                   = text_field_tag("q", params[:q], :class => "search_field")
                   = submit_tag("s", :class => "search_button")
           .clear
@@ -94,7 +94,7 @@
                   = select_tag 'locale', options_for_select(available_locales, (logged_in? ? @current_user.locale : params[:locale])), :onchange => 'this.form.submit()', :class => 'language_select'
             - elsif @current_community.use_fb_like
               .fb_like_padding
-                = "<iframe src=\"http://www.facebook.com/plugins/like.php?app_id=216154058406825&amp;href=#{@current_community.domain}.#{request.domain}&amp;send=false&amp;layout=button_count&amp;width=450&amp;show_faces=false&amp;action=like&amp;colorscheme=light&amp;font=arial&amp;height=21\" scrolling=\"no\" frameborder=\"0\" style=\"border:none; overflow:hidden; width:450px; height:21px;\" allowTransparency=\"true\"></iframe>".html_safe              
+                = "<iframe src=\"http://www.facebook.com/plugins/like.php?app_id=216154058406825&amp;href=#{@current_community.domain}.#{request.domain}&amp;send=false&amp;layout=button_count&amp;width=450&amp;show_faces=false&amp;action=like&amp;colorscheme=light&amp;font=arial&amp;height=21\" scrolling=\"no\" frameborder=\"0\" style=\"border:none; overflow:hidden; width:450px; height:21px;\" allowTransparency=\"true\"></iframe>".html_safe
         .grid_12
           = render :partial => "layouts/logged_in"
           .clear
@@ -110,20 +110,20 @@
             .navi_link_margin_right
               = link_to t('header.about'), about_infos_path
 
-      #notification_container 
+      #notification_container
         = render :partial => "layouts/notifications"
 
       #main.container_24
         = content_for?(:content) ? yield(:content) : yield
 
-      #bottom_spacer.container_24  
+      #bottom_spacer.container_24
         %br/
         &nbsp;
         %br/
         &nbsp;
         %br/
         %br/
-      
+
       =# render :partial => "layouts/google_analytics_script"
 
       - if APP_CONFIG.use_google_analytics

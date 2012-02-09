@@ -21,23 +21,23 @@
     .grid_10.alpha
       #search_form_spacer
         &nbsp;
-        
-      .tabs.grid_9.alpha 
-        .tabs.grid_9.alpha 
+
+      .tabs.grid_9.alpha
+        .tabs.grid_9.alpha
           #inbox_tabs
-            %div{:class => get_map_tab_class(params[:listing_type]+ "s")} 
+            %div{:class => get_map_tab_class(params[:listing_type]+ "s")}
               - if params[:listing_type] == "request"
                 = link_to t(".list_view"), requests_path
               - else
-                = link_to t(".list_view"), offers_path            
-            %div{:class => get_map_tab_class(params[:listing_type]+ "s_on_map")} 
-              - if params[:listing_type] == "request" 
+                = link_to t(".list_view"), offers_path
+            %div{:class => get_map_tab_class(params[:listing_type]+ "s_on_map")}
+              - if params[:listing_type] == "request"
                 = link_to t(".map_view"), requests_on_map_path, :name => "map_view"
               - else
                 = link_to t(".map_view"), offers_on_map_path, :name => "map_view"
-        
+
         .grid_3.omega
-                          
+
     .grid_8.omega
       #new_listing_links
         = t(".did_not_found_what_you_were_looking_for")
@@ -54,4 +54,4 @@
         = render :partial => "listed_listings"
       - else
         = render :partial => "listings_on_map"
-      
+

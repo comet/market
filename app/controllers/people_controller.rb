@@ -32,7 +32,7 @@ class PeopleController < ApplicationController
 
   def create
     # if the request came from different domain, redirects back there.
-    # e.g. if using login-subdoain for registering in with https    
+    # e.g. if using login-subdomain for registering in with https    
     if params["community"].blank?
       ApplicationHelper.send_error_notification("Got login request, but origin community is blank! Can't redirect back.", "Errors that should never happen")
     end
