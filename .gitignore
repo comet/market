@@ -23,5 +23,6 @@ public/system/
 .loadpath
 .project
 /Gemfile
+nbproject/*
 /Gemfile.lock
 /.gitignore

@@ -2,6 +2,12 @@ require 'subdomain'
 
 Kassi::Application.routes.draw do
 
+  get "payment/home"
+
+  get "payment/check"
+
+  get "payment/account_exists"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -58,11 +64,11 @@ Kassi::Application.routes.draw do
   # This is a legacy wild controller route that's not recommended for RESTful applications.
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id(.:format)))'
-  
+
   # Adds locale to every url right after the root path
   scope "(/:locale)" do
     devise_for :people, :controllers => { :confirmations => "confirmations" }
-    
+
     namespace :admin do
       resources :feedbacks
     end
@@ -87,7 +93,7 @@ Kassi::Application.routes.draw do
         get :check_invitation_code
         get :not_member
       end
-      member do 
+      member do
         put :update_avatar
         put :activate
         put :deactivate
@@ -95,9 +101,9 @@ Kassi::Application.routes.draw do
       resources :listings do
         member do
           put :close
-        end  
-      end  
-      resources :messages, :controller => :conversations do 
+        end
+      end
+      resources :messages, :controller => :conversations do
         collection do
           get :received
           get :sent
@@ -112,8 +118,8 @@ Kassi::Application.routes.draw do
         resources :feedbacks, :controller => :testimonials do
           collection do
             put :skip
-          end  
-        end    
+          end
+        end
       end
       resource :settings do
         member do
@@ -133,18 +139,18 @@ Kassi::Application.routes.draw do
         get :how_to_use
         get :terms
         get :register_details
-      end  
+      end
     end
     resource :terms do
       member do
         post :accept
-      end  
-    end    
+      end
+    end
     resources :sessions do
       collection do
         post :request_new_password
       end
-    end  
+    end
     resources :consent
     resource :sms do
       get :message_arrived
@@ -155,7 +161,7 @@ Kassi::Application.routes.draw do
       end
     end
   end
-  
+
   # Some non-RESTful mappings
   match '/badges/:style/:id.:format' => "badges#image"
   match "/people/:person_id/inbox/:id", :to => redirect("/fi/people/%{person_id}/messages/%{id}")
@@ -184,16 +190,16 @@ Kassi::Application.routes.draw do
   match "/api/query" => "listings#serve_listing_data", :as => :listings_data
   match "/:locale/listing_bubble/:id" => "listings#listing_bubble", :as => :listing_bubble
   match "/:locale/listing_bubble_multiple/:ids" => "listings#listing_bubble_multiple", :as => :listing_bubble_multiple
-  
+
   # Inside this constraits are the routes that are used when request has subdomain other than www
-  constraints(Subdomain) do
+  #constraints(Subdomain) do
     match '/:locale/' => 'homepage#index'
     match '/' => 'homepage#index'
-  end  
-  
+  #end
+
   # Below are the routes that are matched if didn't match inside subdomain constraints
-  match '/:locale' => 'dashboard#index'
-  
-  root :to => 'dashboard#index'
-  
+  #match '/:locale' => 'dashboard#index'
+
+  root :to => 'homepage#index'
+
 end

@@ -12,6 +12,15 @@ en:
     fields_that_are_mandatory: "Fields marked with star (*) are mandatory."
     or: or
     share_types:
+      development: Development
+      web: Web
+      writing: Writing
+      web_app: "Web Applications"
+      graphic: Graphic
+      data_entry: "Data Entry"
+      transcription: Transcription
+      design: Design
+      translation: Translation
       borrow: borrowing
       buy: buying
       give_away: giving
@@ -31,7 +40,32 @@ en:
       no_received_messages: "No received messages"
       no_sent_messages: "No sent messages"
     new:
+
       default_offer_message_text: "Explain what you need."
+      design_offer_message_form_title: "Request design job from "
+      design_offer_message_title: "Design job request "
+      data_entry_offer_message_form_title: "Request data entry job from"
+      data_entry_offer_message_title: "Data entry job request"
+      transcription_offer_message_form_title: "Request transcription job from"
+      transcription_offer_message_title: "Transcription job request"
+      software_offer_message_form_title: "Request software job from"
+      software_offer_message_title: "software job request"
+      editorial_offer_message_form_title: "Request editorial job from"
+      editorial_offer_message_title: "editorial request"
+      misc_offer_message_form_title: "Request this job from"
+      misc_offer_message_title: "job request"
+      design_request_message_form_title: "Request design skill from "
+      design_request_message_title: "Design skill request "
+      data_entry_request_message_form_title: "Request data entry skill from"
+      data_entry_request_message_title: "Data entry skill request"
+      transcription_request_message_form_title: "Request transcription skill from"
+      transcription_request_message_title: "Transcription skill request"
+      software_request_message_form_title: "Request software skill from"
+      software_request_message_title: "software skill request"
+      editorial_request_message_form_title: "Request editorial skill from"
+      editorial_request_message_title: "editorial request"
+      misc_request_message_form_title: "Request this skill from"
+      misc_request_message_title: "job request"
       default_request_message_text: "Explain what you are offering and under what conditions."
       favor_offer_message_form_title: "Ask a favor from"
       favor_offer_message_title: "Favor request: %{title}"
@@ -103,8 +137,8 @@ en:
       reject_request: "Reject request"
   dashboard:
     index:
-      aalto_community_url: "http://aalto.kassi.eu/en"
-      avoinyritys_url: "http://www.avoinyritys.fi/english/"
+      aalto_community_url: "http://sellaservice.intellisys.com/en"
+      avoinyritys_url: "#"
       bubble_text_line_1: "PAY IT"
       bubble_text_line_2: FORWARD!
       description: "Kassi is a web service that helps your community members to help each other out in several ways: by lending and selling stuff, doing favors, sharing rides and many others!"
@@ -245,9 +279,9 @@ en:
     community: Community
     home: Home
     mobile_version: "Mobile version"
-    offers: Offers
-    requests: Requests
-    search_kassi: "Search Kassi"
+    offers: "Job Offers"
+    requests: Skills
+    search_kassi: "Search Service mart"
   homepage:
     additional_private_listings_slate:
       additionally_one_private_offer_exists: "Additionally  there is <b>one other offer</b>,"
@@ -281,23 +315,23 @@ en:
       some_private_offers_exist: "There are already <b>%{number_of_listings} offers</b>,"
       some_private_requests_exist: "There are already <b>%{number_of_listings} requests</b>,"
     index:
-      are_offering: offer
-      lend_rent_help_carpool: "Sell, lend, help, share rides"
+      are_offering: "job offers"
+      lend_rent_help_carpool: "Create jobs, get jobs and power the next generation"
       loading_more_content: "Loading more content"
       more_events: "More events..."
       news: News
-      offer_something: "List your items and skills!"
-      offer_something_description: "Add the items, skills and rides you can offer"
+      offer_something: "List services that you require!"
+      offer_something_description: "List some work that you want to sub contract to others!"
       or: or
-      or_see_what_the_others: "...or see what the others"
+      or_see_what_the_others: "...or see the other's "
       recent_events: "Recent events"
-      recent_offers: "What others can offer"
-      recent_requests: "What others need"
-      request_something: "Tell what you need!"
-      request_something_description: "Tell others if you need an item, a ride or help"
-      requesting: need
-      teaser_text: "Kassi is a service for the %{community} community. Here you can lend, rent, give away and sell stuff, give and get help or share rides. Could you lend something to others or help them?"
-      tell_it_here: "Tell it here!"
+      recent_offers: "Jobs that others are offering"
+      recent_requests: "Skills that others offer"
+      request_something: "Post your skills!"
+      request_something_description: "Post your skills and become a sub contractor! "
+      requesting: "skills"
+      teaser_text: "Kassi is a service for everyone. Here you can post work you want others to do for you, create your profile as a subcontractor, get a job to do and get paid instantly on your MPESA account!"
+      tell_it_here: "Create a job here!"
       welcome_to_new_kassi: "Welcome to new Kassi!"
     invitation_form:
       invite_your_friends: "Invite your friends to Kassi!"
@@ -307,7 +341,7 @@ en:
     profile_info_empty_notification:
       add_your_info: "Add your contact info"
       you_have_not_added_your_info: "You have not added your contact information. Please do, so others can get in touch with you more easily."
-      add_your_info_link: "Add your info now" 
+      add_your_info_link: "Add your info now"
     recent_listing:
       please_offer: Offer
   layouts:
@@ -462,8 +496,8 @@ en:
       you_must: "You must"
       subscribe_to_comments: "Notify me of new comments and updates"
     edit:
-      edit_offer: "Edit offer"
-      edit_request: "Edit request"
+      edit_offer: "Edit Job offer"
+      edit_request: "Edit Skill"
     edit_links:
       close_offer: "Close offer"
       close_request: "Close request"
@@ -486,11 +520,17 @@ en:
       destination:
         destination: Destination
       form_content:
+        design: "Design"
+        transcription: "Transcription Services"
+        software: "Software"
+        editorial: "Editorial Work"
+        data_entry: "Data Entry"
+        misc: "Other"
         favor: Favor
         housing: Housing
         item: Item
-        offer_something: "Offer something"
-        request_something: "Request something"
+        offer_something: "Offer some work"
+        request_something: "Publish your skills"
         rideshare: Rideshare
       googlemap:
         googlemap_copy: "End Points From Map"
@@ -507,9 +547,16 @@ en:
         location: Location
         origin: Origin
       send_button:
-        save_offer: "Save offer"
-        save_request: "Save request"
+        save_offer: "Post Work !"
+        save_request: "Publish your skills !"
       share_type:
+        design: Design
+        graphic: "Graphics"
+        web: Web
+        writing: Writing
+        translation: Translation
+        web_app: "Web Application"
+        development: Development
         borrow: Borrow
         buy: Buy
         give_away: "Give away"
@@ -526,12 +573,24 @@ en:
         comma_separate: "(comma separate)"
         tags: Tags
       title:
+        design_you_request: "Design Skills you can offer"
+        transcription_you_request: "Transcription Skills you can offer"
+        data_entry_you_request: "Data Entry skills you can offer"
+        software_you_request: "Software Skills you can offer"
+        editorial_you_request: "Editorial Skills you can offer"
+        misc_you_request: "Other Skills you can offer"
+        design_you_offer: "Design job you are offering"
+        transcription_you_offer: "Transcription job you are offering"
+        data_entry_you_offer: "Data Entry job you are offering"
+        software_you_offer: "Software job you are offering"
+        editorial_you_offer: "Editorial job you are offering"
+        misc_you_offer: "Other Jobs you are offering"
         favor_you_offer: "Favor you offer"
         favor_you_request: "Favor you need"
         housing_you_offer: "Housing you offer"
         housing_you_request: "Housing you need"
-        item_you_offer: "Item you offer"
-        item_you_request: "Item you need"
+        item_you_offer: "Service you can offer"
+        item_you_request: "Service you need"
       valid_until:
         valid_until: "Expiration date"
       valid_until_radio_buttons:
@@ -546,11 +605,11 @@ en:
       help_tags_title: Tags
       help_valid_until_title: "Expiration date"
     index:
-      all_categories: "All categories"
+      all_categories: "All Categories"
       all_offer_types: "All offer types"
-      all_request_types: "All request types"
-      category: Category
-      did_not_found_what_you_were_looking_for: "Didn't find what you need?"
+      all_request_types: "All Sub Categories"
+      category: "Services categories"
+      did_not_found_what_you_were_looking_for: "Have unique skills?"
       favors: Favors
       housing: Housing
       items: Items
@@ -559,13 +618,25 @@ en:
       offer_something: "Let others know!"
       offer_type: "Offer type"
       offers: Offers
-      request_something: "Request something!"
-      request_type: "Request type"
+      request_something: "Publish your skills!"
+      request_type: "Sub Categories"
       requests: Requests
       rideshare: Rideshare
       search_verb: Search
-      you_have_something_others_do_not: "Have something to offer?"
+      you_have_something_others_do_not: "Have a job to offer?"
     left_panel_link:
+      designs: "Design"
+      graphics: "Graphics"
+      webs: Web
+      writings: Writing
+      translations: Translation
+      web_apps: "Web Application"
+      developments: Development
+      data_entrys: "Data Entry"
+      transcriptions: "Transcription Services"
+      softwares: "Software"
+      editorials: "Editorial Work"
+      miscs: "Other"
       borrows: Borrowing
       buys: Buying
       favors: Favors
@@ -581,14 +652,26 @@ en:
       temporary_accommodations: "Temporary accommodation"
       trades: Trading
     link_labels:
-      link_label_for_favor_offer: "Request favor"
-      link_label_for_favor_request: "Offer your help"
-      link_label_for_housing_offer: Reply
-      link_label_for_housing_request: Reply
-      link_label_for_item_offer: "Request item"
-      link_label_for_item_request: "Offer your item"
-      link_label_for_rideshare_offer: "Request ride"
-      link_label_for_rideshare_request: "Offer a ride"
+      link_label_for_design_offer: "Request design job"
+      link_label_for_design_request: "Request design skills"
+      link_label_for_data_entry_offer: "Request data entry job"
+      link_label_for_data_entry_request: "Request data entry skills"
+      link_label_for_transcription_offer: "Request transcription job"
+      link_label_for_transcription_request: "Request transcription skills"
+      link_label_for_software_offer: "Request software job"
+      link_label_for_software_request: "Request software skills"
+      link_label_for_editorial_offer: "Request editorial job"
+      link_label_for_editorial_request: "Request editorial skill"
+      link_label_for_misc_offer: "Request this job"
+      link_label_for_misc_request: "Request this skill"
+      #link_label_for_favor_offer: "Request favor"
+      #link_label_for_favor_request: "Offer your help"
+      #link_label_for_housing_offer: Reply
+      #link_label_for_housing_request: Reply
+      #link_label_for_item_offer: "Request item"
+      #link_label_for_item_request: "Offer your item"
+      #link_label_for_rideshare_offer: "Request ride"
+      #link_label_for_rideshare_request: "Offer a ride"
     listed_listing:
       edit: Edit
     listed_listing_closed_status:
@@ -607,13 +690,25 @@ en:
       offer_closed: "Offer is closed"
       request_closed: "Request is closed"
     show:
+      design_request: "Design request"
+      editorial_request: "Editorial request"
+      data_entry_request: "Data entry request"
+      transcription_request: "Transcription request"
+      software_request: "Software request"
+      other_offer: "Others offer"
+      design_offer: "Design offer"
+      editorial_offer: "Editorial offer"
+      data_entry_offer: "Data entry offer"
+      transcription_offer: "Transcription offer"
+      software_offer: "Software offer"
+      other_request: "Others request"
       comments: Comments
-      favor_offer: "Favor offer"
-      favor_request: "Favor request"
-      housing_offer: "Housing offer"
-      housing_request: "Housing request"
-      item_offer: "Item offer"
-      item_request: "Item request"
+      #favor_offer: "Favor offer"
+      #favor_request: "Favor request"
+      #housing_offer: "Housing offer"
+      #housing_request: "Housing request"
+      #item_offer: "Item offer"
+      #item_request: "Item request"
       no_description: "No description"
       offer: Offer
       offer_author: "Offered by"
@@ -636,7 +731,7 @@ en:
       all_offer_types: "All offer types"
       all_request_types: "All request types"
       category: Category
-      did_not_found_what_you_were_looking_for: "Didn't find what you need?"
+      did_not_found_what_you_were_looking_for: "Have unique skills?"
       favors: Favors
       housing: Housing
       items: Items
@@ -645,7 +740,7 @@ en:
       offer_something: "Let others know!"
       offer_type: "Offer type"
       offers: Offers
-      request_something: "Request something!"
+      request_something: "Publish your skill!"
       request_type: "Request type"
       requests: Requests
       rideshare: Rideshare
