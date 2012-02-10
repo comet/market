@@ -362,7 +362,11 @@ en:
       your_email_address: "Your email address (not required)"
     conversations:
       messages: Messages
+      summary: Summary
       notifications: Notifications
+      wallet: "My Wallet"
+      work_in_progress: "Work in progress"
+      work_completed: "Work Completed"
       received: Received
       sent: Sent
     dashboard:
@@ -398,6 +402,7 @@ en:
       settings: Settings
       sign_up: "Sign up"
     notifications:
+      design_request_message_sent: "Message sent successfully"
       account_creation_succesful_you_still_need_to_confirm_your_email: "Account created successfully. Next you need to confirm your email address."
       avatar_upload_failed: "Avatar upload failed. Remember that the photo has to be a .png, .jpg or .gif -file."
       avatar_upload_successful: "Avatar upload succesful"
