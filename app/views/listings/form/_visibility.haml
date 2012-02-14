@@ -1,4 +1,5 @@
 .new_listing_form_field_container
-  = form.label :visibility, t(".visibility") + "*:", :class => "input"
-  = select("listing", "visibility", visibility_array, {:selected => (@listing.visibility || "everybody")}, { :class => "visibility_select" })
+  = form.label :visibility, t(".cost") + "*:", :class => "input"
+  = select("listing", "price", Listing::VALID_PAYMENTS, {:selected => (Listing::VALID_PAYMENTS[0])}, { :class => "visibility_select" })
   = form.hidden_field :current_community_id, :value => @current_community.id
+  = form.hidden_field :visibility,:value => "everybody"

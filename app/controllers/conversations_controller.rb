@@ -71,6 +71,10 @@ class ConversationsController < ApplicationController
   def reject
     change_status("rejected")
   end
+
+  def custom
+    create
+  end
   
   private
   

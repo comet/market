@@ -10,7 +10,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111116182825) do
+ActiveRecord::Schema.define(:version => 20120213150528) do
+
+  create_table "accounts", :force => true do |t|
+    t.string   "type"
+    t.string   "name"
+    t.string   "identifier"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "badges", :force => true do |t|
     t.string   "person_id"
@@ -112,6 +120,22 @@ ActiveRecord::Schema.define(:version => 20111116182825) do
   end
 
   add_index "delayed_jobs", ["priority", "run_at"], :name => "delayed_jobs_priority"
+
+  create_table "deliverables", :force => true do |t|
+    t.string   "author_id"
+    t.string   "title"
+    t.text     "content"
+    t.boolean  "status",        :default => false
+    t.string   "comment",       :default => "Not yet performed"
+    t.boolean  "satisfactory",  :default => false
+    t.datetime "last_modified"
+    t.datetime "valid_until"
+    t.string   "receiver_id"
+    t.string   "category_id"
+    t.string   "file_url"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "favors", :force => true do |t|
     t.string   "owner_id"
@@ -248,7 +272,7 @@ ActiveRecord::Schema.define(:version => 20111116182825) do
     t.string   "title"
     t.text     "content"
     t.date     "good_thru"
-    t.integer  "times_viewed",            :default => 0
+    t.integer  "times_viewed",                                           :default => 0
     t.string   "status"
     t.integer  "value_cc"
     t.string   "value_other"
@@ -256,15 +280,17 @@ ActiveRecord::Schema.define(:version => 20111116182825) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.datetime "last_modified"
-    t.string   "visibility",              :default => "everybody"
-    t.boolean  "close_notification_sent", :default => false
+    t.string   "visibility",                                             :default => "everybody"
+    t.boolean  "close_notification_sent",                                :default => false
     t.string   "listing_type"
     t.text     "description"
     t.string   "origin"
     t.string   "destination"
     t.datetime "valid_until"
-    t.boolean  "delta",                   :default => true,        :null => false
-    t.boolean  "open",                    :default => true
+    t.boolean  "delta",                                                  :default => true,        :null => false
+    t.boolean  "open",                                                   :default => true
+    t.string   "subcategory"
+    t.decimal  "price",                   :precision => 10, :scale => 0
   end
 
   create_table "locations", :force => true do |t|
@@ -368,6 +394,31 @@ ActiveRecord::Schema.define(:version => 20111116182825) do
     t.integer  "listing_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "service_files", :force => true do |t|
+    t.string   "service_id"
+    t.string   "file_name"
+    t.string   "file_content_type"
+    t.integer  "file_size"
+    t.datetime "file_uploaded_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "services", :force => true do |t|
+    t.string   "author_id"
+    t.string   "title"
+    t.text     "content"
+    t.string   "status"
+    t.datetime "last_modified"
+    t.datetime "valid_until"
+    t.string   "receiver_id"
+    t.string   "category_id"
+    t.string   "file_url"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "file_id"
   end
 
   create_table "sessions", :force => true do |t|

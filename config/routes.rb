@@ -2,11 +2,21 @@ require 'subdomain'
 
 Kassi::Application.routes.draw do
 
-  get "payment/home"
+  resources :services
 
-  get "payment/check"
+ # get "deliverable/home"
 
-  get "payment/account_exists"
+ # get "deliverable/load"
+
+ # get "deliverable/create"
+
+ # get "deliverable/new"
+
+ # get "payment/home"
+
+ # get "payment/check"
+
+ # get "payment/account_exists"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
@@ -85,6 +95,8 @@ Kassi::Application.routes.draw do
       resources :images, :controller => :listing_images
       resources :comments
     end
+    resources :deliverable, :controller =>:deliverable
+
     resources :people do
       collection do
         get :check_username_availability

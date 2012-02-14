@@ -207,6 +207,82 @@ function initialize_new_listing_form(fileDefaultText, fileBtnText, locale, check
 	set_textarea_maxlength();
 	auto_resize_text_areas();
 }
+function initialize_new_deliverable_form(fileDefaultText, fileBtnText, locale, listing_id) {
+	$('#help_tags_link').click(function() { $('#help_tags').lightbox_me({centered: true}); });
+	$('#help_share_type_link').click(function() { $('#help_share_type').lightbox_me({centered: true}); });
+	$('#help_valid_until_link').click(function() { $('#help_valid_until').lightbox_me({centered: true}); });
+	$('input.title_text_field:first').focus();
+	$("select.listing_date_select, input[type=checkbox], input[type=file], input[type=radio]").uniform({
+		selectClass: 'selector2',
+		fileDefaultText: fileDefaultText,
+		fileBtnText: fileBtnText
+	});
+	$("select.visibility_select").uniform({selectClass: 'selector3'});
+	$(':radio[name=valid_until_select]').change(function() {
+		if ($(this).val() == "for_now") {
+			$('select.listing_date_select').attr('disabled', 'disabled');
+			$('selector2').addClass('disabled');
+			$("label[for='for_now_radio_button']").removeClass('disabled_grey');
+		} else {
+			$('select.listing_date_select').removeAttr('disabled');
+			$('selector2').removeClass('disabled');
+			$("label[for='for_now_radio_button']").addClass('disabled_grey');
+		}
+		$.uniform.update("select.listing_date_select");
+	});
+	form_id = (listing_id == "false") ? "#new_listing" : ("#edit_listing_" + listing_id);
+
+	// Change the origin and destination requirements based on listing_type
+
+	$(form_id).validate({
+		errorPlacement: function(error, element) {
+			if (element.attr("name") == "listing[share_type_attributes][]") {
+				error.appendTo(element.parent().parent().parent().parent().parent().parent());
+			} else if (element.attr("name") == "listing[listing_images_attributes][0][image]")	{
+				error.appendTo(element.parent().parent());
+			} else if (element.attr("name") == "listing[valid_until(1i)]") {
+				if (is_rideshare == "true" || is_offer == "true") {
+					error.appendTo(element.parent().parent().parent());
+				} else {
+					error.appendTo(element.parent().parent());
+				}
+			} else {
+				error.insertAfter(element);
+			}
+		},
+		debug: false,
+		rules: {
+			"listing[title]": {required: true},
+			"listing[origin]": {required: rs, address_validator: true},
+			"listing[destination]": {required: rs, address_validator: true},
+			"listing[share_type_attributes][]": {required: true, minlength: 1},
+			"listing[listing_images_attributes][0][image]": { accept: "(jpe?g|gif|png)" },
+			"listing[valid_until(5i)]": { min_date: is_rideshare, max_date: is_rideshare },
+			"listing[valid_until(4i)]": { min_date: is_rideshare, max_date: is_rideshare },
+			"listing[valid_until(3i)]": { min_date: is_rideshare, max_date: is_rideshare },
+			"listing[valid_until(2i)]": { min_date: is_rideshare, max_date: is_rideshare },
+			"listing[valid_until(1i)]": { min_date: is_rideshare, max_date: is_rideshare }
+		},
+		messages: {
+			"listing[share_type_attributes][]": { required: checkbox_message },
+			"listing[valid_until(1i)]": { min_date: date_message, max_date: date_message },
+			"listing[valid_until(2i)]": { min_date: date_message, max_date: date_message  },
+			"listing[valid_until(3i)]": { min_date: date_message, max_date: date_message  },
+			"listing[valid_until(4i)]": { min_date: date_message, max_date: date_message  },
+			"listing[valid_until(5i)]": { min_date: date_message, max_date: date_message  }
+		},
+		 // Run validations only when submitting the form.
+		 onkeyup: false,
+         onclick: false,
+         onfocusout: false,
+		 onsubmit: true,
+		submitHandler: function(form) {
+		  disable_and_submit(form_id, form, "false", locale);
+		}
+	});
+	set_textarea_maxlength();
+	auto_resize_text_areas();
+}
 
 function initialize_send_message_form(default_text, locale) {
 	auto_resize_text_areas();

@@ -48,7 +48,7 @@ class Listing < ActiveRecord::Base
 
   VALID_TYPES = ["offer", "request"]
   #VALID_CATEGORIES = ["web", "favor", "rideshare", "housing"]
-  VALID_CATEGORIES = ["design", "data_entry", "transcription", "software","editorial","misc"]
+  VALID_CATEGORIES = ["design", "data_entry", "transcription", "software","editorial","misc","item"]
   VALID_SHARE_TYPES = {
     "offer" => {
       "design" => ["web","graphic"],
@@ -68,6 +68,7 @@ class Listing < ActiveRecord::Base
     }
   }
   VALID_VISIBILITIES = ["everybody", "this_community"]
+  VALID_PAYMENTS = ["500", "1000","1500"]
 
   before_validation :set_rideshare_title, :set_valid_until_time
   before_save :downcase_tags, :set_community_visibilities
@@ -80,7 +81,7 @@ class Listing < ActiveRecord::Base
   validates_inclusion_of :listing_type, :in => VALID_TYPES
   validates_inclusion_of :category, :in => VALID_CATEGORIES
   validates_inclusion_of :valid_until, :allow_nil => :true, :in => DateTime.now..DateTime.now + 1.year
-  validate :given_share_type_is_one_of_valid_share_types
+  #validate :given_share_type_is_one_of_valid_share_types
   validate :valid_until_is_not_nil
 
   # Index for sphinx search

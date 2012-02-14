@@ -60,5 +60,16 @@ module ListingsHelper
     end
     return array  
   end
+  def payments_array
+                array = []
+    Listing::VALID_PAYMENTS.each do |visibility|
+      if visibility.eql?("this_community")
+        array << [t(".#{visibility}", :community => @current_community.name), visibility]
+      else
+        array << [t(".#{visibility}"), visibility]
+      end
+    end
+    return array
+  end
   
 end

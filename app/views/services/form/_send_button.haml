@@ -1,0 +1,4 @@
+.new_listing_form_field_container
+  -#= form.hidden_field(:listing_id, :value => @listing.id)
+  -#= form.hidden_field(:receiver_id, :value => @listing.author_id)
+  = form.submit "Deliver", :class => "send_button"

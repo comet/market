@@ -247,6 +247,8 @@ en:
       remember_to_give_feedback_to: "Reminder: remember to give feedback to %{name}"
       you_have_not_given_feedback_yet: "You have not yet given feedback to %{name} about event '%{event}'. Remember to give feedback on how %{given_name} performed in the event."
   error_messages:
+    services:
+    general_error: "Errors found in the form"
     listings:
       departure_time: "Departure time must be between current time and one year from now."
       share_type: "You must check at least one of the boxes above."
@@ -327,6 +329,7 @@ en:
       recent_events: "Recent events"
       recent_offers: "Jobs that others are offering"
       recent_requests: "Skills that others offer"
+      deliver_something: "Post a delivery"
       request_something: "Post your skills!"
       request_something_description: "Post your skills and become a sub contractor! "
       requesting: "skills"
@@ -488,6 +491,18 @@ en:
       notifications: Notifications
       profile: "Profile info"
       settings: Settings
+  services:
+    form:
+      images:
+        image: Image
+        no_file_selected: "No file selected"
+        remove_image: "Remove image"
+        select_file: "Select file"
+      description:
+        detailed_description: "Description"
+      uploads:
+        upload_file: "File to upload"
+
   listings:
     bubble_listing_not_visible:
       listing_not_visible: "You do not have permission to view this listing."
@@ -605,6 +620,7 @@ en:
         everybody: "All internet users"
         this_community: "Only %{community} members"
         visibility: Visibility
+        cost: "Service Fee"
     help_texts:
       help_share_type_title: "Type of the offer or request"
       help_tags_title: Tags

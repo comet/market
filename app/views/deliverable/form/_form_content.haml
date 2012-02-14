@@ -1,0 +1,16 @@
+= render :partial => "deliverable/form/javascripts", :locals => { :deliverable_id => "false" }
+.grid_16.prefix_4.suffix_4
+
+  #new_listing_form
+    #listing_required_fields_description
+      = t("common.fields_that_are_mandatory")
+
+    #new_listing_form_main
+      = form_for :deliverable, :html => {:multipart => true} do |form|
+        = form.error_messages
+        = render :partial => "deliverable/form/title", :locals => { :form => form }
+        = render :partial => "deliverable/form/description", :locals => { :form => form }
+        -#= render :partial => "deliverable/form/images", :locals => { :form => form }
+        = render :partial => "deliverable/form/send_button", :locals => { :form => form }
+
+-#= render :partial => "deliverable/help_texts", :collection => ["help_deliverable"], :as => :field

@@ -11,7 +11,7 @@
 
   #new_listing_form
     #listing_type_select_icons
-      - Listing::VALID_CATEGORIES.each do |category|
+      -# Listing::VALID_CATEGORIES.each do |category|
         %div{:class => get_type_select_icon_class(category)}
           = link_to t(".#{category}"), new_listing_path(:type => @listing.listing_type, :category => category), :remote => :true
 
