@@ -70,7 +70,11 @@ class Conversation < ActiveRecord::Base
   def send_email_to_participants(host)
     recipients(messages.last.sender).each do |recipient|
       if recipient.should_receive?("email_about_new_messages")
+        begin
         PersonMailer.new_message_notification(messages.last, host).deliver
+        rescue Exception => e
+          Rails.logger.error{e}
+          end
       end  
     end
   end
@@ -84,7 +88,11 @@ class Conversation < ActiveRecord::Base
     update_attribute(:status, new_status)
     participations.find_by_person_id(current_user.id).update_attribute(:is_read, true)
     if other_party(current_user).should_receive?("email_when_conversation_#{new_status}")
+     begin
       PersonMailer.conversation_status_changed(self, request.host).deliver
+     rescue Exception => e
+       Rails.logger.error{e}
+       end
     end      
   end
   
