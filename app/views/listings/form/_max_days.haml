@@ -1,0 +1,4 @@
+.new_listing_form_field_container
+  = form.label :title, t(".max_duration") + "*:", :class => "input"
+  = form.text_field(:title, :class => "title_text_field", :maxlength => "100")
+  -# = form.select,Listing::VALID_TIMES,(:title, :class => "title_text_field", :maxlength => "100")

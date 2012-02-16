@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120215144840) do
+ActiveRecord::Schema.define(:version => 20120216144541) do
 
   create_table "accounts", :force => true do |t|
     t.string   "type"
@@ -291,6 +291,7 @@ ActiveRecord::Schema.define(:version => 20120215144840) do
     t.boolean  "open",                                                   :default => true
     t.string   "subcategory"
     t.decimal  "price",                   :precision => 10, :scale => 0
+    t.string   "buyer_instruction"
   end
 
   create_table "locations", :force => true do |t|

@@ -1,4 +1,8 @@
 .new_listing_form_field_container
-  %label{:for => "category", :class => "input"}
-    = t('.categories')
-  = form.select :category, options_for_select(Listing::VALID_CATEGORIES),{:selected => (Listing::VALID_CATEGORIES[0])}, { :class => "visibility_select" }
+  %label{:for => "tag_list", :class => "input"}
+    = t('.tags')
+    %span{:class => "smaller"}
+      = t('.comma_separate') + ":"
+    %span{:class => "smaller"}
+      = link_to t('common.what_is_this'), "#", :tabindex => "-1", :id => "help_tags_link"
+  = form.text_field(:tag_list, :class => "text_field", :maxlength => "500")

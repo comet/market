@@ -1,0 +1,4 @@
+.new_listing_form_field_container
+  %label{:for => "category", :class => "input"}
+    = t('.categories')
+  = form.select :category, options_for_select(Listing::VALID_CATEGORIES),{:selected => (Listing::VALID_CATEGORIES[0])}, { :class => "visibility_select" }

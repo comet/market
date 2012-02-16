@@ -48,7 +48,9 @@ class Listing < ActiveRecord::Base
 
   VALID_TYPES = ["offer", "request"]
   #VALID_CATEGORIES = ["web", "favor", "rideshare", "housing"]
-  VALID_CATEGORIES = ["design", "data_entry", "transcription", "software","editorial","misc","item"]
+  #VALID_CATEGORIES = ["design", "data_entry", "transcription", "software","editorial","misc","item"]
+  VALID_CATEGORIES=["Fun and Bizarre", "Social Marketing", "graphics", "Advertising", "Writing", "Tips & Advice", "Business", "Technology",
+"Programming", "Music & Audio", "Gifts", "Travel", "Video","item" ]
   VALID_SHARE_TYPES = {
     "offer" => {
       "design" => ["web","graphic"],
@@ -68,7 +70,7 @@ class Listing < ActiveRecord::Base
     }
   }
   VALID_VISIBILITIES = ["everybody", "this_community"]
-  VALID_PAYMENTS = ["500", "1000","1500"]
+  VALID_PAYMENTS = ["500", "1000","1500","2000"]
 
   before_validation :set_rideshare_title, :set_valid_until_time
   before_save :downcase_tags, :set_community_visibilities

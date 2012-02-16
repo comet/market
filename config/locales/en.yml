@@ -591,7 +591,7 @@ en:
         trade: Trade
       tag_list:
         comma_separate: "(comma separate)"
-        tags: Tags
+        tags: "Tags"
       title:
         design_you_request: "Design Skills you can offer"
         transcription_you_request: "Transcription Skills you can offer"
@@ -611,6 +611,7 @@ en:
         housing_you_request: "Housing you need"
         item_you_offer: "Service you can offer"
         item_you_request: "Service you need"
+        i_will: "I will"
       valid_until:
         valid_until: "Expiration date"
       valid_until_radio_buttons:
@@ -620,7 +621,12 @@ en:
         everybody: "All internet users"
         this_community: "Only %{community} members"
         visibility: Visibility
-        cost: "Service Fee"
+      price:
+        cost: "Service Fee (Ksh)"
+      buyer_instructions:
+        buyer_instructions: "Specific information to buyers"
+      categories:
+        categories: "Category"
     help_texts:
       help_share_type_title: "Type of the offer or request"
       help_tags_title: Tags
