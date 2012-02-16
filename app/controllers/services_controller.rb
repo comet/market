@@ -2,12 +2,18 @@ class ServicesController < ApplicationController
   # GET /services
   # GET /services.xml
   def index
-    @services = Service.all
+    action_path = params[:type]
+               if action_path.eql?"done"
+                 performed
+               else
+                 pending
+               end
+    #@services = Service.all
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml { render :xml => @services }
-    end
+    #respond_to do |format|
+     # format.html # index.html.erb
+      #format.xml { render :xml => @services }
+    #end
   end
 
   # GET /services/1
@@ -20,6 +26,29 @@ class ServicesController < ApplicationController
       format.xml { render :xml => @service }
     end
   end
+  #Loads services based on user request
+  def performed
+
+    @to_render = {:action => :index}
+    load
+  end
+  def pending
+        @to_render = {:action => :index}
+    load
+  end
+  def load
+    @title = params[:type]
+    @to_render ||= {:partial => "services/_services_delivered"}
+    @services = Service.order("created_at DESC").find_all#(params, @current_user).paginate(:per_page => 15, :page => params[:page])
+    @request_path = request.fullpath
+    if request.xhr? && params[:page] && params[:page].to_i > 1
+      render :partial => "services/additional_listings"
+    else
+      render @to_render
+    end
+
+  end
+
 
   # GET /services/new
   # GET /services/new.xml

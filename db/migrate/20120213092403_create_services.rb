@@ -4,7 +4,7 @@ class CreateServices < ActiveRecord::Migration
       t.string :author_id
       t.string :title
       t.text :content
-      t.string :status
+      t.string :status,:default=> "pending"
       t.datetime :last_modified
       t.datetime :valid_until
       t.string :receiver_id

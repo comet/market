@@ -65,9 +65,25 @@ class ConversationsController < ApplicationController
   end
   
   def accept
+    create_new_service
     change_status("accepted")
+
   end
-  
+
+  def create_new_service
+
+    @service = Service.new
+    @service.author_id = params[:person_id]
+    @service.listing_id = Conversation.find_by_id(params[:id]).listing_id
+    @service.status="Pending" #Tasks are undone by default
+    if @service.save
+      Rails.logger.debug{"Successfully saved the service params"}
+      return
+    else
+      Rails.logger.error{"Failed creating a service skeleton"}
+    end
+  end
+
   def reject
     change_status("rejected")
   end

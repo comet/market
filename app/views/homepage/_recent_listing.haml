@@ -9,7 +9,7 @@
           %span{:class => "not_visible"}
             a
   .recent_listing_text
-    %h5= link_to listing.title, listing
+    %h5= link_to "For "+listing.price.to_s+" Ksh: "+listing.title, listing
     - unless listing.share_types.empty?
       .recent_listing_tags
       - listing.share_types.each do |st|

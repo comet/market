@@ -281,8 +281,8 @@ en:
     community: Community
     home: Home
     mobile_version: "Mobile version"
-    offers: "Job Offers"
-    requests: Skills
+    offers: "Request Jobs"
+    requests: Jobs
     search_kassi: "Search Service mart"
   homepage:
     additional_private_listings_slate:
@@ -328,7 +328,7 @@ en:
       or_see_what_the_others: "...or see the other's "
       recent_events: "Recent events"
       recent_offers: "Jobs that others are offering"
-      recent_requests: "Skills that others offer"
+      recent_requests: ""
       deliver_something: "Post a delivery"
       request_something: "Post your skills!"
       request_something_description: "Post your skills and become a sub contractor! "

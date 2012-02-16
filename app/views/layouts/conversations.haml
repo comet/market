@@ -9,9 +9,9 @@
       %div{:class => get_inbox_tab_class("notifications")}
         = link_to t('.notifications'), notifications_person_messages_path(:person_id => @current_user.id.to_s)
       %div{:class => get_inbox_tab_class("work_in_progress")}
-        = link_to t('.work_in_progress'), notifications_person_messages_path(:person_id => @current_user.id.to_s)
+        = link_to t('.work_in_progress'), services_path(:author_id => @current_user.id.to_s,:type=>"pending")
       %div{:class => get_inbox_tab_class("work_done")}
-        = link_to t('.work_completed'), notifications_person_messages_path(:person_id => @current_user.id.to_s)
+        = link_to t('.work_completed'), services_path(:person_id => @current_user.id.to_s,:type=>"done")
       %div{:class => get_inbox_tab_class("wallet")}
         = link_to t('.wallet'), notifications_person_messages_path(:person_id => @current_user.id.to_s)
     #inbox_tab_spacer

@@ -129,8 +129,8 @@ class ListingsController < ApplicationController
     end
   end
 
-  def show
-    @listing.increment!(:times_viewed)
+ def show
+     @listing.increment!(:times_viewed)
   end
 
   def new
