@@ -2,6 +2,10 @@ require 'subdomain'
 
 Kassi::Application.routes.draw do
 
+  resources :sub_categories
+
+  resources :categories
+
   resources :services
 
  # get "deliverable/home"
