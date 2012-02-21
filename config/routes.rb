@@ -2,6 +2,19 @@ require 'subdomain'
 
 Kassi::Application.routes.draw do
 
+
+  get "mpesa_sms/index"
+
+  get "payments/home"
+
+  get "payments/all"
+
+  get "payments/new"
+
+  get "payments/show"
+
+  get "payments/confirm"
+
   resources :sub_categories
 
   resources :categories

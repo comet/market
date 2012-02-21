@@ -1,0 +1,1 @@
+RELOAD_LIBS = Dir[Rails.root + 'lib/Mpesa/*.rb'] if Rails.env.development?

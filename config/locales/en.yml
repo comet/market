@@ -89,6 +89,7 @@ en:
       send_request_message: "Send the request"
       this_message_is_private: "This message is private between you and %{person}."
       title: Title
+      message_form_title: "Conversation with"
     notifications:
       badgenotification:
         see_all_your_badges: "See all your badges"
@@ -336,6 +337,8 @@ en:
       teaser_text: "SAS727 is a service for everyone. Here you can post work you want others to do for you, create your profile as a subcontractor, get a job to do and get paid instantly on your MPESA account!"
       tell_it_here: "Create a job here!"
       welcome_to_new_kassi: "Welcome to new SAS727!"
+      category: "Categories"
+      all_categories: "All categories"
     invitation_form:
       invite_your_friends: "Invite your friends to SAS727!"
       email: "Your friend's email address:"
@@ -347,6 +350,10 @@ en:
       add_your_info_link: "Add your info now"
     recent_listing:
       please_offer: Offer
+      contact_author: "Contact "
+      request_author: "Buy now"
+      offer_author: "Buy now"
+
   layouts:
     admin:
       admin: "SAS727 admin panel"
@@ -627,6 +634,8 @@ en:
         buyer_instructions: "Specific information to buyers"
       categories:
         categories: "Category"
+      max_days:
+        est_time: "Estimated no. of days"
     help_texts:
       help_share_type_title: "Type of the offer or request"
       help_tags_title: Tags
@@ -738,10 +747,10 @@ en:
       #item_request: "Item request"
       no_description: "No description"
       offer: Offer
-      offer_author: "Offered by"
+      offer_author: "Posted by"
       offer_created: "Offer created"
       request: Request
-      request_author: "Requested by"
+      request_author: "Posted by"
       request_created: "Request created"
       rideshare_offer: "Rideshare offer"
       rideshare_request: "Rideshare request"

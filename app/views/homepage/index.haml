@@ -68,6 +68,12 @@
       = render :partial => "common/staples", :locals => { :temp_class => "staples_bottom" }
   
   .homepage_sidebar_box
-    = render :partial => "common/staples", :locals => { :temp_class => "staples_top" }
-    = render :file => community_file("frontpage_sidebar", true)
-    = render :partial => "common/staples", :locals => { :temp_class => "staples_bottom" }
+    -#= render :partial => "common/staples", :locals => { :temp_class => "staples_top" }
+    -#= render :file => community_file("frontpage_sidebar", true)
+    -#= render :partial => "common/staples", :locals => { :temp_class => "staples_bottom" }
+    #left_link_panel_browse
+      .left_panel_section
+        .left_panel_title
+          %h3= t(".category")
+        = link_to t(".all_categories"), "#", :class => "selected", :name => "categories_all"
+        = render :partial => "listings/left_panel_link", :collection => Listing::VALID_CATEGORIES, :as => :title, :locals => { :type => "categories" }

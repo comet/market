@@ -54,6 +54,7 @@ class Person < ActiveRecord::Base
   has_many :communities, :through => :community_memberships
   has_many :invitations, :foreign_key => "inviter_id", :dependent => :destroy
 
+
   has_and_belongs_to_many :followed_listings, :class_name => "Listing", :join_table => "listing_followers"
 
   EMAIL_NOTIFICATION_TYPES = [
@@ -78,6 +79,7 @@ class Person < ActiveRecord::Base
   def messages_that_are(action)
     conversations.joins(:participations).where("participations.last_#{action}_at IS NOT NULL").order("participations.last_#{action}_at DESC").uniq
   end
+
 
   def feedback_average
     ((received_testimonials.average(:grade) * 4 + 1) * 10).round / 10.0

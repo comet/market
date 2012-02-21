@@ -13,7 +13,7 @@
       %div{:class => get_inbox_tab_class("work_done")}
         = link_to t('.work_completed'), services_path(:person_id => @current_user.id.to_s,:type=>"done")
       %div{:class => get_inbox_tab_class("wallet")}
-        = link_to t('.wallet'), notifications_person_messages_path(:person_id => @current_user.id.to_s)
+        = link_to t('.wallet'), :controller=>"payments",:action=>"all",:person_id => @current_user.id.to_s
     #inbox_tab_spacer
 
   = yield

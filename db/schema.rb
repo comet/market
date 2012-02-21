@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120216144541) do
+ActiveRecord::Schema.define(:version => 20120220100658) do
 
   create_table "accounts", :force => true do |t|
     t.string   "type"
@@ -40,6 +40,12 @@ ActiveRecord::Schema.define(:version => 20120216144541) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "test_group_number"
+  end
+
+  create_table "categories", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "comments", :force => true do |t|
@@ -292,6 +298,7 @@ ActiveRecord::Schema.define(:version => 20120216144541) do
     t.string   "subcategory"
     t.decimal  "price",                   :precision => 10, :scale => 0
     t.string   "buyer_instruction"
+    t.datetime "time_frame"
   end
 
   create_table "locations", :force => true do |t|
@@ -312,6 +319,14 @@ ActiveRecord::Schema.define(:version => 20120216144541) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "conversation_id"
+  end
+
+  create_table "money_accounts", :force => true do |t|
+    t.integer  "type"
+    t.string   "name"
+    t.string   "identifier"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "notifications", :force => true do |t|
@@ -336,6 +351,24 @@ ActiveRecord::Schema.define(:version => 20120216144541) do
     t.datetime "last_sent_at"
     t.datetime "last_received_at"
     t.boolean  "feedback_skipped", :default => false
+  end
+
+  create_table "payments", :force => true do |t|
+    t.integer  "account_id"
+    t.integer  "super_type"
+    t.integer  "transaction_type"
+    t.string   "receipt"
+    t.datetime "time"
+    t.string   "phonenumber"
+    t.string   "name"
+    t.string   "account"
+    t.integer  "status"
+    t.float    "amount"
+    t.float    "post_balance"
+    t.string   "note"
+    t.integer  "transaction_cost"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "people", :id => false, :force => true do |t|
@@ -464,6 +497,13 @@ ActiveRecord::Schema.define(:version => 20120216144541) do
     t.integer "people_smerf_form_id", :null => false
     t.string  "question_code",        :null => false
     t.text    "response",             :null => false
+  end
+
+  create_table "sub_categories", :force => true do |t|
+    t.string   "name"
+    t.integer  "category"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "taggings", :force => true do |t|

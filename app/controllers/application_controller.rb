@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   include UrlHelper, ApplicationHelper
   protect_from_forgery
   layout 'application'
-
+  before_filter :_reload_libs, :if => :_reload_libs?
   before_filter :fetch_logged_in_user, :fetch_community, :set_locale, :generate_event_id, :set_default_url_for_mailer
   before_filter :check_email_confirmation, :except => [ :confirmation_pending]
 
@@ -15,6 +15,15 @@ class ApplicationController < ActionController::Base
   rescue_from RestClient::Unauthorized, :with => :session_unauthorized
 
   helper_method :root, :logged_in?, :current_user?
+  def _reload_libs
+  RELOAD_LIBS.each do |lib|
+    require_dependency lib
+  end
+end
+
+def _reload_libs?
+  defined? RELOAD_LIBS
+end
 
   def set_locale
     locale = (logged_in? && @current_community && @current_community.locales.include?(@current_user.locale)) ? @current_user.locale : params[:locale]

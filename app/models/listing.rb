@@ -27,6 +27,7 @@ class Listing < ActiveRecord::Base
   has_many :comments
 
   has_many :share_types
+  has_many :services, :foreign_key=>"author_id"
 
   has_one :location, :dependent => :destroy
   has_one :origin_loc, :class_name => "Location", :conditions => ['location_type = ?', 'origin_loc'], :dependent => :destroy
@@ -71,6 +72,7 @@ class Listing < ActiveRecord::Base
   }
   VALID_VISIBILITIES = ["everybody", "this_community"]
   VALID_PAYMENTS = ["500", "1000","1500","2000"]
+  VALID_DURATIONS = ["1","2","3"]
 
   before_validation :set_rideshare_title, :set_valid_until_time
   before_save :downcase_tags, :set_community_visibilities
@@ -166,6 +168,9 @@ class Listing < ActiveRecord::Base
         AND listings.id IN (SELECT listing_id FROM communities_listings WHERE community_id = '#{community.id}')
       ")
   end
+  def services_that_are(status)
+      #fetch services of a particular status
+    end
 
   def share_type_attributes=(attributes)
     share_types.clear

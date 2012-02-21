@@ -7,4 +7,4 @@
     %a{:href => reply_to_listing_path(:id => @listing.id.to_s)}
       = image_tag "/images/icons/request_icon.png"
       .request_listing_link_label
-        = t("listings.link_labels.link_label_for_#{@listing.category}_#{@listing.listing_type}")
+        = "contact"+ " "+@listing.author.name

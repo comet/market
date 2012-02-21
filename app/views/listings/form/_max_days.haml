@@ -1,4 +1,5 @@
 .new_listing_form_field_container
-  = form.label :title, t(".max_duration") + "*:", :class => "input"
-  = form.text_field(:title, :class => "title_text_field", :maxlength => "100")
-  -# = form.select,Listing::VALID_TIMES,(:title, :class => "title_text_field", :maxlength => "100")
+  = form.label :time_frame, t(".est_time") + "*:", :class => "input"
+  = select("listing", "time_frame", Listing::VALID_DURATIONS, {:selected => (Listing::VALID_DURATIONS[0])}, { :class => "visibility_select" })
+  = form.hidden_field :current_community_id, :value => @current_community.id
+  = form.hidden_field :visibility,:value => "everybody"

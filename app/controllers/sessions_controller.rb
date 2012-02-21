@@ -11,7 +11,8 @@ class SessionsController < ApplicationController
     if params["community"].blank?
       ApplicationHelper.send_error_notification("Got login request, but origin community is blank! Can't redirect back.", "Errors that should never happen")
     end
-    current_community = Community.find_by_domain(params[:community])
+    #current_community = Community.find_by_domain(params[:community])
+    current_community = Community.first
     domain = "http://#{with_subdomain(current_community.domain)}"
         
     session[:form_username] = params[:username]

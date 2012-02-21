@@ -30,11 +30,11 @@
         = render :partial => "listings/form/description", :locals => { :form => form }
         = render :partial => "listings/form/categories", :locals => { :form => form }
         - unless @listing.listing_type.eql?("request")
-          = render :partial => "listings/form/valid_until", :locals => { :form => form }
+          -#= render :partial => "listings/form/valid_until", :locals => { :form => form }
           -#= render :partial => "listings/form/origin", :locals => { :form => form, :origin_loc => @listing.origin_loc, :rideshare => false }
           -#= render :partial => "listings/form/googlemap", :locals => { :form => form, :rideshare => false}
         = render :partial => "listings/form/price", :locals => { :form => form }
-        -#= render :partial => "listings/form/max_days", :locals => { :form => form }
+        = render :partial => "listings/form/max_days", :locals => { :form => form }
         = render :partial => "listings/form/buyer_instructions", :locals => { :form => form }
         = render :partial => "listings/form/images", :locals => { :form => form }
         = render :partial => "listings/form/tag_list", :locals => { :form => form }

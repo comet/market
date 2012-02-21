@@ -9,7 +9,6 @@ class ServicesController < ApplicationController
                  pending
                end
     #@services = Service.all
-
     #respond_to do |format|
      # format.html # index.html.erb
       #format.xml { render :xml => @services }
@@ -28,20 +27,24 @@ class ServicesController < ApplicationController
   end
   #Loads services based on user request
   def performed
-
-    @to_render = {:action => :index}
+    @to_render = {:layout => "conversations"}
     load
   end
   def pending
-        @to_render = {:action => :index}
+        @to_render = {:layout => "conversations"}
     load
   end
   def load
     @title = params[:type]
-    @to_render ||= {:partial => "services/_services_delivered"}
-    @services = Service.order("created_at DESC").find_all#(params, @current_user).paginate(:per_page => 15, :page => params[:page])
+    #@to_render ||= {:partial => "services/_services_delivered",:layout=>"conversations"}
+
+    @services = Service.order("created_at DESC").find_all#@current_user.services_that_are(@title).paginate(:per_page => 15, :page => params[:page])
+
+    #request.xhr? ? (render :partial => "additional_messages") : (render :action => :index)
+    ##(params, @current_user).paginate(:per_page => 15, :page => params[:page])
     @request_path = request.fullpath
     if request.xhr? && params[:page] && params[:page].to_i > 1
+
       render :partial => "services/additional_listings"
     else
       render @to_render
