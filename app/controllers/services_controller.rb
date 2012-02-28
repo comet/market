@@ -2,12 +2,8 @@ class ServicesController < ApplicationController
   # GET /services
   # GET /services.xml
   def index
-    action_path = params[:type]
-               if action_path.eql?"done"
-                 performed
-               else
-                 pending
-               end
+    @action_path = params[:type]
+    load
     #@services = Service.all
     #respond_to do |format|
      # format.html # index.html.erb
@@ -35,11 +31,10 @@ class ServicesController < ApplicationController
     load
   end
   def load
-    @title = params[:type]
-    #@to_render ||= {:partial => "services/_services_delivered",:layout=>"conversations"}
-
-    @services = Service.order("created_at DESC").find_all#@current_user.services_that_are(@title).paginate(:per_page => 15, :page => params[:page])
-
+    @title = @action_path
+    @to_render ||= {:layout=>"conversations"}
+    @services = Service.all#Service.order("created_at DESC").find_all#@current_user.services_that_are(@title).paginate(:per_page => 15, :page => params[:page])
+    Rails.logger.info{@services.to_s}
     #request.xhr? ? (render :partial => "additional_messages") : (render :action => :index)
     ##(params, @current_user).paginate(:per_page => 15, :page => params[:page])
     @request_path = request.fullpath

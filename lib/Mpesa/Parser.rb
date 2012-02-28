@@ -158,7 +158,7 @@ class Parser
                       @result["TYPE"] = "AIRTIME_OTHER"
 
                       temp = message.scan("/([A-Z0-9]+) confirmed\.[\s\n]+You bought Ksh([0-9\.\,]+) of airtime for (\d+) on (\d\d?\/\d\d?\/\d\d) at (\d\d?:\d\d [AP]M)[\s\n]+New M-PESA balance is Ksh([0-9\.\,]+)/mi")
-                     Rails.logger.debug{temp}
+
                       if !temp.nil?
                         @result["RECEIPT"] = temp[0][0];
                         @result["AMOUNT"] = temp[0][1] #Utility::numberInput($temp[2][0]);

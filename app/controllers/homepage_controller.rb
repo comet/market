@@ -3,6 +3,8 @@ class HomepageController < ApplicationController
   before_filter :save_current_path
 
   def index
+    #Hack to avoid the homepage
+    redirect_to(:controller=>"listings",:action=>"requests")
     @events = ["Event 1", "Event 2", "Event 3"]
     listings_per_page = 15
     

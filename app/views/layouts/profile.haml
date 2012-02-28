@@ -1,0 +1,21 @@
+= content_for :content do
+  .inbox_container
+    %h1= t(".summary")
+    #inbox_tabs
+      %div{:class => get_inbox_tab_class("received")}
+        = link_to t('.received'), received_person_messages_path(:person_id => @current_user.id.to_s)
+      %div{:class => get_inbox_tab_class("sent")}
+        = link_to t('.sent'), sent_person_messages_path(:person_id => @current_user.id.to_s)
+      %div{:class => get_inbox_tab_class("notifications")}
+        = link_to t('.notifications'), notifications_person_messages_path(:person_id => @current_user.id.to_s)
+      %div{:class => get_inbox_tab_class("work_in_progress")}
+        = link_to t('.work_in_progress'), services_path(:author_id => @current_user.id.to_s,:type=>"pending")
+      %div{:class => get_inbox_tab_class("work_done")}
+        = link_to t('.work_completed'), services_path(:person_id => @current_user.id.to_s,:type=>"done")
+      %div{:class => get_inbox_tab_class("wallet")}
+        = link_to t('.wallet'), :controller=>"payments",:action=>"all",:person_id => @current_user.id.to_s
+    #inbox_tab_spacer
+
+  = yield
+
+= render :file => 'layouts/application'

@@ -22,9 +22,9 @@
       #search_form_spacer
         &nbsp;
 
-      -#.tabs.grid_9.alpha
+      .tabs.grid_9.alpha
         .tabs.grid_9.alpha
-          -#inbox_tabs
+          #inbox_tabs
             %div{:class => get_map_tab_class(params[:listing_type]+ "s")}
               - if params[:listing_type] == "request"
                 = link_to t(".list_view"), requests_path

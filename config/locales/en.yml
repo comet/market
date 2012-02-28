@@ -282,9 +282,10 @@ en:
     community: Community
     home: Home
     mobile_version: "Mobile version"
-    offers: "Request Jobs"
-    requests: Jobs
+    offers: "Request Tasks"
+    requests: Tasks
     search_kassi: "Search Service mart"
+    profile: "Dashboard"
   homepage:
     additional_private_listings_slate:
       additionally_one_private_offer_exists: "Additionally  there is <b>one other offer</b>,"
@@ -396,7 +397,7 @@ en:
       notifications: Notifications
       requests: "Friend requests"
       settings: Settings
-      sign_up: "Create account"
+      sign_up: "Join SAS727"
     logged_in_messages_icon:
       messages: Messages
     logged_in_notifications_icon:
@@ -511,6 +512,8 @@ en:
         upload_file: "File to upload"
 
   listings:
+    buy_now: "Buy now"
+    contact_author: "Contact author"
     bubble_listing_not_visible:
       listing_not_visible: "You do not have permission to view this listing."
     comment_form:
