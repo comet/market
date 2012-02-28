@@ -18,6 +18,13 @@
         = link_to t(".admin"), "#"
         |
       = link_to t('.logout'), logout_path
+  .clear
+  .tabs.grid_9.alpha
+    .grid_3{:class => (params[:listing_type] && params[:listing_type].eql?("request")) ? "tab_selected" : "tab_unselected"}
+      = link_to t('header.requests'), requests_path
+    .grid_3.omega{:class => (params[:controller].eql?("services")) ? "tab_selected" : "tab_unselected"}
+      = link_to t('header.profile'), services_path
+    .clear
 - else
   .grid_12.alpha
     .login_tabs

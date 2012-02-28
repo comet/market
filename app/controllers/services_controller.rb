@@ -3,6 +3,7 @@ class ServicesController < ApplicationController
   # GET /services.xml
   def index
     @action_path = params[:type]
+    @to_render = {:layout => "profile"}
     load
     #@services = Service.all
     #respond_to do |format|
@@ -23,18 +24,23 @@ class ServicesController < ApplicationController
   end
   #Loads services based on user request
   def performed
-    @to_render = {:layout => "conversations"}
+
     load
   end
   def pending
-        @to_render = {:layout => "conversations"}
+
     load
   end
   def load
     @title = @action_path
-    @to_render ||= {:layout=>"conversations"}
-    @services = Service.all#Service.order("created_at DESC").find_all#@current_user.services_that_are(@title).paginate(:per_page => 15, :page => params[:page])
-    Rails.logger.info{@services.to_s}
+    if @title.eql?"done"
+      @services = Service.performed.order("created_at DESC").where("author_id=?",@current_user.id).paginate(:per_page => 15, :page => params[:page])
+    elsif
+      @services = Service.cancelled.order("created_at DESC").where("author_id=?",@current_user.id).paginate(:per_page => 15, :page => params[:page])
+    else
+      @services = Service.pending.order("created_at DESC").where("author_id=?",@current_user.id).paginate(:per_page => 15, :page => params[:page])
+    end
+    #Service.order("created_at DESC").find_all#@current_user.services_that_are(@title).paginate(:per_page => 15, :page => params[:page])
     #request.xhr? ? (render :partial => "additional_messages") : (render :action => :index)
     ##(params, @current_user).paginate(:per_page => 15, :page => params[:page])
     @request_path = request.fullpath
@@ -45,7 +51,8 @@ class ServicesController < ApplicationController
       render @to_render
     end
 
-  end
+    end
+    end
 
 
   # GET /services/new
@@ -121,4 +128,3 @@ class ServicesController < ApplicationController
     @service_file.service_id = @service.id
     ServiceFile.save(params[:service],@service_file)
   end
-end

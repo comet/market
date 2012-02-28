@@ -285,7 +285,7 @@ en:
     offers: "Request Tasks"
     requests: Tasks
     search_kassi: "Search Service mart"
-    profile: "Dashboard"
+    profile: "My Tasks"
   homepage:
     additional_private_listings_slate:
       additionally_one_private_offer_exists: "Additionally  there is <b>one other offer</b>,"
@@ -356,6 +356,13 @@ en:
       offer_author: "Buy now"
 
   layouts:
+    profile:
+      completed: "Delivered"
+      progress: "In progress"
+      cancelled: "Cancelled"
+      wallet: "My wallet"
+      shopping: "My Shopping"
+      summary: "My tasks summary"
     admin:
       admin: "SAS727 admin panel"
       back_to_kassi: "Back to SAS727"

@@ -1,8 +1,8 @@
 - if @services && !@services.nil?
   #conversations
     = render :partial => "in_progress", :collection => @services, :as => :service, :spacer_template => "inbox_spacer"
-    = will_paginate(@services)
-    = pageless(@services.total_pages, '#conversations', "in_progress", t('.loading_more_messages'))
+    -#= will_paginate(@services)
+    -#= pageless(@services.total_pages, '#conversations', "in_progress", t('.loading_more_messages'))
 - else
   #no_conversations
     = t(".no_#{action_name}_messages")
