@@ -1,4 +1,9 @@
 en:
+  payments:
+    payment_options:
+      mobile_payment_option: "Pay by a mobile solution"
+      card_payment_option: "Pay by credit card"
+    transaction_code: "Transaction code"
   admin:
     badges:
       index:
@@ -356,6 +361,11 @@ en:
       offer_author: "Buy now"
 
   layouts:
+    wallet:
+      received_monies: "Received"
+      sent_monies: "Sent"
+      gig_me_five: "My account"
+      summary: "Cash flow"
     profile:
       completed: "Delivered"
       progress: "In progress"

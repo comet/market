@@ -1,0 +1,21 @@
+-# title = t("listings.show.#{@listingsummary.category}_#{@listingsummary.listing_type}") + ": " + @listingsummary.title
+.listed_listing
+  .listing_image
+    - unless @listingsummary.listing_images.empty?
+      = link_to (image_tag @listingsummary.listing_images.first.image.url(:thumb), :class => "listing_main_image", :alt => @listingsummary.title), listing_path(@listingsummary), :title => title
+    - else
+      %div{:class => "listing_image_item"}
+        =  link_to "#", listing_path(@listingsummary), :title => title
+  .listed_listing_text
+    %h5= link_to (params[:q] ? title : "I will "+@listingsummary.title+" for Ksh: "+@listingsummary.price.to_s), @listingsummary
+    %div{:id => "listed_listing_closed_status_container_#{listing.id.to_s}"}
+      = render :partial => "listings/listed_listing_closed_status", :locals => { :listing => listing }
+    %p{:class => "description"}
+      = (@listingsummary.description.blank? ? t("listings.show.no_description") : truncate(@listingsummary.description, :length => 320, :omission => "..."))
+    .float_left
+      %div{:id => "listed_listing_edit_links_#{@listingsummary.id.to_s}"}
+        = render :partial => "listings/listed_listing_edit_links", :locals => { :listing => @listingsummary }
+    .float_right
+      %span
+        = link_to @listingsummary.author.given_name_or_username, @listingsummary.author
+        = time_ago(@listingsummary.created_at)

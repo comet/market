@@ -1,5 +1,5 @@
 - unless current_user?(listing.author)
-  = link_to t("listings.buy_now"), reply_to_listing_path(:id => listing.id)
+  = link_to t("listings.buy_now"),:controller=>'payments',:action=>'home',:id => listing.id
   &nbsp;|&nbsp;
   = link_to t("listings.contact_author"), reply_to_listing_path(:id => listing.id)
 -#- comment_count = listing.comments.count > 1 ? " (#{listing.comments.count})" : ""

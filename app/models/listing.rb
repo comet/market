@@ -51,7 +51,7 @@ class Listing < ActiveRecord::Base
   #VALID_CATEGORIES = ["web", "favor", "rideshare", "housing"]
   #VALID_CATEGORIES = ["design", "data_entry", "transcription", "software","editorial","misc","item"]
   VALID_CATEGORIES=["Fun and Bizarre", "Social Marketing", "graphics", "Advertising", "Writing", "Tips & Advice", "Business", "Technology",
-"Programming", "Music & Audio", "Gifts", "Travel", "Video","item" ]
+"Programming", "Music & Audio", "Gifts", "Travel", "Video"]
   VALID_SHARE_TYPES = {
     "offer" => {
       "design" => ["web","graphic"],

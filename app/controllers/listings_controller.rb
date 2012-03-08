@@ -134,22 +134,11 @@ class ListingsController < ApplicationController
   end
 
   def new
-    
+     Rails.logger.debug{params}
     @listing = Listing.new
     @listing.listing_type = params[:type]
-    @listing.category = params[:category] || "item"
-    if @listing.category == "rideshare"
-	    @listing.build_origin_loc(:location_type => "origin_loc")
-	    @listing.build_destination_loc(:location_type => "destination_loc")
-    else
-	    if (@current_user.location != nil)
-	      temp = @current_user.location
-	      temp.location_type = "origin_loc"
-	      @listing.build_origin_loc(temp.attributes)
-      else
-	      @listing.build_origin_loc(:location_type => "origin_loc")
-      end
-    end
+    #@listing.category = params[:category]
+
     1.times { @listing.listing_images.build }
     respond_to do |format|
       format.html

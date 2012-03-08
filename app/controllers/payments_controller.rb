@@ -1,10 +1,11 @@
 class PaymentsController < ApplicationController
   def home
+    @listingsummary=Listing.find_with(params,@current_user, @current_community)
 
   end
 
   def all
-    @to_render = {:layout => "conversations"}
+    @to_render = {:layout => "wallet"}
     @payments = Payment.all
     render @to_render
 

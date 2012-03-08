@@ -1,0 +1,6 @@
+%p
+  Enter the transaction code below:
+-#= label :transactioncode, t("payments.transaction_code") + "*:", :class => "input"
+= text_field(:code, :class => "title_text_field", :maxlength => "10")
+= submit_tag "Confirm", :class => "send_button"
+%br

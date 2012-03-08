@@ -1,2 +1,6 @@
-<h1>Payments#home</h1>
-<p>Find me in app/views/payments/home.html.erb</p>
+%h3 Order details
+-# render :partial=>'listing_summary'
+%h3 Check out details
+=render :partial=>'checkout'
+%h3 Payment Options
+=render :partial=>'payment_options'

@@ -1,5 +1,3 @@
 .new_listing_form_field_container
   = form.label :time_frame, t(".est_time") + "*:", :class => "input"
   = select("listing", "time_frame", Listing::VALID_DURATIONS, {:selected => (Listing::VALID_DURATIONS[0])}, { :class => "visibility_select" })
-  = form.hidden_field :current_community_id, :value => @current_community.id
-  = form.hidden_field :visibility,:value => "everybody"
