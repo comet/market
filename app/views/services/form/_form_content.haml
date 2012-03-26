@@ -1,10 +1,9 @@
-= render :partial => "services/form/javascripts", :locals => { :service_id => "false" }
+-#= render :partial => "services/form/javascripts", :locals => { :service_id => "false" }
 .grid_16.prefix_4.suffix_4
 
   #new_listing_form
     #listing_required_fields_description
       = t("common.fields_that_are_mandatory")
-
     #new_listing_form_main
       = form_for @service, :html => {:multipart => true} do |form|
         = form.error_messages

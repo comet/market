@@ -27,7 +27,7 @@ class Listing < ActiveRecord::Base
   has_many :comments
 
   has_many :share_types
-  has_many :services, :foreign_key=>"author_id"
+  has_many :services
 
   has_one :location, :dependent => :destroy
   has_one :origin_loc, :class_name => "Location", :conditions => ['location_type = ?', 'origin_loc'], :dependent => :destroy

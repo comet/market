@@ -1,9 +1,10 @@
 class ServicesController < ApplicationController
-  # GET /services
+# GET /services
   # GET /services.xml
+  layout 'profile'
   def index
     @action_path = params[:type]
-    @to_render = {:layout => "profile"}
+    #@to_render = {:layout => "profile"}
     load
     #@services = Service.all
     #respond_to do |format|
@@ -35,7 +36,7 @@ class ServicesController < ApplicationController
     @title = @action_path
     if @title.eql?"done"
       @services = Service.performed.order("created_at DESC").where("author_id=?",@current_user.id).paginate(:per_page => 15, :page => params[:page])
-    elsif
+    elsif @title.eql?"cancelled"
       @services = Service.cancelled.order("created_at DESC").where("author_id=?",@current_user.id).paginate(:per_page => 15, :page => params[:page])
     else
       @services = Service.pending.order("created_at DESC").where("author_id=?",@current_user.id).paginate(:per_page => 15, :page => params[:page])
@@ -45,16 +46,12 @@ class ServicesController < ApplicationController
     ##(params, @current_user).paginate(:per_page => 15, :page => params[:page])
     @request_path = request.fullpath
     if request.xhr? && params[:page] && params[:page].to_i > 1
-
       render :partial => "services/additional_listings"
     else
-      render @to_render
+     # render @to_render
     end
 
     end
-    end
-
-
   # GET /services/new
   # GET /services/new.xml
   def new
@@ -81,7 +78,7 @@ class ServicesController < ApplicationController
 
     respond_to do |format|
       if @service.save
-        format.html { redirect_to(@service, :notice => 'Service successfully delivered.') }
+        format.html { redirect_to(@service, :notice => 'Service successfully uploaded.') }
         format.xml { render :xml => @service, :status => :created, :location => @service }
       else
         format.html { render :action => "new" }
@@ -128,3 +125,4 @@ class ServicesController < ApplicationController
     @service_file.service_id = @service.id
     ServiceFile.save(params[:service],@service_file)
   end
+end

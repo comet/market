@@ -65,7 +65,7 @@ class ConversationsController < ApplicationController
   end
   
   def accept
-    create_new_service
+    create_new_service #hack to set the service params on acceptance of a job
     change_status("accepted")
 
   end
@@ -74,8 +74,13 @@ class ConversationsController < ApplicationController
 
     @service = Service.new
     @service.author_id = params[:person_id]
-    @service.listing_id = Conversation.find_by_id(params[:id]).listing_id
-    @service.status="Pending" #Tasks are undone by default
+    listing=Conversation.find_by_id(params[:id])
+    @service.listing_id = listing.listing_id
+    @service.title =  listing.title
+    if listing.description
+      @service.content=listing.description
+    end
+    @service.status="pending" #Tasks are undone by default
     if @service.save
       Rails.logger.debug{"Successfully saved the service params"}
       return

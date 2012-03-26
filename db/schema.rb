@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120220100658) do
+ActiveRecord::Schema.define(:version => 20120326043440) do
 
   create_table "accounts", :force => true do |t|
     t.string   "type"
@@ -225,6 +225,15 @@ ActiveRecord::Schema.define(:version => 20120220100658) do
     t.integer  "amount",      :default => 1
   end
 
+  create_table "job_payments", :force => true do |t|
+    t.integer  "payment_id"
+    t.integer  "listing_id"
+    t.string   "user_id"
+    t.integer  "deliverable_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "kassi_event_participations", :force => true do |t|
     t.integer  "kassi_event_id"
     t.string   "person_id"
@@ -426,6 +435,14 @@ ActiveRecord::Schema.define(:version => 20120220100658) do
   create_table "person_read_listings", :force => true do |t|
     t.string   "person_id"
     t.integer  "listing_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "ratings", :force => true do |t|
+    t.string   "user_id"
+    t.integer  "service_id"
+    t.integer  "value"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

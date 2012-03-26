@@ -1,0 +1,12 @@
+.grid_24
+  .grid_11.alpha
+    #conversation_title
+      %h2= @service.title || "default"
+      - if @service.content
+        - if current_user?(@service.author_id)
+          = link_to "Edit", "#"
+      - else
+        ="In progress"
+        = link_to "recipient", "#"
+      -#  = t(".in_response_to_#{@conversation.listing.listing_type}")
+        = link_to @conversation.listing.title, @conversation.listing

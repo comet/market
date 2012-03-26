@@ -8,7 +8,7 @@ class DeliverableController < ApplicationController
   end
 
   def home
-    #Show all deliverable that the current user sold
+    #Show all deliverables that the current user sold
     params[:listing_type] = "sold"
     @to_render = {:action => :index}
     @listing_style = "listing"

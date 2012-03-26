@@ -1,7 +1,12 @@
 .conversation{:class => "read", :id => "conversation_#{service.id.to_s}"}
   .conversation_center
-    %h3= link_to service.title, service_path(:service_type => service.status, :id => service.id)
-    %span= link_to(truncate(service.content, :length => 60, :omission => "..."), service_path(:service_type => service.status, :id => service.id))
+    %h3= link_to service.title, service_path(service)
+    %span= link_to(truncate((service.content.nil??service.title : service.content), :length => 60, :omission => "..."), service_path(service))
   .conversation_right
     %div{:id => "conversation_#{service.id.to_s}_status"}
       -#= render :partial => "deliver", :locals => { :service => service }
+      -# = unless service.status.eql?("cancelled")
+      .conversation_status_link{:class => "accept"}
+        -action= service.status.eql?("pending")?"Deliver":"View Content"
+        - path = service.status.eql?("pending")? edit_service_path(service) : service_path(service.id)
+        = link_to(image_tag("/images/icons/accept_icon.png") + action, path)
