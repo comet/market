@@ -4,6 +4,42 @@ en:
       mobile_payment_option: "Pay by a mobile solution"
       card_payment_option: "Pay by credit card"
     transaction_code: "Transaction code"
+    listing_summary:
+      design_request: "Design request"
+      editorial_request: "Editorial request"
+      data_entry_request: "Data entry request"
+      transcription_request: "Transcription request"
+      software_request: "Software request"
+      other_offer: "Others offer"
+      design_offer: "Design offer"
+      editorial_offer: "Editorial offer"
+      data_entry_offer: "Data entry offer"
+      transcription_offer: "Transcription offer"
+      software_offer: "Software offer"
+      other_request: "Others request"
+      comments: Comments
+      #favor_offer: "Favor offer"
+      #favor_request: "Favor request"
+      #housing_offer: "Housing offer"
+      #housing_request: "Housing request"
+      #item_offer: "Item offer"
+      #item_request: "Item request"
+      no_description: "No description"
+      offer: Offer
+      offer_author: "Posted by"
+      offer_created: "Offer created"
+      request: Request
+      request_author: "Posted by"
+      request_created: "Request created"
+      rideshare_offer: "Rideshare offer"
+      rideshare_request: "Rideshare request"
+      share_types: "Share types"
+      share_types_offer: "Type of offer"
+      share_types_request: "Type of request"
+      tags: Tags
+      time: time
+      times: times
+      times_viewed: Viewed
   admin:
     badges:
       index:

@@ -1,8 +1,8 @@
-%p
+- if !@error
+  %p
   Enter the transaction code below:
--#= label :transactioncode, t("payments.transaction_code") + "*:", :class => "input"
-= form_tag
-= text_field_tag "code"
-= hidden_field_tag "listing_id",@listing_id
-= submit_tag "Confirm", :class => "send_button"
-%br
+  = form_tag
+  = text_field_tag "code"
+  = hidden_field_tag "listing_id",@listing.id
+  = submit_tag "Confirm", :class => "send_button"
+  %br

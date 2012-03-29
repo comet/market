@@ -38,10 +38,12 @@ class ServicesController < ApplicationController
       @services = Service.performed.order("created_at DESC").where("author_id=?",@current_user.id).paginate(:per_page => 15, :page => params[:page])
     elsif @title.eql?"cancelled"
       @services = Service.cancelled.order("created_at DESC").where("author_id=?",@current_user.id).paginate(:per_page => 15, :page => params[:page])
+    elsif @title.eql?"shopped"
+      @services = Service.order("created_at DESC").where("receiver_id=?",@current_user.id).paginate(:per_page => 15, :page => params[:page])
     else
       @services = Service.pending.order("created_at DESC").where("author_id=?",@current_user.id).paginate(:per_page => 15, :page => params[:page])
     end
-    #Service.order("created_at DESC").find_all#@current_user.services_that_are(@title).paginate(:per_page => 15, :page => params[:page])
+      #Service.order("created_at DESC").find_all#@current_user.services_that_are(@title).paginate(:per_page => 15, :page => params[:page])
     #request.xhr? ? (render :partial => "additional_messages") : (render :action => :index)
     ##(params, @current_user).paginate(:per_page => 15, :page => params[:page])
     @request_path = request.fullpath

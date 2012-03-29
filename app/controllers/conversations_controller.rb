@@ -75,11 +75,13 @@ class ConversationsController < ApplicationController
     @service = Service.new
     @service.author_id = params[:person_id]
     listing=Conversation.find_by_id(params[:id])
+    recipient = listing.other_party(params[:person_id])
+    @service.receiver_id=recipient.id
     @service.listing_id = listing.listing_id
     @service.title =  listing.title
-    if listing.description
-      @service.content=listing.description
-    end
+    #unless listing.description.nil?
+    #  @service.content=listing.description
+    #end
     @service.status="pending" #Tasks are undone by default
     if @service.save
       Rails.logger.debug{"Successfully saved the service params"}

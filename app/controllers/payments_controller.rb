@@ -2,15 +2,17 @@ class PaymentsController < ApplicationController
   def home
 
     if request.post?
-
-      if !params[:code].empty?
-        @payment=Payment.find_by_receipt([params[:code]])
-
+          @code=params[:code]
+      if @code.length>0
+        @payment=Payment.find_by_receipt(@code)
+        Rails.logger.debug{"Using the code "+@code.to_s}
       else
         flash[:error]="Please enter the correct transaction code in the field below"
+        render :action=>"home"   #disallow null values on that page
       end
-       if @payment.amount
+       if @payment
          #save the payment and tag it to this listing and this user
+         unless @payment.amount.nil?
          @payjob = JobPayment.new
          @payjob.payment_id=@payment.id
          @payjob.user_id=@current_user.id.to_s
@@ -20,14 +22,19 @@ class PaymentsController < ApplicationController
          redirect_to listing_path(params[:listing_id].to_i)
          else
            flash[:error]="There was an error processing your payment of #{@payment.amount} "
-           end
+         end
+         end
        else
-         flash[:error]="No such transaction exists or you've entered the code wrongly'"
+         flash[:error]="No such transaction exists or you've entered the code wrongly"
        end
     else
       @listing_id=params[:id]
-    #@listingsummary=Listing.find_with(params[:id],@current_user, @current_community)
-    #Rails.logger.debug{@listingsummary.inspect}
+          if !@listing_id.nil?
+    @listing=Listing.find_by_id(@listing_id)
+          else
+     flash[:error]="Please choose a task that you wish to buy"
+            @error=true
+            end
     end
   end
 

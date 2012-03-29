@@ -2,6 +2,13 @@ require 'subdomain'
 
 Kassi::Application.routes.draw do
 
+  get "ratings/update"
+
+  get "ratings/destroy"
+
+  get "ratings/new"
+
+  get "ratings/create"
 
   get "mpesa_sms/index"
 

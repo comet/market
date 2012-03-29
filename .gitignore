@@ -13,6 +13,7 @@ tmp/autotest-flag
 doc/api
 doc/app
 public/images/listing_images
+public/images/deliverables/*
 index/
 db/development_structure.sql
 old_databases.sql
