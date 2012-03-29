@@ -18,14 +18,4 @@
     %p
       - text_with_line_breaks do
         = @service.content.blank? ? t(".no_description") : @service.content
-    #listing_author
-      .float_left
-        = small_avatar_thumb(@service.author)
-      #listing_author_description
-        %strong
-          = t("deliverable_author") + ":"
-          = link_to @service.author.name, @service.author, :id => "listing_author_link"
-        %br/
-        %span{:class => "smaller"}
-          = t("service_created_at") + " " + l(@service.created_at, :format => :short)
   .clear

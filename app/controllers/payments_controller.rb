@@ -1,40 +1,50 @@
 class PaymentsController < ApplicationController
   def home
-
     if request.post?
-          @code=params[:code]
+      @code=params[:code]
       if @code.length>0
         @payment=Payment.find_by_receipt(@code)
-        Rails.logger.debug{"Using the code "+@code.to_s}
+        Rails.logger.debug { "Using the code "+@code.to_s }
       else
         flash[:error]="Please enter the correct transaction code in the field below"
-        render :action=>"home"   #disallow null values on that page
+        Rails.logger.debug { "Failed to get the code "+@code.to_s }
+        #redirect_to :action=>"home",:id=>params[:listing_id] #disallow null values on that page
       end
-       if @payment
-         #save the payment and tag it to this listing and this user
-         unless @payment.amount.nil?
-         @payjob = JobPayment.new
-         @payjob.payment_id=@payment.id
-         @payjob.user_id=@current_user.id.to_s
-         @payjob.listing_id=params[:listing_id].to_i
-           if @payjob.save
-           flash[:notice]="Your payment of #{@payment.amount} was successfully processed. The owner has been informed and they shall deliver your product soon"
-         redirect_to listing_path(params[:listing_id].to_i)
-         else
-           flash[:error]="There was an error processing your payment of #{@payment.amount} "
-         end
-         end
-       else
-         flash[:error]="No such transaction exists or you've entered the code wrongly"
-       end
+      if @payment
+        #save the payment and tag it to this listing and this user
+        unless @payment.amount.nil?
+          @payjob = JobPayment.new
+          @payjob.payment_id=@payment.id
+          @payjob.user_id=@current_user.id.to_s
+          @payjob.listing_id=params[:listing_id].to_i
+          if @payjob.save
+            flash[:notice]="Your payment of #{@payment.amount} was successfully processed. The owner has been informed and they shall deliver your product soon"
+            redirect_to listing_path(params[:listing_id].to_i)
+          else
+            flash[:error]="There was an error processing your payment of #{@payment.amount} "
+            return
+          end
+        end
+      else
+        flash[:error]="No such transaction exists or you've entered the incorrect code.please try again in a few moments"
+        redirect_to :action=>"home",:id=>params[:listing_id]
+        #return
+      end
     else
       @listing_id=params[:id]
-          if !@listing_id.nil?
-    @listing=Listing.find_by_id(@listing_id)
-          else
-     flash[:error]="Please choose a task that you wish to buy"
-            @error=true
-            end
+      Rails.logger.debug { "Using the following params"+params[:id].to_s }
+      if !@listing_id.nil?
+        @listing=Listing.find_by_id(@listing_id)
+        if !@listing.nil?
+          Rails.logger.debug{@listing.inspect}
+        else
+          flash.now[:error]="No listing could be found with the given parameters"
+          redirect_to :action=>"home",:id=>params[:listing_id]
+        end
+      else
+        flash[:error]="Please select a task that you wish to buy from the ones listed"
+        #redirect_to :action=>"home",:id=>params[:listing_id]
+      end
     end
   end
 
@@ -63,20 +73,19 @@ class PaymentsController < ApplicationController
     @payment.name = transaction["NAME"]
     @payment.account =transaction["ACCOUNT"]
     @payment.status = transaction["STATUS"]
-    @payment.amount = transaction["AMOUNT"].gsub(",","")
-    @payment.post_balance = transaction["BALANCE"].gsub(",","")
-    @payment.transaction_cost = transaction["COSTS"].eql?0? 0:transaction["COSTS"].gsub(",","")
+    @payment.amount = transaction["AMOUNT"].gsub(",", "")
+    @payment.post_balance = transaction["BALANCE"].gsub(",", "")
+    @payment.transaction_cost = transaction["COSTS"].eql? 0 ? 0 :transaction["COSTS"].gsub(",", "")
     @payment.note = transaction["NOTE"]
 
-     Rails.logger.debug{transaction}
+    Rails.logger.debug { transaction }
     if @payment.save
-      Rails.logger.info{"Successfully created a transaction"}
+      Rails.logger.info { "Successfully created a transaction" }
       redirect_to :action => "all"
     else
-      Rails.logger.error{"Payment processing failed"}
+      Rails.logger.error { "Payment processing failed" }
       flash[:error] = "Payment processing failed"
     end
-
 
 
   end

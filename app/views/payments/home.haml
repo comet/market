@@ -1,6 +1,7 @@
-%h3 Order details
-= render :partial=>'listing_summary'
-.clear
-=render :partial=>'checkout'
-.clear
-=render :partial=>'payment_options'
+-if @listing
+  = render :partial=>'listing_summary'
+  .clear
+  %h3 Order details
+  =render :partial=>'checkout'
+  .clear
+  =render :partial=>'payment_options'
