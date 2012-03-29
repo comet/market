@@ -1,12 +1,31 @@
-.grid_24
-  .grid_11.alpha
-    #conversation_title
-      %h2= @service.title || "default"
-      - if @service.content
-        - if current_user?(@service.author_id)
-          = link_to "Edit", "#"
-      - else
-        ="In progress"
-        = link_to "recipient", "#"
-      -#  = t(".in_response_to_#{@conversation.listing.listing_type}")
-        = link_to @conversation.listing.title, @conversation.listing
+-#listing_image_side.grid_8
+  .image
+    - if @service.listing_images.empty?
+      %div{:id => "listing_category_big_icon_#{@service.category}"}
+    - @service.listing_images.each do |listing_image|
+      = image_tag listing_image.image.url(:medium), :class => "listing_main_image", :alt => @service.title
+  -# if current_user?(@service.author) || (@current_user && @current_user.has_admin_rights_in?(@current_community))
+    #edit_links
+      = render :partial => "edit_links"
+  -# else
+    #follow_links
+      = render :partial => "follow_links"
+
+#listing_content_side.grid_16
+  #listing_center.grid_9.alpha
+    %h1
+      #{@service.title}
+    %p
+      - text_with_line_breaks do
+        = @service.content.blank? ? t(".no_description") : @service.content
+    #listing_author
+      .float_left
+        = small_avatar_thumb(@service.author)
+      #listing_author_description
+        %strong
+          = t("deliverable_author") + ":"
+          = link_to @service.author.name, @service.author, :id => "listing_author_link"
+        %br/
+        %span{:class => "smaller"}
+          = t("service_created_at") + " " + l(@service.created_at, :format => :short)
+  .clear

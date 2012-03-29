@@ -553,6 +553,8 @@ en:
       profile: "Profile info"
       settings: Settings
   services:
+    show:
+      no_description: "No description"
     form:
       images:
         image: Image

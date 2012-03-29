@@ -65,7 +65,7 @@ class ConversationsController < ApplicationController
   end
   
   def accept
-    create_new_service #hack to set the service params on acceptance of a job
+    create_new_service #hack to create service skeleton on acceptance of a job
     change_status("accepted")
 
   end
@@ -74,11 +74,15 @@ class ConversationsController < ApplicationController
 
     @service = Service.new
     @service.author_id = params[:person_id]
-    listing=Conversation.find_by_id(params[:id])
-    recipient = listing.other_party(params[:person_id])
-    @service.receiver_id=recipient.id
-    @service.listing_id = listing.listing_id
-    @service.title =  listing.title
+    #conversation=Conversation.find_by_id(params[:id])
+    recipient = @conversation.other_party(@current_user)
+    #refine this to make it more scalable
+    #if recipient.eql?(@current_user)
+    #  recipient=@conversation.other_party(recipient)
+    #end
+    @service.receiver_id=recipient.id.to_s #will fail in the event that there are many participants in that conversation
+    @service.listing_id = @conversation.listing_id
+    @service.title =  @conversation.title
     #unless listing.description.nil?
     #  @service.content=listing.description
     #end

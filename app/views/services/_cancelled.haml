@@ -7,6 +7,6 @@
       -#= render :partial => "deliver", :locals => { :service => service }
       -# = unless service.status.eql?("cancelled")
       .conversation_status_link{:class => "accept"}
-        -action= "Deliver"
-        - path =  edit_service_path(service)
+        -action= "Appeal"
+        - path =  "#"
         = link_to(image_tag("/images/icons/accept_icon.png") + action, path)

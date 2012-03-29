@@ -4,6 +4,9 @@ class ServicesController < ApplicationController
   layout 'profile'
   def index
     @action_path = params[:type]
+    if @action_path.nil?
+      @action_path= "pending"
+    end
     #@to_render = {:layout => "profile"}
     load
     #@services = Service.all
@@ -29,7 +32,6 @@ class ServicesController < ApplicationController
     load
   end
   def pending
-
     load
   end
   def load
