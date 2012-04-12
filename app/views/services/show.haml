@@ -18,4 +18,8 @@
     %p
       - text_with_line_breaks do
         = @service.content.blank? ? t(".no_description") : @service.content
-  .clear
+-unless @service.author_id==@current_user.id
+  - if @service.rating
+    =render :partial=>"rating"
+  -  else
+    = render :partial=> "newrating"

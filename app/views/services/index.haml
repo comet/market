@@ -1,6 +1,14 @@
 - if @services && !@services.nil?
   #conversations
-    = render :partial => "in_progress", :collection => @services, :as => :service, :spacer_template => "inbox_spacer"
+    -if @title.eql?"done"
+      = render :partial => "done", :collection => @services, :as => :service, :spacer_template => "inbox_spacer"
+    -elsif @title.eql?"cancelled"
+      = render :partial => "cancelled", :collection => @services, :as => :service, :spacer_template => "inbox_spacer"
+    -elsif @title.eql?"shopped"
+      = render :partial => "shopped", :collection => @services, :as => :service, :spacer_template => "inbox_spacer"
+    -else
+      = render :partial => "in_progress", :collection => @services, :as => :service, :spacer_template => "inbox_spacer"
+
     -#= will_paginate(@services)
     -#= pageless(@services.total_pages, '#conversations', "in_progress", t('.loading_more_messages'))
 - else

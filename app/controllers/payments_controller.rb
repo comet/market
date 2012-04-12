@@ -94,6 +94,25 @@ class PaymentsController < ApplicationController
   end
 
   def confirm
+
+  end
+  def cashflow
+    @title = params[:type]
+    if @title.eql?"received"
+      @payments = Cashflow.find_by_direction("received",@current_user.id).paginate(:per_page => 15, :page => params[:page])
+    elsif @title.eql?"sent"
+      @payments = Cashflow.find_by_direction("sent",@current_user.id).paginate(:per_page => 15, :page => params[:page])
+      end
+      @to_render = {:layout => "wallet"}
+    Rails.logger.debug{@payments.inspect}
+    render @to_render
+
+  end
+  def cashaccount
+    @to_render = {:layout => "wallet"}
+    @payments = Cashflow.find_by_direction("both",@current_user.id).paginate(:per_page => 15, :page => params[:page])
+    render @to_render
+
   end
 
 end

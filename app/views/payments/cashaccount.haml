@@ -1,0 +1,25 @@
+- if @payments.size>0 && !@payments.nil?
+  .listed_listing_text
+    %h3= "Your riches"
+    %div
+      %p{:class => "description"}
+        %h5= link_to "Total incoming amount",:controller=>"payments",:action=>"cashflow",:type =>"received"
+        %span
+          .float_right
+          %h3= calculate_riches(@payments,'in',@current_user.id.to_s)
+
+      %p{:class => "description"}
+        %h5= link_to "Total outgoing amount",:controller=>"payments",:action=>"cashflow",:type =>"sent"
+        %span
+          .float_right
+          %h3=calculate_riches(@payments,'out',@current_user.id.to_s)
+
+      %p{:class => "description"}
+        %h5= "Total amount"
+        %span
+          .float_right
+          %h3=calculate_riches(@payments,'both',@current_user.id.to_s)
+- else
+  #no_conversations
+    = "You do not have any monetary records yet"
+

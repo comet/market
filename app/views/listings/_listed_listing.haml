@@ -12,6 +12,7 @@
       = render :partial => "listings/listed_listing_closed_status", :locals => { :listing => listing }
     %p{:class => "description"}
       = (listing.description.blank? ? t("listings.show.no_description") : truncate(listing.description, :length => 320, :omission => "..."))
+      = listing.category.nil? ? "Uncategorized" : listing.category
     .float_left
       %div{:id => "listed_listing_edit_links_#{listing.id.to_s}"}
         = render :partial => "listings/listed_listing_edit_links", :locals => { :listing => listing }

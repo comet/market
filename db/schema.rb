@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120326043440) do
+ActiveRecord::Schema.define(:version => 20120406163030) do
 
   create_table "accounts", :force => true do |t|
     t.string   "type"
@@ -40,6 +40,16 @@ ActiveRecord::Schema.define(:version => 20120326043440) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "test_group_number"
+  end
+
+  create_table "cashflows", :force => true do |t|
+    t.string   "user_id"
+    t.float    "amount"
+    t.string   "sender_user_id"
+    t.integer  "listing_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "approved"
   end
 
   create_table "categories", :force => true do |t|
@@ -351,6 +361,13 @@ ActiveRecord::Schema.define(:version => 20120326043440) do
     t.string   "description"
   end
 
+  create_table "partial_payments", :force => true do |t|
+    t.integer  "payment_id"
+    t.float    "balance"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "participations", :force => true do |t|
     t.string   "person_id"
     t.integer  "conversation_id"
@@ -442,9 +459,10 @@ ActiveRecord::Schema.define(:version => 20120326043440) do
   create_table "ratings", :force => true do |t|
     t.string   "user_id"
     t.integer  "service_id"
-    t.integer  "value"
+    t.float    "value"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "text"
   end
 
   create_table "service_files", :force => true do |t|

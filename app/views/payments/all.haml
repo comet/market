@@ -1,16 +1,14 @@
-%h
-  Payments
-  %table
+%table
+  %tr
+    %th Receipt No.
+    %th Name
+    %th Specific Type
+    %th Amount
+    %th Account Balance
+  - @payments.each do |payment|
     %tr
-      %th Receipt No.
-      %th Name
-      %th Specific Type
-      %th Amount
-      %th Account Balance
-    - @payments.each do |payment|
-      %tr
-        %td= payment.receipt
-        %td= payment.name
-        %td= payment.type
-        %td= payment.amount
-        %td= payment.post_balance
+      %td= payment.receipt
+      %td= payment.name
+      %td= payment.type
+      %td= payment.amount
+      %td= payment.post_balance

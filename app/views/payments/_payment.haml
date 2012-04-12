@@ -1,0 +1,9 @@
+.conversation{:class => "read", :id => "conversation_#{payment.id.to_s}"}
+  .conversation_left
+    %h3= payment.receipt
+    =payment.created_at
+  .conversation_center
+    %h3
+      %span= payment.amount
+  .conversation_right
+    %h3= "listing"

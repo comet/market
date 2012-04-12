@@ -2,12 +2,12 @@
   .inbox_container
     %h1= t(".summary")
     #inbox_tabs
-      %div{:class => get_inbox_tab_class("received_monies")}
-        = link_to t('.received_monies'), received_person_messages_path(:person_id => @current_user.id.to_s)
-      %div{:class => get_inbox_tab_class("sent_monies")}
-        = link_to t('.sent_monies'), sent_person_messages_path(:person_id => @current_user.id.to_s)
-      %div{:class => get_inbox_tab_class("gig_me_five")}
-        = link_to t('.gig_me_five'), notifications_person_messages_path(:person_id => @current_user.id.to_s)
+      %div{:class => get_payment_tab_class("received")}
+        = link_to t('.received_monies'), :controller=>"payments",:action=>"cashflow",:type =>"received"
+      %div{:class => get_payment_tab_class("sent")}
+        = link_to t('.sent_monies'), :controller=>"payments",:action=>"cashflow",:type => "sent"
+      %div{:class => get_payment_tab_class("account")}
+        = link_to t('.gig_me_five'), :controller=>"payments",:action=>"cashaccount",:type => "account"
     #inbox_tab_spacer
 
   = yield

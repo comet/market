@@ -22,12 +22,15 @@ Kassi::Application.routes.draw do
   get "payments/show"
 
   get "payments/confirm"
+  get "payments/cashflow"
+  get "payments/cashaccount"
 
   resources :sub_categories
 
   resources :categories
 
   resources :services
+  resources :ratings
 
  # get "deliverable/home"
 

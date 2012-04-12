@@ -1,0 +1,11 @@
+.conversation{:class => "read", :id => "conversation_#{payment.id.to_s}"}
+  .conversation_left
+    %h3= payment.amount
+    -if payment.created_at
+      =time_ago(payment.created_at)
+  .conversation_center
+    %h3
+      %span= link_to (payment.title.blank? ? "Un identified listing" : payment.title),listing_path(payment.listing_id)
+  .conversation_right
+    %h3
+      =link_to "Sender","#"

@@ -1,0 +1,9 @@
+- if @payments.size>0 && !@payments.nil?
+  #conversations
+    - if @title.eql?("received")
+      = render :partial => "received_pay", :collection => @payments, :as => :payment, :spacer_template => "services/inbox_spacer"
+    -if @title.eql?("sent")
+      = render :partial => "sent_pay", :collection => @payments, :as => :payment, :spacer_template => "services/inbox_spacer"
+- else
+  #no_conversations
+    = "You do not have any monetary records yet"

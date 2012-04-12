@@ -401,7 +401,7 @@ en:
       received_monies: "Received"
       sent_monies: "Sent"
       gig_me_five: "My account"
-      summary: "Cash flow"
+      summary: "My wallet"
     profile:
       completed: "Delivered"
       progress: "In progress"
@@ -553,6 +553,10 @@ en:
       profile: "Profile info"
       settings: Settings
   services:
+    newrating:
+      grade: "Value"
+      textual_feedback: "Comment (optional)"
+      send_feedback: "Send feedback"
     show:
       no_description: "No description"
     form:
@@ -582,7 +586,7 @@ en:
       subscribe_to_comments: "Notify me of new comments and updates"
     edit:
       edit_offer: "Edit Job offer"
-      edit_request: "Edit Skill"
+      edit_request: "Edit task"
     edit_links:
       close_offer: "Close offer"
       close_request: "Close request"

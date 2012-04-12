@@ -96,9 +96,15 @@ class ServicesController < ApplicationController
   def update
     @service = Service.find(params[:id])
 
+    @service.status="done"
     respond_to do |format|
       if @service.update_attributes(params[:service])
-        format.html { redirect_to(@service, :notice => 'Service was successfully updated.') }
+        #perform money transfer here
+        Rails.logger.debug{@service.inspect}
+        if !@service.update_payment_attributes
+            Rails.logger.debug{"Failed transacting money"}
+        end
+        format.html { redirect_to(@service, :notice => 'Service was successfully uploaded.') }
         format.xml { head :ok }
       else
         format.html { render :action => "edit" }
