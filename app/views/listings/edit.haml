@@ -36,6 +36,7 @@
           = form.hidden_field :open, :value => true
         = form.hidden_field :last_modified, :value => DateTime.now
         = render :partial => "listings/form/price", :locals => { :form => form }
+        = render :partial => "listings/form/max_days", :locals => { :form => form }
         = render :partial => "listings/form/buyer_instructions", :locals => { :form => form }
         = render :partial => "listings/form/images", :locals => { :form => form }
         = render :partial => "listings/form/tag_list", :locals => { :form => form }
