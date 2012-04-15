@@ -619,7 +619,7 @@ en:
         housing: Housing
         item: Item
         offer_something: "Offer some work"
-        request_something: "Publish your skills"
+        request_something: "Publish your tasks"
         rideshare: Rideshare
       googlemap:
         googlemap_copy: "End Points From Map"
@@ -637,7 +637,7 @@ en:
         origin: Origin
       send_button:
         save_offer: "Post Work !"
-        save_request: "Publish your skills !"
+        save_request: "Publish your task !"
       share_type:
         design: Design
         graphic: "Graphics"

@@ -1,3 +1,3 @@
 .new_listing_form_field_container
   = form.label :category, t(".categories") + "*:", :class => "input"
-  = select ("listing","category", Listing::VALID_CATEGORIES,{:selected => (Listing::VALID_CATEGORIES[0])}, { :class => "visibility_select" })
+  = select("listing", "category", categories_array, {:selected => (@listing.category || categories_array[0])}, { :class => "visibility_select" })
