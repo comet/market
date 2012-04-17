@@ -32,7 +32,7 @@ input[type="submit"] {
   cursor: pointer; }
 
 body {
-  background: #f7f5e6 url("/images/background_gradient.png") repeat-x;
+  background: #E2E8EF; /*url("/images/background_gradient.png") repeat-x;*/
   color: #464646; }
 
 h1 {
@@ -94,9 +94,13 @@ form, input {
   float: left; }
 
 #header {
-  height: 100px; }
+  background:#7199B7;
+  width:100%;
+  height: 100px;
+}
 
 #main {
+  /*border-top: 1px solid #93B6D2;*/
   margin-top: 20px;
   overflow: hidden; }
 
@@ -244,7 +248,12 @@ form, input {
 
 #top_spacer {
   height: 20px; }
-
+#notification_container{
+  background: #fff;
+}
+#effect_container{
+  background: #7199B7;
+}
 .notification_text {
   width: 850px;
   float: left;
@@ -1444,7 +1453,9 @@ div.checkbox_float {
   #logged_in_links a {
     font-size: 13px;
     font-weight: bold;
-    color: white; }
+    color: #3F3F3F;
+    text-shadow: 0 1px #fff;
+    /*color: white;*/ }
     #logged_in_links a:hover {
       color: #f8792f; }
     #logged_in_links a:focus {
@@ -2330,10 +2341,12 @@ a.edit_profile {
   width: 218px;
   margin-top: 0; }
   #left_link_panel_browse a {
+    border: 1px solid transparent;
     font-weight: normal;
     display: block;
     width: 198px;
-    color: #d45207;
+    color: #3F3F3F;
+    text-shadow: 0 1px #fff;
     font-size: 11px;
     padding: 4px 10px 4px 10px;
     margin-bottom: 2px; }
