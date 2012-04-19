@@ -148,12 +148,12 @@ border-top: 1px solid #93B6D2;
     color: #898989; }
   #search input.search_button {
     text-align: left;
-    background: #d45207 url("/images/icons/header_icons.png") 8px -356px no-repeat;
+    background: #59B200 url("/images/icons/header_icons.png") 8px -356px no-repeat;
     width: 41px;
     height: 28px;
     padding: 0;
     border: 0;
-    color: #d45207; }
+    color: #59B200; }
     #search input.search_button:active {
       background: #a33f05 url("/images/icons/header_icons.png") 8px -356px no-repeat;
       color: #a33f05; }
@@ -168,7 +168,7 @@ border-top: 1px solid #93B6D2;
   height: 56px; }
 
 #top_navi select {
-  background: #f7f5e6;
+  background: #59B200;
   font-size: 11px; }
 
 .top_navi_link {
@@ -242,7 +242,7 @@ border-top: 1px solid #93B6D2;
   text-align: center;
   display: block;
   font-weight: bold;
-  background: #d45207;
+  background: #4a4c4e;
   color: white;
   margin-left: 10px;
   border-bottom-left-radius: 7px;
@@ -584,7 +584,7 @@ p.description {
   height: 0; }
 
 .listing_spacer {
-  border-top: 1px solid #765d3a;
+  border-top: 1px solid #b5b4b4;
   width: 100%;
   margin: 10px 0;
   padding: 0;
@@ -745,7 +745,7 @@ p.description {
     -webkit-border-top-left-radius: 7px; }
   .new_listing_form_tab_unselected a {
     color: white;
-    background: #765d3a; }
+    background: #4a4c4e; }
     .new_listing_form_tab_unselected a:hover {
       background: #9f7d4e; }
     .new_listing_form_tab_unselected a:focus {
@@ -1035,7 +1035,7 @@ span.not_visible {
   #new_listing_form_main input.send_button {
     font-size: 14px;
     font-weight: bold;
-    background: #765d3a;
+    background: #4a4c4e;
     width: 200px;
     height: 40px;
     padding: 0;
@@ -1218,7 +1218,7 @@ div.checkbox_float {
   #login_form input.send_button, #new_message_form input.send_button, #signup_form input.send_button {
     font-size: 14px;
     font-weight: bold;
-    background: #765d3a;
+    background: #4a4c4e;
     width: 200px;
     height: 40px;
     padding: 0;
@@ -2363,14 +2363,14 @@ a.edit_profile {
     padding: 4px 10px 4px 10px;
     margin-bottom: 2px; }
     #left_link_panel_browse a:hover {
-      background: #f7f5e6 url("/images/left_panel_arrows2.png") 0 -24px no-repeat; }
+      background: #E2E8EF url("/images/left_panel_arrows2.png") 0 -24px no-repeat; }
     #left_link_panel_browse a:focus {
-      background: #f7f5e6 url("/images/left_panel_arrows2.png") 0 -24px no-repeat; }
+      background: #E2E8EF url("/images/left_panel_arrows2.png") 0 -24px no-repeat; }
     #left_link_panel_browse a:active {
-      background: #f7f5e6 url("/images/left_panel_arrows2.png") 0 -48px no-repeat;
+      background: #E2E8EF url("/images/left_panel_arrows2.png") 0 -48px no-repeat;
       color: #464646; }
   #left_link_panel_browse a.selected {
-    background: #f7f5e6 url("/images/left_panel_arrows2.png") 0 0 no-repeat;
+    background: #E2E8EF url("/images/left_panel_arrows2.png") 0 0 no-repeat;
     color: #464646; }
 
 #left_link_panel_search {
