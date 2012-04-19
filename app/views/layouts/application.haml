@@ -72,30 +72,32 @@
               = t(".or_check_our")
               = link_to t(".feedback_forum"), "http://kassi.movert.co.ke"
               = t(".to_see_what_others_have_suggested")
+      #header_container.container_24
+        #header.container_24
 
-      #header.container_24
-        .grid_3
-          #logo
-            = render :file => community_file("logo", false)
-        .grid_9
-          .grid_3.alpha
-            = render :file => community_file("logo_text", false)
-          .grid_6.omega
-            #search
-              = form_tag({ :action => :show, :controller => "/search" }, :method => "get") do
-                - one_line do
-                  = text_field_tag("q", params[:q], :class => "search_field")
-                  = submit_tag("s", :class => "search_button")
-          .clear
-          .top_navi_form.grid_9
-            - if available_locales.count > 1
-              .locale_select_padding
-                = form_tag("/change_locale", :method => "get") do
-                  = hidden_field_tag :redirect_uri, @return_to
-                  = select_tag 'locale', options_for_select(available_locales, (logged_in? ? @current_user.locale : params[:locale])), :onchange => 'this.form.submit()', :class => 'language_select'
-            - elsif @current_community.use_fb_like
-              .fb_like_padding
-                = "<iframe src=\"http://www.facebook.com/plugins/like.php?app_id=216154058406825&amp;href=#{@current_community.domain}.#{request.domain}&amp;send=false&amp;layout=button_count&amp;width=450&amp;show_faces=false&amp;action=like&amp;colorscheme=light&amp;font=arial&amp;height=21\" scrolling=\"no\" frameborder=\"0\" style=\"border:none; overflow:hidden; width:450px; height:21px;\" allowTransparency=\"true\"></iframe>".html_safe
+
+          .grid_3
+            #logo
+            -#  = render :file => community_file("logo", false)
+          .grid_9
+            .grid_3.alpha
+              = render :file => community_file("logo_text", false)
+            .grid_6.omega
+              #search
+                = form_tag({ :action => :show, :controller => "/search" }, :method => "get") do
+                  - one_line do
+                    = text_field_tag("q", params[:q], :class => "search_field")
+                    = submit_tag("s", :class => "search_button")
+            .clear
+            .top_navi_form.grid_9
+              - if available_locales.count > 1
+                .locale_select_padding
+                  = form_tag("/change_locale", :method => "get") do
+                    = hidden_field_tag :redirect_uri, @return_to
+                    = select_tag 'locale', options_for_select(available_locales, (logged_in? ? @current_user.locale : params[:locale])), :onchange => 'this.form.submit()', :class => 'language_select'
+              - elsif @current_community.use_fb_like
+                .fb_like_padding
+                  = "<iframe src=\"http://www.facebook.com/plugins/like.php?app_id=216154058406825&amp;href=#{@current_community.domain}.#{request.domain}&amp;send=false&amp;layout=button_count&amp;width=450&amp;show_faces=false&amp;action=like&amp;colorscheme=light&amp;font=arial&amp;height=21\" scrolling=\"no\" frameborder=\"0\" style=\"border:none; overflow:hidden; width:450px; height:21px;\" allowTransparency=\"true\"></iframe>".html_safe
         .grid_12
           = render :partial => "layouts/logged_in"
           .top_navi_link.align_right.grid_3.omega
