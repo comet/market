@@ -7,6 +7,7 @@ class Service < ActiveRecord::Base
   scope :pending, where(:status => 'pending')
   scope :cancelled, where(:status => 'cancelled')
   belongs_to :listings, :class_name => "Listing", :foreign_key => "author_id"
+  VALID_NOTIFICATION_TIMES=[0,1,3,6,12,24,36,48,72]
   def average_rating
     @value = 0
     #self.rating.each do |rating|
@@ -34,6 +35,37 @@ class Service < ActiveRecord::Base
         Rails.logger.error{"Failed saving the damn cash transfer"}
         return false
       end
+    end
+  end
+  def self.check_overdue_tasks
+    pending_services=Service.find_by_sql("SELECT * FROM services INNER JOIN listings ON services.listing_id=listings.id WHERE services.status=#{"pending"}")
+    if  pending_services&&pending_services.size >0
+        pending_services.each do |service|
+          time=Time.now-service.created_at
+          Rails.logger.debug{time.to_s}
+          if time.hours<72
+            Rails.logger.debug{time.to_s+"Less than 72 hours"}
+          elsif time.hours<48
+            Rails.logger.debug{time.to_s+"Less than 48 hours"}
+          elsif time.hours<36
+            Rails.logger.debug{time.to_s+"Less than 36 hours"}
+          elsif time.hours<24
+            Rails.logger.debug{time.to_s+"Less than 24 hours"}
+          elsif time.hours<12
+            Rails.logger.debug{time.to_s+"Less than 12 hours"}
+          elsif time.hours<6
+            Rails.logger.debug{time.to_s+"Less than 6 hours"}
+          elsif time.hours<3
+            Rails.logger.debug{time.to_s+"Less than 3 hours"}
+          elsif time.hours<1
+            Rails.logger.debug{time.to_s+"Less than 1 hour"}
+          else
+            if time.minutes<0
+
+            end
+
+          end
+        end
     end
   end
 end

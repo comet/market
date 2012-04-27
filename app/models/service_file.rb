@@ -12,6 +12,7 @@ class ServiceFile < ActiveRecord::Base
     # write the file
     #File.open(path, "wb") { |f| f.write(upload[:file_url].original_filename) }
     # retrieve the filename from the file object
+    unless data[:file_url].nil?
     fullname = data[:file_url].original_filename
 
 # get only the filename, not the whole path (from IE)
@@ -36,5 +37,6 @@ class ServiceFile < ActiveRecord::Base
         #print on log
       Rails.logger.error{"The file could not be uploaded"}
     end
-  end
+    end
+    end
 end

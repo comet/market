@@ -1,4 +1,7 @@
 class PaymentsController < ApplicationController
+  before_filter :only => [ :home, :all ] do |controller|
+    controller.ensure_logged_in "you_must_log_in_to_send_a_message"
+  end
   def home
     if request.post?
       @code=params[:code]
@@ -18,8 +21,18 @@ class PaymentsController < ApplicationController
           @payjob.user_id=@current_user.id.to_s
           @payjob.listing_id=params[:listing_id].to_i
           if @payjob.save
-            flash[:notice]="Your payment of #{@payment.amount} was successfully processed. The owner has been informed and they shall deliver your product soon"
+            flash[:notice]="Your payment of #{@payment.amount} was processed. The owner has been informed and they shall deliver your product soon"
+            #TODO create a job to notify both parties and create skeleton services
+            @listingq=Listing.find(params[:listing_id].to_i)
+            @service = Service.new
+            @service.author_id=@listingq.author_id
+            @service.receiver_id= @current_user.id.to_s
+            @service.listing_id=@listingq.id
+            @service.title=@listingq.title
+            @service.status="pending"
+            if @service.save
             redirect_to listing_path(params[:listing_id].to_i)
+              end
           else
             flash[:error]="There was an error processing your payment of #{@payment.amount} "
             return

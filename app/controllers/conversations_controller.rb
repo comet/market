@@ -80,7 +80,7 @@ class ConversationsController < ApplicationController
     #if recipient.eql?(@current_user)
     #  recipient=@conversation.other_party(recipient)
     #end
-    @service.receiver_id=recipient.id.to_s #will fail in the event that there are many participants in that conversation
+    @service.receiver_id=recipient.id.to_s #TODO will fail in the event that there are many participants in that conversation
     @service.listing_id = @conversation.listing_id
     @service.title =  @conversation.title
     #unless listing.description.nil?

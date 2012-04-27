@@ -183,9 +183,9 @@ en:
       avoinyritys_url: "#"
       bubble_text_line_1: "PAY IT"
       bubble_text_line_2: FORWARD!
-      description: "SAS727 is a web service that helps your community members to help each other out in several ways: by lending and selling stuff, doing favors, sharing rides and many others!"
+      description: "SAS727 is a web service that helps your city members to help each other out in several ways: by lending and selling stuff, doing favors, sharing rides and many others!"
       email_default_text: "Your email address"
-      get_to_know_the_aalto_community: "Check out the SAS727 community of Aalto University!"
+      get_to_know_the_aalto_community: "Check out the SAS727 city of Aalto University!"
       get_to_know_the_avoin_yritys_blog: "Check out our blog!"
       kassi_in_facebook: "SAS727 in Facebook"
       kassi_in_twitter: "SAS727 in Twitter"
@@ -195,7 +195,7 @@ en:
       thank_you_for_contacting: "Thank you for contacting us. We will get back to you as soon as possible. If you want you can also reach us by email: info (aet) SAS727.eu"
       want_to_know_how_kassi_works: "Want to know how SAS727 works?"
       want_to_know_more_about_us: "Want to know more about our philosophy?"
-      want_to_use_kassi_in_your_association: "Want to use SAS727 in your community?"
+      want_to_use_kassi_in_your_association: "Want to use SAS727 in your city?"
   emails:
     accept_reminder:
       offer_accusative: offer
@@ -236,8 +236,8 @@ en:
       your_request_was_rejected: "Your request was rejected"
     invitation_to_kassi:
       hi: "Hi!"
-      you_have_been_invited_to_kassi: "%{inviter} has invited you to use the SAS727 web service of the %{community} community."
-      info_about_kassi: "SAS727 is a service where the members of the community can, for example, lend, trade and sell goods, share rides and help each other out in several ways."
+      you_have_been_invited_to_kassi: "%{inviter} has invited you to use the SAS727 web service of the %{community} city."
+      info_about_kassi: "SAS727 is a service where the members of the city can, for example, lend, trade and sell goods, share rides and help each other out in several ways."
       here_is_a_message_from: "Here is a personal message from %{inviter}:"
       you_can_join_kassi_using_invitation_code: "Here is an invitation code you need to join the service: %{code}"
       join_kassi_in: "You can join SAS727 at"
@@ -320,7 +320,7 @@ en:
     your_email_address: "Your email address"
   header:
     about: "About SAS727"
-    community: Community
+    community: City
     home: Home
     mobile_version: "Mobile version"
     offers: "Request Tasks"
@@ -418,7 +418,7 @@ en:
       feedback_forum: "feedback forum"
       feedback_handle: Feedback
       give_feedback: "Give feedback on SAS727"
-      keywords: "favor, item, rideshare, car pooling, housing, accommodation, help, helping, offer, request, rent, trade, exchange, buying, selling, buy, sell, giving, give, SAS727, ecological, community, online community"
+      keywords: "favor, item, rideshare, car pooling, housing, accommodation, help, helping, offer, request, rent, trade, exchange, buying, selling, buy, sell, giving, give, SAS727, ecological, city, online city"
       meta_description: "SAS727 is a service that helps members of associations and other communities to do each other favors, sell and lend items to each other, organize car pooling and help each other in many other ways."
       or_check_our: "...or check our"
       send_feedback_to_admin: "Send feedback"
@@ -434,7 +434,7 @@ en:
       received: Received
       sent: Sent
     dashboard:
-      title: "SAS727 - share goods, favors and rides in your local community!"
+      title: "SAS727 - share goods, favors and rides in your city!"
     infos:
       about: "What is SAS727?"
       how_to_use: "How to use SAS727"
@@ -489,7 +489,7 @@ en:
       housing_request_message_sent: "Message sent successfully"
       invitation_cannot_be_sent: "Invitation could not be sent"
       invitation_sent: "Invitation sent successfully"
-      inviting_new_users_is_not_allowed_in_this_community: "Inviting new users is not allowed in this SAS727 community"
+      inviting_new_users_is_not_allowed_in_this_community: "Inviting new users is not allowed in this SAS727 city"
       item_offer_message_sent: "Item request sent successfully"
       item_request_message_sent: "Item offer sent successfully"
       login_again: "Please, log in again."
@@ -518,10 +518,10 @@ en:
       request_updated_successfully: "Request updated successfully"
       rideshare_offer_message_sent: "Ride request sent successfully"
       rideshare_request_message_sent: "Ride offer sent successfully"
-      this_content_is_not_available_in_this_community: "This content is not available in this community."
+      this_content_is_not_available_in_this_community: "This content is not available in this city."
       unknown_error: "Unknown error. Please use the feedback link to send details about what happened."
       update_error: "An error occurred when trying to update your information, please try again"
-      welcome_message: "Welcome to SAS727! SAS727 is a service that helps the members of the %{community} community to do each other favors, sell and lend items to each other, organize car pooling and help each other in many other ways."
+      welcome_message: "Welcome to SAS727! SAS727 is a service that helps the members of the %{community} city to do each other favors, sell and lend items to each other, organize car pooling and help each other in many other ways."
       you_are_not_allowed_to_give_feedback_on_this_transaction: "You are not authorized to give feedback on this event"
       you_are_not_authorized_to_do_this: "You are not authorized to do this"
       you_are_not_authorized_to_view_this_content: "You are not authorized to view this content"
@@ -868,7 +868,7 @@ en:
       create_new_account: "Create account"
       email: "Email address:"
       email_is_in_use: "The email you gave is already in use."
-      email_is_in_use_or_not_allowed: "This email is not allowed for this community or it is already in use. Please use an address that is associated with this community (see instructions above). If you still cannot get in, send us feedback by clicking the link on the left."
+      email_is_in_use_or_not_allowed: "This email is not allowed for this city or it is already in use. Please use an address that is associated with this city (see instructions above). If you still cannot get in, send us feedback by clicking the link on the left."
       enter_captcha: "I'm a human:"
       family_name: "Family name:"
       given_name: "Given name:"
@@ -882,14 +882,14 @@ en:
       username: "Username:"
       username_is_in_use: "The username you gave is already in use."
       username_is_invalid: "Username is invalid. Allowed characters are letters, numbers and underscore."
-      visible_only_to_you: "visible only to you and community admin"
+      visible_only_to_you: "visible only to you and city admin"
       visible_to_everybody: "visible to everybody"
       invitation_code: "Invitation code:"
       invalid_invitation_code: "The invitation code is not valid."
     not_member:
-      explanation_text: "You are currently in %{community} community. You tried to view the profile of a user that belongs to another community. SAS727 does not currently support belonging to multiple communities, so you cannot access this profile through %{community} community. We are working on an option to belong to more than one community at the same time. This feature will be added to the service later."
+      explanation_text: "You are currently in %{community} city. You tried to view the profile of a user that belongs to another city. SAS727 does not currently support belonging to multiple cities, so you cannot access this profile through %{community} city. We are working on an option to belong to more than one city at the same time. This feature will be added to the service later."
       read_more_about_kassi_communities: "Read more about SAS727 communities"
-      this_user_does_not_belong_to_this_community: "This user does not belong to %{community} community"
+      this_user_does_not_belong_to_this_community: "This user does not belong to %{community} city"
     profile_badge:
       active_member_bronze: "Active member (bronze)"
       active_member_bronze_description: "This was the third exchange you participated in SAS727! Awesome start, keep it going!"
@@ -906,7 +906,7 @@ en:
       commentator_bronze: "Commentator (bronze)"
       commentator_bronze_description: "You like to discuss with other users. You have left three comments to listings in SAS727."
       commentator_gold: "Commentator (gold)"
-      commentator_gold_description: "30 comments! You feel at home in the SAS727 community. You are eager to meet new people and discuss with them."
+      commentator_gold_description: "30 comments! You feel at home in the SAS727 city. You are eager to meet new people and discuss with them."
       commentator_silver: "Commentator (silver)"
       commentator_silver_description: "10 comments! You participate actively to conversations with other SAS727 users"
       enthusiast_bronze: "Enthusiast (bronze)"
@@ -999,7 +999,7 @@ en:
       exceeded_expectations: "Exceeded expectations"
       feedback_average: "Feedback average:"
       hide_description: "Show less"
-      joined_this_community: "...joined this community"
+      joined_this_community: "...joined this city"
       was_last_seen: "...was last seen"
       was_invited_by: "...was invited by"
       less_than_expected: "Worse than expected"
@@ -1036,7 +1036,7 @@ en:
     confirmation_pending:
       welcome_to_kassi: "Welcome to SAS727!"
       check_your_email: "Check your inbox"
-      account_conrimation_instructions: "You will soon receive an email from SAS727 with a link that you need to click to gain access to this SAS727 community.</p><p>This email check is done to ensure that all the members really belong to this community (<b>%{community_name}</b>). This creates a safer environment for sharing.</p><p>If you have any trouble using SAS727, just click the <a href=\"#\" id=\"give_feedback_link\">feedback</a> on the left and let us know. Please also share your improvement ideas!"
+      account_conrimation_instructions: "You will soon receive an email from SAS727 with a link that you need to click to gain access to this SAS727 city.</p><p>This email check is done to ensure that all the members really belong to this city (<b>%{community_name}</b>). This creates a safer environment for sharing.</p><p>If you have any trouble using SAS727, just click the <a href=\"#\" id=\"give_feedback_link\">feedback</a> on the left and let us know. Please also share your improvement ideas!"
       get_started: "Get started with SAS727"
       getting_started_instructions: "When you have confirmed your account, it's a good idea to add a picture to your <a href=\"%{profile_url}\">profile</a> and fill in other details, or you can continue straight in to action by adding an <a href=\"/en/listings/new/offer\">offer</a> about something you could possibly lend, rent, sell or do for others. Or if you are needing some specific item or help with something, post a <a href=\"/en/listings/new/request\">request</a>."
       resend_confirmation_instructions: "Resend confirmation instructions"

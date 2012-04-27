@@ -37,7 +37,7 @@ class ServicesController < ApplicationController
   def load
     @title = @action_path
     if @title.eql?"done"
-      @services = Service.performed.order("created_at DESC").where("author_id=?",@current_user.id).paginate(:per_page => 15, :page => params[:page])
+      @services = Service.performed.order("updated_at DESC").where("author_id=?",@current_user.id).paginate(:per_page => 15, :page => params[:page])
     elsif @title.eql?"cancelled"
       @services = Service.cancelled.order("created_at DESC").where("author_id=?",@current_user.id).paginate(:per_page => 15, :page => params[:page])
     elsif @title.eql?"shopped"
@@ -75,12 +75,7 @@ class ServicesController < ApplicationController
   # POST /services
   # POST /services.xml
   def create
-    @service = Service.new(params[:service])
-    upload
-    @service.file_id = @service_file.id.to_s
-    @service.file_url = @service_file.file_name
-
-    respond_to do |format|
+        respond_to do |format|
       if @service.save
         format.html { redirect_to(@service, :notice => 'Service successfully uploaded.') }
         format.xml { render :xml => @service, :status => :created, :location => @service }
@@ -95,7 +90,9 @@ class ServicesController < ApplicationController
   # PUT /services/1.xml
   def update
     @service = Service.find(params[:id])
-
+    upload
+    @service.file_id = @service_file.id.to_s
+    @service.file_url = @service_file.file_name.to_s
     @service.status="done"
     respond_to do |format|
       if @service.update_attributes(params[:service])
@@ -134,5 +131,28 @@ class ServicesController < ApplicationController
     #set the service_id
     @service_file.service_id = @service.id
     ServiceFile.save(params[:service],@service_file)
+  end
+  def download
+    #check that the user is authorized
+    root_file_path='public/images/deliverables'
+    file=ServiceFile.find(params[:serv_id])
+    if file
+      file_name=file.file_name
+      type=file.file_content_type
+    else
+      flash[:error]="No such file exists"
+      redirect_to services_path(:type=>"shopped",:author_id=>@current_user)
+    end
+    path = File.join(root_file_path, file_name)
+    if authorized_file_access(@current_user,file)
+    send_file path, :type=>type,:x_sendfile=>true
+    else
+      flash[:error]="You are not authorised to view this file"
+      redirect_to services_path(:type=>"shopped",:author_id=>@current_user)
+    end
+
+  end
+  def authorized_file_access(id,file)
+    return true
   end
 end

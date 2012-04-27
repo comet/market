@@ -24,6 +24,7 @@ Kassi::Application.routes.draw do
   get "payments/confirm"
   get "payments/cashflow"
   get "payments/cashaccount"
+  get "services/download"
 
   resources :sub_categories
 

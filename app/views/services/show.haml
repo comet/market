@@ -18,8 +18,13 @@
     %p
       - text_with_line_breaks do
         = @service.content.blank? ? t(".no_description") : @service.content
+    %div{:id => "conversation_#{@service.id.to_s}_status"}
+      = render :partial => "download", :locals => { :service => @service }
 -unless @service.author_id==@current_user.id
-  - if @service.rating
-    =render :partial=>"rating"
-  -  else
-    = render :partial=> "newrating"
+  -if @service.status.eql?("pending")
+    =render :partial=>"no_rating"
+  -else
+    - if @service.rating
+      =render :partial=>"rating"
+    -  else
+      = render :partial=> "newrating"

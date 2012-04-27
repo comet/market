@@ -1,1 +1,5 @@
-=link_to "Download Files","#"
+- if service.file_id.nil?
+  %p
+    No file to download yet
+- else
+  =link_to "Download Files",:controller=>"services",:action=>"download",:serv_id=>service.file_id.to_s

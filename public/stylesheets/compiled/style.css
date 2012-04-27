@@ -1465,8 +1465,7 @@ div.checkbox_float {
   #logged_in_links a {
     font-size: 14px;
     font-weight: 700;
-    color: #3F3F3F;
-    text-shadow: 0 1px #fff;
+    color: #fff;
     /*color: white;*/ }
     #logged_in_links a:hover {
       color: #f8792f; }
@@ -2130,7 +2129,7 @@ a.edit_profile {
   #new_testimonial_form input.send_button {
     font-size: 14px;
     font-weight: bold;
-    background: #765d3a;
+    background: #4A4C4E;
     width: 200px;
     height: 40px;
     padding: 0;
@@ -2138,7 +2137,7 @@ a.edit_profile {
     color: white;
     margin: 15px 0 0 10px; }
     #new_testimonial_form input.send_button:active {
-      background-color: #4d3d26;
+      background-color: #4A4C4E;
       padding-top: 1px; }
     #new_testimonial_form input.send_button:hover {
       background-color: #9f7d4e; }
@@ -2787,7 +2786,7 @@ div.container_24, div.feedback_div {
   -webkit-border-bottom-left-radius: 7px;
   padding: 20px 20px 35px 20px;
   width: 250px;
-  background: #2f5707;
+  background: #7199B7;
   color: white; }
   .feedback_div h3 {
     color: #f7f5e6;
@@ -2802,7 +2801,7 @@ a.handle:hover {
   #new_feedback_form input.send_button {
     font-size: 14px;
     font-weight: bold;
-    background: #765d3a;
+    background: #4A4C4E;
     width: 200px;
     height: 40px;
     padding: 0;
