@@ -137,6 +137,23 @@ class PersonMailer < ActionMailer::Base
     mail(:to => @recipient.email,
          :subject => t("emails.accept_reminder.remember_to_accept_#{@conversation.discussion_type}"))
   end
+  def  remind_job_pending_hours(service,host=nil)
+    @recipient = set_up_recipient(service.author_id, host)
+    @url = host ? "http://#{host}/#{@recipient.locale}#{person_message_path(:person_id => @recipient.id, :id => message.conversation.id.to_s)}" : "test_url"
+    @message = message
+    alert_if_erroneus_host(host, @url)
+    mail(:to => @recipient.email,
+         :subject => "Pending job")
+  end
+  def notify_job_start_or_end(service,recepient,author,host=nil)
+    @recipient = set_up_recipient(service, host)
+    @url = host ? "http://#{host}/#{@recipient.locale}#{person_services_path(:person_id => @recipient.id, :id => service.id.to_s)}" : "test_url"
+    @message = message
+    alert_if_erroneus_host(host, @url)
+    mail(:to => @recipient.email,
+         :subject => "job request")
+  end
+
   
   def newsletter(recipient, community)
     @community = community

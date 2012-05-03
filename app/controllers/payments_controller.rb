@@ -1,6 +1,6 @@
 class PaymentsController < ApplicationController
   before_filter :only => [ :home, :all ] do |controller|
-    controller.ensure_logged_in "you_must_log_in_to_send_a_message"
+    controller.ensure_logged_in "you_must_log_in_to_perform_transactions"
   end
   def home
     if request.post?
