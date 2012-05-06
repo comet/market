@@ -39,11 +39,13 @@ class ServicesController < ApplicationController
     if @title.eql?"done"
       @services = Service.performed.order("updated_at DESC").where("author_id=?",@current_user.id).paginate(:per_page => 15, :page => params[:page])
     elsif @title.eql?"cancelled"
-      @services = Service.cancelled.order("created_at DESC").where("author_id=?",@current_user.id).paginate(:per_page => 15, :page => params[:page])
+      @services = Service.cancelled.order("updated_at DESC").where("author_id=?",@current_user.id).paginate(:per_page => 15, :page => params[:page])
     elsif @title.eql?"shopped"
-      @services = Service.order("created_at DESC").where("receiver_id=?",@current_user.id).paginate(:per_page => 15, :page => params[:page])
-    else
-      @services = Service.pending.order("created_at DESC").where("author_id=?",@current_user.id).paginate(:per_page => 15, :page => params[:page])
+      @services = Service.order("updated_at DESC").where("receiver_id=?",@current_user.id).paginate(:per_page => 15, :page => params[:page])
+    elsif @title.eql?"pending"
+      @services = Service.pending.order("updated_at DESC").where("author_id=?",@current_user.id).paginate(:per_page => 15, :page => params[:page])
+    elsif @title.eql?"un_paid_for"
+         @services = Service.unconfirmed.order("created_at DESC").where("author_id=?",@current_user.id).paginate(:per_page => 15, :page => params[:page])
     end
       #Service.order("created_at DESC").find_all#@current_user.services_that_are(@title).paginate(:per_page => 15, :page => params[:page])
     #request.xhr? ? (render :partial => "additional_messages") : (render :action => :index)

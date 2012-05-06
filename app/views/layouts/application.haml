@@ -5,7 +5,7 @@
     %title
       Sell A Solution
       - if @listing && action_name.eql?("show")
-        = "- #{t("listings.show.#{@listing.category}_#{@listing.listing_type}")}: #{@listing.title}"
+        = "- #{@listing.category}: #{@listing.title}"
       - else
         = "- #{@current_community.name}"
 

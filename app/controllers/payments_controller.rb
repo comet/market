@@ -1,7 +1,8 @@
 class PaymentsController < ApplicationController
-  before_filter :only => [ :home, :all ] do |controller|
+  before_filter :only => [:home, :all] do |controller|
     controller.ensure_logged_in "you_must_log_in_to_perform_transactions"
   end
+
   def home
     if request.post?
       @code=params[:code]
@@ -21,18 +22,29 @@ class PaymentsController < ApplicationController
           @payjob.user_id=@current_user.id.to_s
           @payjob.listing_id=params[:listing_id].to_i
           if @payjob.save
-            flash[:notice]="Your payment of #{@payment.amount} was processed. The owner has been informed and they shall deliver your product soon"
-            #TODO create a job to notify both parties and create skeleton services
-            @listingq=Listing.find(params[:listing_id].to_i)
-            @service = Service.new
-            @service.author_id=@listingq.author_id
-            @service.receiver_id= @current_user.id.to_s
-            @service.listing_id=@listingq.id
-            @service.title=@listingq.title
-            @service.status="pending"
-            if @service.save
-            redirect_to listing_path(params[:listing_id].to_i)
+
+          if params[:service_id] && !params[:service_id].to_s.blank?
+              service = Service.find(params[:service_id])
+              if service
+                if service.update_attribute(:status, "pending")
+                  flash[:notice]="Payment (#{@payment.amount.to_s})successfully processed. The owner of the job will be notified to deliver your order"
+                  redirect_to services_path(:type=>"shopped") and return
+                end
               end
+            else
+              @listingq=Listing.find(params[:listing_id].to_i)
+              @service = Service.new
+              @service.author_id=@listingq.author_id
+              @service.receiver_id= @current_user.id.to_s
+              @service.listing_id=@listingq.id
+              @service.title=@listingq.title
+              @service.status="pending"
+            end
+            if @service.save
+              #TODO create a job to notify both parties and create skeleton services
+              flash[:notice]="Your payment of #{@payment.amount.to_s} was processed. The owner has been informed and they shall deliver your product soon"
+              redirect_to listing_path(params[:listing_id].to_i)
+            end
           else
             flash[:error]="There was an error processing your payment of #{@payment.amount} "
             return
@@ -40,23 +52,24 @@ class PaymentsController < ApplicationController
         end
       else
         flash[:error]="No such transaction exists or you've entered the incorrect code.please try again in a few moments"
-        redirect_to :action=>"home",:id=>params[:listing_id]
+        redirect_to :action=>"home", :id=>params[:listing_id]
         #return
       end
     else
       @listing_id=params[:id]
-      Rails.logger.debug { "Using the following params"+params[:id].to_s }
+      #@stat=params[:stat].to_s.eql?("re") ? params[:stat].to_s : nil
+      @service= params[:serv_id]? params[:serv_id].to_s : nil
       if !@listing_id.nil?
         @listing=Listing.find_by_id(@listing_id)
         if !@listing.nil?
-          Rails.logger.debug{@listing.inspect}
+          #Load the form with the listing details
         else
           flash.now[:error]="No listing could be found with the given parameters"
-          redirect_to :action=>"home",:id=>params[:listing_id]
+          redirect_to :action=>"home", :id=>params[:listing_id] and return
         end
       else
-        flash[:error]="Please select a task that you wish to buy from the ones listed"
-        #redirect_to :action=>"home",:id=>params[:listing_id]
+        flash[:error]="Please select a listing that you wish to order from the listings page"
+        redirect_to :action=>"home" and return
       end
     end
   end
@@ -109,21 +122,23 @@ class PaymentsController < ApplicationController
   def confirm
 
   end
+
   def cashflow
     @title = params[:type]
-    if @title.eql?"received"
-      @payments = Cashflow.find_by_direction("received",@current_user.id).paginate(:per_page => 15, :page => params[:page])
-    elsif @title.eql?"sent"
-      @payments = Cashflow.find_by_direction("sent",@current_user.id).paginate(:per_page => 15, :page => params[:page])
-      end
-      @to_render = {:layout => "wallet"}
-    Rails.logger.debug{@payments.inspect}
+    if @title.eql? "received"
+      @payments = Cashflow.find_by_direction("received", @current_user.id).paginate(:per_page => 15, :page => params[:page])
+    elsif @title.eql? "sent"
+      @payments = Cashflow.find_by_direction("sent", @current_user.id).paginate(:per_page => 15, :page => params[:page])
+    end
+    @to_render = {:layout => "wallet"}
+    Rails.logger.debug { @payments.inspect }
     render @to_render
 
   end
+
   def cashaccount
     @to_render = {:layout => "wallet"}
-    @payments = Cashflow.find_by_direction("both",@current_user.id).paginate(:per_page => 15, :page => params[:page])
+    @payments = Cashflow.find_by_direction("both", @current_user.id).paginate(:per_page => 15, :page => params[:page])
     render @to_render
 
   end

@@ -324,9 +324,9 @@ en:
     home: Home
     mobile_version: "Mobile version"
     offers: "Request Tasks"
-    requests: Tasks
-    search_kassi: "Search Service mart"
-    profile: "My Tasks"
+    requests: Home
+    search_kassi: "Search SAS727"
+    profile: "Dashboard"
   homepage:
     additional_private_listings_slate:
       additionally_one_private_offer_exists: "Additionally  there is <b>one other offer</b>,"
@@ -415,7 +415,7 @@ en:
     application:
       default_feedback: "Suggest a new feature, report a bug, tell your opinion about the service, or just drop a note to say hello!"
       feedback: "Feedback to SAS727 staff"
-      feedback_forum: "feedback forum"
+      feedback_forum: "blog"
       feedback_handle: Feedback
       give_feedback: "Give feedback on SAS727"
       keywords: "favor, item, rideshare, car pooling, housing, accommodation, help, helping, offer, request, rent, trade, exchange, buying, selling, buy, sell, giving, give, SAS727, ecological, city, online city"
@@ -554,6 +554,8 @@ en:
       profile: "Profile info"
       settings: Settings
   services:
+    index:
+     loading_more_services: "Loading older services"
     newrating:
       grade: "Value"
       textual_feedback: "Comment (optional)"
@@ -572,7 +574,15 @@ en:
         upload_file: "File to upload"
 
   listings:
+    filter_by: "Filter tasks by:"
+    teaser:
+      buy_sell_have_a_blast: "Buy,Sell,Have a blast!"
+      sas: "SAS727"
+      largest_city_for_small_services: "Kenya's largest city for small services starting at Ksh   500!!"
+      how_it_works: "How does it work"
+      click_how_it_works: "Click to find out how it works"
     buy_now: "Buy now"
+    pay_now: "Pay now"
     contact_author: "Contact author"
     bubble_listing_not_visible:
       listing_not_visible: "You do not have permission to view this listing."
@@ -590,7 +600,7 @@ en:
       edit_request: "Edit task"
     edit_links:
       close_offer: "Close offer"
-      close_request: "Close request"
+      close_request: "Close task"
       edit_offer: "Edit offer"
       edit_request: "Edit request"
       reopen_offer: "Reopen offer"
@@ -775,7 +785,7 @@ en:
       edit: Edit
     listed_listing_closed_status:
       offer_is_closed: "Offer is closed"
-      request_is_closed: "Request is closed"
+      request_is_closed: "Task is closed"
     listed_listings:
       loading_more_offers: "Loading more offers"
       loading_more_requests: "Loading more requests"
@@ -787,7 +797,7 @@ en:
     please_comment: Comment
     reply_link:
       offer_closed: "Offer is closed"
-      request_closed: "Request is closed"
+      request_closed: "Task is closed"
     show:
       design_request: "Design request"
       editorial_request: "Editorial request"
@@ -802,6 +812,8 @@ en:
       software_offer: "Software offer"
       other_request: "Others request"
       comments: Comments
+      other_listings: "Other listings by this user"
+      related_listings: "Related listings"
       #favor_offer: "Favor offer"
       #favor_request: "Favor request"
       #housing_offer: "Housing offer"
@@ -986,8 +998,8 @@ en:
       loading_more_requests: "Loading more requests"
       offers: Offers
       requests: Requests
-      show_also_closed: "Show also closed"
-      show_only_open: "Show only open"
+      show_also_closed: "Show also inactive tasks"
+      show_only_open: "Show active tasks"
     show:
       about_me: "About me:"
       add_description: "Tell something about yourself"

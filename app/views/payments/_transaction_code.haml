@@ -4,5 +4,7 @@
   = form_tag
   = text_field_tag "code"
   = hidden_field_tag "listing_id",@listing.id
+    -unless @service.nil?
+    = hidden_field_tag "service_id",@service
   = submit_tag "Confirm", :class => "send_button"
   %br

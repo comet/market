@@ -24,7 +24,6 @@
       = link_to t('header.requests'), requests_path
     .grid_3.omega{:class => (params[:controller].eql?("services")) ? "tab_selected" : "tab_unselected"}
       = link_to t('header.profile'), services_path(:type=>"pending")
-      -#= link_to t('header.profile'),:controller=>"services",:action=>"index",:type=>"pending"
     .clear
 - else
   .grid_12.alpha
@@ -33,3 +32,8 @@
         = link_to t('.sign_up'), sign_up_path, :title => t('.sign_up')
       .login_tab.float_right
         = link_to t('.login'), login_path, :title => t('.login')
+  .clear
+  .tabs.grid_9.alpha
+    .grid_3{:class => (params[:listing_type] && params[:listing_type].eql?("request")) ? "tab_selected" : "tab_unselected"}
+      = link_to t('header.requests'), requests_path
+    .clear

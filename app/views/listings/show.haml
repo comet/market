@@ -97,7 +97,13 @@
       %span{:id => "comment_count"}= "(#{@listing.comments.count})"
     = render :partial => "comment", :collection => @listing.comments
   
-  #comment_notice  
-  
-  -#listing_comment_form
-    = render :partial => "comment_form"
+  #comment_notice
+    %h2
+      = "Other listings by "+@listing.author.name
+
+    = render :partial => "listed_listing",:collection=>(Person.find(@listing.author_id).listings),:as => :listing, :spacer_template => "listings/listing_spacer"
+  .clear
+  #listing_comment_form
+    %h2
+      = t(".related_listings")
+    = render :partial => "listed_listing",:collection=>Listing.predict_basic(@listing,3),:as => :listing, :spacer_template => "listings/listing_spacer"

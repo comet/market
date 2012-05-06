@@ -1,0 +1,23 @@
+#teaser
+  #teaser_left
+    %h1= t("listings.teaser.sas")
+    %p
+      = render :file => community_file("teaser_welcome_text", true), :locals => {:community_name => @current_community.name_with_separator(I18n.locale)}
+  #teaser_right
+    #teaser_button_container
+      #offer_something_button
+        = link_to t('.how_it_works'), :controller=>"infos",:action=>"how_to_use"
+      #teaser_button_description
+        = t(".click_how_it_works")
+    -#teaser_button_container
+      #request_something_button
+        = link_to t('.request_something'), new_request_path(:type => "request")
+      #teaser_button_description
+        = t(".request_something_description")
+    -#teaser_browse_links
+      %p
+        = t(".did_not_found_what_you_were_looking_for")
+        = link_to t(".request_something"), new_request_path(:type => "request")
+        %br/
+        = t(".you_have_something_others_do_not")
+        = link_to t(".offer_something"), new_request_path(:type => "offer")

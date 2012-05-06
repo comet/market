@@ -148,12 +148,12 @@ border-top: 1px solid #93B6D2;
     color: #898989; }
   #search input.search_button {
     text-align: left;
-    background: #59B200 url("/images/icons/header_icons.png") 8px -356px no-repeat;
+    background: #F8792F url("/images/icons/header_icons.png") 8px -356px no-repeat;
     width: 41px;
     height: 28px;
     padding: 0;
     border: 0;
-    color: #59B200; }
+    color: #F8792F; }
     #search input.search_button:active {
       background: #a33f05 url("/images/icons/header_icons.png") 8px -356px no-repeat;
       color: #a33f05; }

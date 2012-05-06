@@ -10,7 +10,7 @@
       = render :partial => "in_progress", :collection => @services, :as => :service, :spacer_template => "inbox_spacer"
 
     = will_paginate(@services)
-    -#= pageless(@services.total_pages, '#conversations', "in_progress", t('.loading_more_messages'))
+    = pageless(@services.total_pages, '#conversations', "in_progress", t('.loading_more_services'))
 - else
   #no_conversations
     = t(".no_#{@title}_messages")

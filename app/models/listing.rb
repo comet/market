@@ -46,7 +46,7 @@ class Listing < ActiveRecord::Base
   scope :open, :conditions => ["open = '1' AND (valid_until IS NULL OR valid_until > ?)", DateTime.now]
   scope :public, :conditions  => "visibility = 'everybody'"
   scope :private, :conditions  => "visibility <> 'everybody'"
-
+  SORT_PARAMETERS = ["Auto","Rating","Popular","Express tasks","Pricing"]
   VALID_TYPES = ["offer", "request"]
   #VALID_CATEGORIES = ["web", "favor", "rideshare", "housing"]
   #VALID_CATEGORIES = ["design", "data_entry", "transcription", "software","editorial","misc","item"]
@@ -239,6 +239,51 @@ class Listing < ActiveRecord::Base
     "#{id}-#{title.gsub(/\W/, '-').downcase}"
   end
 
+  def self.predict_basic(listing, threshold)
+    accepted_closer_listings=[]
+    closer_listings = []
+    conditions=[]
+    ratings=[0, 0.25, 0.5, 0.75, 1]
+    category=listing.category
+    tags=listing.tags
+    ratings={}
+    #compare all the listings to the ratings
+    if category
+      @related_categories = Listing.find_by_sql("Select * from listings LEFT JOIN ratings on listings.author_id=ratings.user_id where category='#{category}'")
+    end
+    if @related_categories.size >0
+      #sift the array based on tags and rankings
+      ratings.each do |rating|
+        #empty this array on every request
+        accepted_closer_listings=closer_listings
+        closer_listings=[]
+        @related_categories.each do |related_listing|
+          #make sure that the service is rated above fair
+          if related_listing.value && related_listing.value > rating
+            closer_listings<<related_listing.id
+          end
+        end
+        if closer_listings.size<threshold
+          closer_listings=accepted_closer_listings
+          break;
+        end
+      end
+    end
+    Rails.logger.debug { "Using this set of predicted set" }
+    Rails.logger.debug { closer_listings.inspect }
+    if closer_listings.size > 0
+      conditions[0] += " id IN (?)"
+      conditions << array
+      listings = where(conditions)
+    else
+       #conditions[0] += " category = ?"
+      #conditions << listing.category
+      listings=where("category =?",listing.category)
+
+    end
+      #Rails.logger.debug{listings.inspect}
+    return listings
+  end
   def self.find_with(params, current_user=nil, current_community=nil)
     params = params || {}  # Set params to empty hash if it's nil
     conditions = []

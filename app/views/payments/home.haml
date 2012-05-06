@@ -2,6 +2,6 @@
   = render :partial=>'listing_summary'
   .clear
   %h3 Order details
-  =render :partial=>'checkout'
+  =render :partial=>'checkout',:locals=>{:listing=>@listing}
   .clear
   =render :partial=>'payment_options'
