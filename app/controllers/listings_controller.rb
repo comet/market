@@ -134,9 +134,13 @@ class ListingsController < ApplicationController
   end
 
   def new
-     Rails.logger.debug{params}
+     #Rails.logger.debug{params}
     @listing = Listing.new
     @listing.listing_type = params[:type]
+    if params[:title]
+    @listing.title= params[:title]
+      @listing.price=params[:listing][:price]
+    end
     #@listing.category = params[:category]
 
     1.times { @listing.listing_images.build }

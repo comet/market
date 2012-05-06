@@ -595,6 +595,8 @@ en:
       you_cannot_send_a_new_comment_because_request_is_closed: "You cannot send a new comment because this request is closed."
       you_must: "You must"
       subscribe_to_comments: "Notify me of new comments and updates"
+    new_request:
+      continue: Continue
     edit:
       edit_offer: "Edit Job offer"
       edit_request: "Edit task"
@@ -629,7 +631,7 @@ en:
         favor: Favor
         housing: Housing
         item: Item
-        offer_something: "Offer some work"
+        offer_something: "Request a task"
         request_something: "Publish your tasks"
         rideshare: Rideshare
       googlemap:
@@ -692,6 +694,7 @@ en:
         item_you_offer: "Service you can offer"
         item_you_request: "Service you need"
         i_will: "I will"
+        i_am_willing: "What are you willing to do"
       valid_until:
         valid_until: "Expiration date"
       valid_until_radio_buttons:
