@@ -1,14 +1,18 @@
-.conversation{:class => "read", :id => "conversation_#{service.id.to_s}"}
+-if service.status.eql?("done")
+  -classs="delivered"
+-else
+  -classs="not_delivered"
+.conversation{:class => "read #{classs}", :id => "conversation_#{service.id.to_s}"}
   .conversation_center
     %h3= link_to service.title.blank? ? "Unnamed service" : service.title, service_path(service)
     %span= link_to(truncate((service.content.nil? ? service.title : service.content), :length => 60, :omission => "..."), service_path(service))
   .conversation_right
-  -if service.status.eql?("un_paid_for")
-    %div{:id => "conversation_#{service.id.to_s}_status"}
-      = render :partial => "pay_for", :locals => { :service => service }
-  -else
-    %div{:id => "conversation_#{service.id.to_s}_status"}
-      = render :partial => "download", :locals => { :service => service }
+    -if service.status.eql?("un_paid_for")
+      %div{:id => "conversation_#{service.id.to_s}_status"}
+        = render :partial => "pay_for", :locals => { :service => service }
+    -else
+      %div{:id => "conversation_#{service.id.to_s}_status"}
+        = render :partial => "download", :locals => { :service => service }
     = if service.overdue.to_s.eql?("1")
       .conversation_status_link{:class => "reject"}
         -action= "Cancel task"

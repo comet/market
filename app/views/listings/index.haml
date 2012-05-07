@@ -22,11 +22,11 @@
 
   .grid_18.omega
     .grid_10.alpha
-      #search_form_spacer
-        %h5
-        = t("listings.filter_by")
-        = render :partial => "top_links_panel", :collection => Listing::SORT_PARAMETERS, :as => :title, :locals => { :type => "categories" },:spacer=>"sort_spacer"
-        &nbsp;
+    #search_form_spacer
+      %h5
+      = t("listings.filter_by")
+      = render :partial => "top_links_panel", :collection => Listing::SORT_PARAMETERS, :as => :title, :locals => { :type => "categories" },:spacer=>"sort_spacer"
+      &nbsp;
       -#.tabs.grid_9.alpha
         .tabs.grid_9.alpha
           -#inbox_tabs

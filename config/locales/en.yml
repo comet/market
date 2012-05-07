@@ -574,11 +574,11 @@ en:
         upload_file: "File to upload"
 
   listings:
-    filter_by: "Filter tasks by:"
+    filter_by: "Filter tasks by"
     teaser:
       buy_sell_have_a_blast: "Buy,Sell,Have a blast!"
       sas: "SAS727"
-      largest_city_for_small_services: "Kenya's largest city for small services starting at Ksh   500!!"
+      largest_city_for_small_services: "Kenya's largest city for small services starting at Ksh 500"
       how_it_works: "How does it work"
       click_how_it_works: "Click to find out how it works"
     buy_now: "Buy now"
@@ -792,8 +792,8 @@ en:
     listed_listings:
       loading_more_offers: "Loading more offers"
       loading_more_requests: "Loading more requests"
-      no_offers_with_the_conditions_you_gave: "No offers with the conditions you gave."
-      no_requests_with_the_conditions_you_gave: "No requests with the conditions you gave."
+      no_offers_with_the_conditions_you_gave: "No tasks with the conditions you gave."
+      no_requests_with_the_conditions_you_gave: "No tasks with the conditions you gave."
       offer_something: "Offer something!"
       request_something: "Request something!"
       search_returned_no_results: "Your search did not return any results."
