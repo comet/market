@@ -13,6 +13,7 @@
     -else
       %div{:id => "conversation_#{service.id.to_s}_status"}
         = render :partial => "download", :locals => { :service => service }
+        = render :partial => "status", :locals => { :service => service }
     = if service.overdue.to_s.eql?("1")
       .conversation_status_link{:class => "reject"}
         -action= "Cancel task"

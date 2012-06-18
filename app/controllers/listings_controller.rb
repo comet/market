@@ -63,9 +63,12 @@ class ListingsController < ApplicationController
   # the type of request and if @to_render is set
   def load
     @title = params[:listing_type]
+    Rails.logger.debug{params.inspect}
     @tag = params[:tag]
     @to_render ||= {:partial => "listings/listed_listings"}
     @listings = Listing.open.order("created_at DESC").find_with(params, @current_user, @current_community).paginate(:per_page => 15, :page => params[:page])
+    params_offer={:listing_type=>"offer"}
+    @listings_request = Listing.open.order("created_at DESC").find_with(params_offer, @current_user, @current_community).paginate(:per_page => 15, :page => params[:page])
     @request_path = request.fullpath
     if request.xhr? && params[:page] && params[:page].to_i > 1
       render :partial => "listings/additional_listings"
@@ -161,7 +164,7 @@ class ListingsController < ApplicationController
       render :action => :new
     else
       path = new_request_category_path(:type => @listing.listing_type, :category => @listing.category)
-      flash[:notice] = ["#{@listing.listing_type}_created_successfully", "create_new_#{@listing.listing_type}".to_sym, path]
+      flash[:notice] = ["task_created_successfully", "create_new_task".to_sym, path]
       Delayed::Job.enqueue(ListingCreatedJob.new(@listing.id, request.host))
       redirect_to @listing
     end

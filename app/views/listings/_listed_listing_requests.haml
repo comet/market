@@ -1,0 +1,8 @@
+- if @listings_request.size > 0
+  = render :partial => "listings/listed_request", :collection => @listings_request, :as => :listing, :spacer_template => "listings/request_spacer"
+  = pageless(@listings.total_pages, '#search_results', @request_path, t(".loading_more_#{@title}s"))
+- else
+  #no_listings_found
+    - if params[:listing_type]
+      = t("listings.no_requested_tasks")
+      = link_to t("listings.request_new_task"), new_request_path(:type =>"offer")

@@ -1,24 +1,34 @@
 - if @payments.size>0 && !@payments.nil?
   .listed_listing_text
-    %h3= "Your riches"
+    %h3
+      %div{:class=>"riches"}
+        %p
+          Your riches :
+          -@in=calculate_riches(@payments,'in',@current_user.id.to_s)
+          -@out=calculate_riches(@payments,'out',@current_user.id.to_s)
+          -@diff=@in-@out
+          = "Current available Balance: "+@diff.to_s
+
+    -if @diff > 100
+      %h4= render :partial=>"withdraw",:locals=>{:b_f=>@diff}
     %div
       %p{:class => "description"}
         %h5= link_to "Total incoming amount",:controller=>"payments",:action=>"cashflow",:type =>"received"
         %span
           .float_right
-          %h3= calculate_riches(@payments,'in',@current_user.id.to_s)
+          %h3=@in.to_s
 
       %p{:class => "description"}
         %h5= link_to "Total outgoing amount",:controller=>"payments",:action=>"cashflow",:type =>"sent"
         %span
           .float_right
-          %h3=calculate_riches(@payments,'out',@current_user.id.to_s)
+          %h3=@out.to_s
 
       %p{:class => "description"}
-        %h5= "Total amount"
+        %h5= "Total withdrawn amount"
         %span
           .float_right
-          %h3=calculate_riches(@payments,'both',@current_user.id.to_s)
+          %h3=calculate_riches(@payments,'withdraw',@current_user.id.to_s)
 - else
   #no_conversations
     = "You do not have any monetary records yet"

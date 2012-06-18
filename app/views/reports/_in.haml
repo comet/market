@@ -1,0 +1,17 @@
+.conversation{:class => "read", :id => "conversation_#{payment.id.to_s}"}
+  .conversation_left
+    %h3= payment.amount
+  .conversation_center
+    Sender:
+    %h4= payment.name.blank? ? "Undefined" : payment.name
+    %span
+    Phone number:
+    %h4= payment.phonenumber.blank? ? "undefined" : payment.phonenumber
+    %span
+  .conversation_right
+    %h4
+      -if payment.created_at
+      ="Date:"
+      =Date.parse(payment.created_at.to_s)
+      ="Time: "
+      =(DateTime.parse(payment.created_at.to_s)).strftime('%I:%M:%S %p').to_s

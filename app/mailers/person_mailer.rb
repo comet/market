@@ -176,6 +176,28 @@ class PersonMailer < ActionMailer::Base
     subject = t("emails.invitation_to_kassi.you_have_been_invited_to_kassi", :inviter => @invitation.inviter.name, :community => @invitation.community.name)
     mail(:to => @invitation.email, :subject => subject)
   end
+  def service_bought_notification(buyer,listing,host)
+     @recipient=set_up_recipient(Person.find(listing.author_id),host)
+    @buyer=buyer
+     @listing=listing
+     @listing_path=host ? "http://#{host}/#{listing_path(:id=>@listing.id)}" : "test_url"
+     @url = host ? "http://#{host}/#{services_path(:person_id => @recipient.id, :type =>"pending" )}" : "test_url"
+    alert_if_erroneus_host(host, @url)
+    mail(:to => @recipient.email,
+         :subject => "Service purchased")
+
+  end
+  def payment_confirmed_notification(buyer,listing,host)
+    @recipient=set_up_recipient(Person.find(listing.author_id),host)
+        @buyer=buyer
+     @listing=listing
+     @listing_path=host ? "http://#{host}/#{@recipient.locale}#{listing_path(@listing)}" : "test_url"
+     @url = host ? "http://#{host}/#{@recipient.locale}#{payments_path(:person_id => @recipient.id)}" : "test_url"
+    alert_if_erroneus_host(host, @url)
+        mail(:to => @buyer.email,
+             :subject => "Payment confirmed")
+
+  end
   
   def self.deliver_newsletters
     Community.all.each do |community|

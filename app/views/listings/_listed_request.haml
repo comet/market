@@ -1,0 +1,6 @@
+- title = listing.category + ": " + listing.title
+.listed_listing
+  =link_to listing.author.given_name_or_username+" requested for:", listing.author
+  %h5=link_to (params[:q] ? title : listing.title), listing
+  %p{:class => "description"}
+    = (listing.description.blank? ? t("listings.show.no_description") : truncate(listing.description, :length => 320, :omission => "..."))

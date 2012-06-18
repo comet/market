@@ -1,0 +1,10 @@
+= "#{@buyer.given_name_or_username} has just purchased one of your listings. Here are the details:"
+%br/
+%b
+  =link_to(@listing.title,@listing_path)
+%br/
+%br/
+
+= "To view details,click the link below"
+%br/
+= link_to(@url, @url)

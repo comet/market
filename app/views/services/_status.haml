@@ -1,0 +1,4 @@
+- if service.status.eql?("done")
+  - if current_user?(service.receiver_id)
+    - ["accept", "reject"].each do |status|
+      = render :partial => "status_link", :locals => { :service => service, :status => status }

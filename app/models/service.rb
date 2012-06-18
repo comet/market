@@ -57,16 +57,18 @@ class Service < ActiveRecord::Base
   end
 
   def update_payment_attributes(args=nil)
-    price=Listing.find(listing_id).price
+          listing = Listing.find(listing_id)
+    price= listing.price
     unless price.nil?
       @cash_change = Cashflow.new
       @cash_change.amount=price
-      @cash_change.user_id=receiver_id.to_s
-      @cash_change.sender_user_id=author_id.to_s
+      @cash_change.user_id= author_id.to_s
+      @cash_change.sender_user_id=receiver_id.to_s
       @cash_change.listing_id=listing_id
       @cash_change.approved=0
       if @cash_change.save
         #payment done
+        Rails.logger.debug{@cash_change.inspect}
         return true
       else
         Rails.logger.error { "Failed saving the damn cash transfer" }
@@ -105,5 +107,7 @@ class Service < ActiveRecord::Base
         end
       end
     end
+  end
+  def  transact_on_service_delivery
   end
 end

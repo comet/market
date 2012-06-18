@@ -1,0 +1,9 @@
+-#%table
+  %tr
+    %td
+      Filter by:
+    %td
+      = select("report", "filter", ["Amount","Name","type"])
+    %td
+      = text_field_tag :value
+=render :partial=>"date_fields"

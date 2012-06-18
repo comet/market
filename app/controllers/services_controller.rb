@@ -92,9 +92,11 @@ class ServicesController < ApplicationController
   # PUT /services/1.xml
   def update
     @service = Service.find(params[:id])
+    unless params[:file_url_exists]
     upload
     @service.file_id = @service_file.id.to_s
     @service.file_url = @service_file.file_name.to_s
+    end
     @service.status="done"
     respond_to do |format|
       if @service.update_attributes(params[:service])
@@ -123,6 +125,13 @@ class ServicesController < ApplicationController
       format.xml { head :ok }
     end
   end
+  def approve_receipt
+    @service = Service.find(params[:id])
+    if !@service.update_payment_attributes
+            Rails.logger.debug{"Failed transacting money"}
+        end
+
+  end
 
   def upload
     #uploaded_io = params[:service][:file_url]
@@ -131,7 +140,11 @@ class ServicesController < ApplicationController
     #end
     @service_file = ServiceFile.new
     #set the service_id
+    if @service_file.id
     @service_file.service_id = @service.id
+    else
+    @service_file.service_id = "0".to_i
+      end
     ServiceFile.save(params[:service],@service_file)
   end
   def download

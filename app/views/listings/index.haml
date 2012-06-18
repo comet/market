@@ -13,11 +13,10 @@
           %h3= ""
         = link_to t(".all_categories"), "#", :class => "selected", :name => "categories_all"
         = render :partial => "left_panel_link", :collection => Listing::VALID_CATEGORIES, :as => :title, :locals => { :type => "categories" }
-      -# .left_panel_section
-        .left_panel_title
-          %h3= t(".#{params[:listing_type]}_type")
-        = link_to t(".all_#{params[:listing_type]}_types"), "#", :class => "selected", :name => "sharetypes_all"
-        = render :partial => "left_panel_link", :collection => Listing.unique_share_types(params[:listing_type]), :as => :title, :locals => { :type => "sharetypes" }
+      .left_panel_section
+      .left_panel_title
+    %h2= t("listings.requested_tasks")
+    = render :partial => "listed_listing_requests"
     -# Hidden temporarily.. = render :partial => "tag_cloud/tag_cloud", :locals => {:listing_type => params[:listing_type]}
 
   .grid_18.omega

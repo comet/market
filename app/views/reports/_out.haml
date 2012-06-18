@@ -1,0 +1,21 @@
+.conversation{:class => "read", :id => "conversation_#{payment.id.to_s}"}
+  .conversation_left
+    %h3= payment.amount.nil? ? 0.0 : payment.amount
+
+  .conversation_center
+    Sender:
+    %h3="SAS727 PAYBILL"
+    %span
+    Recepient:
+    -begin
+      -@person =Person.find(payment.sender_user_id.to_s).name_or_username
+    -rescue =>e
+    %h3=@person if @person
+    %span
+  .conversation_right
+    %h4
+      -if payment.created_at
+      ="Date:"
+      =Date.parse(payment.created_at.to_s)
+      ="Time: "
+      =(DateTime.parse(payment.created_at.to_s)).strftime('%I:%M:%S %p').to_s

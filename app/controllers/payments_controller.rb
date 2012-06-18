@@ -28,6 +28,7 @@ class PaymentsController < ApplicationController
               if service
                 if service.update_attribute(:status, "pending")
                   flash[:notice]="Payment (#{@payment.amount.to_s})successfully processed. The owner of the job will be notified to deliver your order"
+
                   redirect_to services_path(:type=>"shopped") and return
                 end
               end
@@ -43,6 +44,13 @@ class PaymentsController < ApplicationController
             if @service.save
               #TODO create a job to notify both parties and create skeleton services
               flash[:notice]="Your payment of #{@payment.amount.to_s} was processed. The owner has been informed and they shall deliver your product soon"
+              #mail user and service buyer
+                  begin
+
+                  PersonMailer.service_bought_notification(@current_user,Listing.find(params[:listing_id].to_i),request.host).deliver
+                  rescue Exception=>e
+                    Rails.logger.error{e}
+                    end
               redirect_to listing_path(params[:listing_id].to_i)
             end
           else
@@ -142,5 +150,42 @@ class PaymentsController < ApplicationController
     render @to_render
 
   end
+  def withdraw
 
+    if request.post?
+      #last transaction balance
+      @bal = params[:amount_bf]
+      if params[:amount]
+        if params[:amount]>@bal
+          flash[:error]="Error,the amount is greater than your balance"
+          redirect_to :controller=>"payments",:action=>"cashaccount" and return
+        end
+      else
+        flash[:error]="Error,please input an amount"
+        redirect_to :controller=>"payments",:action=>"cashaccount" and return
+      end
+      @cashflow= Cashflow.new
+      @cashflow.user_id= params[:user_id]
+      @cashflow.sender_user_id=params[:sender_user_id]
+      @cashflow.amount=params[:amount]
+      @cashflow.current_balance=(@bal.to_f - @cashflow.amount.to_f).to_f
+      @cashflow.transaction_type=1
+
+      if @cashflow.save
+        flash[:notice]="Successfully withdrawn amount. You will receive it in your MPESA account in less than 24hrs"
+        #MoneyAccount.withdraw(@current_user.id,1000)
+        redirect_to :controller=>"payments",:action=>"cashaccount"
+      end
+    else
+      @cashflow = Cashflow.new
+      @cashflow.user_id=@current_user.id.to_s
+      #TODO get a good user to be sender
+      @cashflow.sender_user_id="PAYBILL"
+      @cashflow.amount=params[:bb_f]
+      @to_render = {:layout => "wallet"}
+      render @to_render
+      end
+
+
+    end
 end

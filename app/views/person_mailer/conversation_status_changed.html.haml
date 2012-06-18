@@ -4,4 +4,4 @@
 %br/
 
 = t("emails.conversation_status_changed.you_can_view_the_#{Listing.opposite_type(@conversation.listing.listing_type)}_in")
-= link_to(@url, @url + "?ref=email")
+= link_to(@buyer, @buyer + "?ref=email")

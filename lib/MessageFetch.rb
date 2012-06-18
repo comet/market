@@ -14,8 +14,8 @@ class MessageFetch
       json['messages'].each do |message_load|
         if message_load['number'].eql? "MPESA"
           #parse and store to db
-          #message = message_load['text']
-          message = "CA69NM170 Confirmed. You have received Ksh5,040.00 from ROY RUTTO 254721574146 on 15/2/12 at 1:42 PM New M-PESA balance is Ksh5050.00"
+          message = message_load['text']
+         # message = "CA69NM170 Confirmed. You have received Ksh5,040.00 from ROY RUTTO 254721574146 on 15/2/12 at 1:42 PM New M-PESA balance is #Ksh5050.00"
           transaction = Parser.parse(message)
           #Create a payment object
           #Not necessary if the items are correctly name

@@ -9,6 +9,7 @@
         = form.error_messages
         = render :partial => "services/form/title", :locals => { :form => form }
         = render :partial => "services/form/description", :locals => { :form => form }
+        = render :partial => "services/form/no_uploads", :locals => { :form => form }
         = render :partial => "services/form/uploads", :locals => { :form => form }
         = render :partial => "services/form/send_button", :locals => { :form => form }
 

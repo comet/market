@@ -24,8 +24,13 @@ Kassi::Application.routes.draw do
   get "payments/confirm"
   get "payments/cashflow"
   get "payments/cashaccount"
+  get "payments/withdraw"
   get "services/download"
-
+  get "reports/index"
+  get "reports/money_in"
+  get "reports/money_out"
+  get "reports/summary"
+  post "payments/withdraw"
   resources :sub_categories
 
   resources :categories

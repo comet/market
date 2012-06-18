@@ -1,7 +1,11 @@
 .conversation{:class => "read", :id => "conversation_#{payment.id.to_s}"}
   .conversation_left
-    %h3
-    = link_to "Recepient","#"
+    -begin
+      -unless payment.user_id.nil?
+        -@person =Person.find(payment.user_id.to_s)
+    -rescue =>e
+    -if @person
+      %h4=link_to @person.name_or_username,person_path(@person)
   .conversation_center
     %h3
       %span= link_to (payment.title.blank? ? "Un identified listing" : payment.title),listing_path(payment.listing_id)

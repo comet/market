@@ -1,0 +1,13 @@
+.grid_16.prefix_4.suffix_4
+  #new_listing_form
+    #listing_required_fields_description
+      = t("common.fields_that_are_mandatory")
+    #new_listing_form_main
+      .new_listing_form_field_container
+        = form_tag
+        = label_tag :amount, "Amount to withdraw" + "*:", :class => "input"
+        = text_field_tag(:amount, nil, :size => "60")
+        = hidden_field_tag "user_id",@current_user.id.to_s
+        = hidden_field_tag "sender_user_id",@cashflow.sender_user_id
+        = hidden_field_tag "amount_bf",@cashflow.amount
+        = submit_tag "Confirm", :class => "send_button"

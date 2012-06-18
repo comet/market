@@ -4,8 +4,7 @@
   %li Create a task for a small service you are willing to offer
   %li Share your task with the world
   %li You will be notified when your task is ordered, and be asked to accept it
-  %li We will credit your wallet balance with amount deducted from commission amount,
-  %li 48 hrs after you successfully deliver your work
+  %li We will credit your wallet balance with amount deducted from commission amount, 48 hrs after you successfully deliver your work
   %li Withdraw your earnings to your mpesa (according to the terms of service)
   %li    Go Party!
 %h3  How To Buy a task
@@ -21,68 +20,10 @@
   Please read our Terms of Service
 
 %p
-  SAS727 aims to bring together people who need something and who can offer something. They can then freely discuss on the methods of exchange. This means that you sell and help others for a small fortune.
+  IdealTasks aims to bring together people who need something and who can offer something. They can then freely discuss on the methods of exchange. This means that you sell and help others for a small fortune.
 
 %h3 Ask others what you need
 
 %p
-  Whether you need an item, a favor, a ride or an apartment, they can all be found using SAS727's useful
-  = link_to("search", search_path) + "."
-  You can also
-  = link_to("browse open offers", offers_path) + "."
-
-%p
-  If somebody is already offering what you need in SAS727, you can click the "request" or "reply" link in that offer and send a free message to the person who created the offer using the form that opens up. After that you only need to wait for the recipient of the message to accept your request. You can agree on the details of the exchange by SAS727's messaging functionality. You will get an automatic email notification from all new messages and accepted requests and offers. Thus, there's no need for you to reveal your email address to the other party unless you wish to do so. You can view all your received and sent messages and accepted, rejected and pending requests and offers in the
-  - if logged_in?
-    = link_to("messages view", person_messages_path(:person_id => @current_user.id)) + ","
-  - else 
-    messages view,
-  which you can always access by clicking the envelope icon on the top of each page, when you have logged in to SAS727.
-
-%p
-  If you did not find what you are looking for, you can
-  = link_to("create an open request", new_request_path(:type => "request")) + ","
-  where you describe what you need. This request will be shown to all other SAS727 users. It is very likely that somebody can offer just the thing you need.
-  
-%h3 Tips
-
-%p
-  The more trustworthy you appear to other people, the more eager they probably are to offer you the things you need. The easiest way to build your credibility is to
-  - if logged_in?
-    = link_to("fill out your profile information carefully", profile_person_settings_path(:person_id => @current_user.id)) + "." 
-  - else
-    fill out your profile information carefully.
-  You should at least fill in your full name and
-  - if logged_in?
-    = link_to("add a recognizable profile picture of yourself", avatar_person_settings_path(:person_id => @current_user.id)) + "." 
-  - else
-    add a recognizable profile picture of yourself.
-
-%p
-  When you offer something to other users or they offer something to you, it's always good to give feedback to the other party after the transaction. Good feedback will make people happy, and if somebody doesn't go the way you think you should, it's also good to leave a note about that. All feedback is public and is shown in the profile of the person who received the feedback, and thus helps the other people to assess the credibility of that person. For that reason you should also remind others to give feedback to you, because the positive feedback builds your credibility in the eyes of others, and smoothens future transactions. You can give feedback by clicking the "Give Feedback" link on an accepted request or offer in the messages view.
-  
--if APP_CONFIG.use_sms
-  %h3 Ridesharing with SMS
-  
-  %p Ridesharing offers and requests can be added also with sms. It can be a handy way to check available rides on the move or announce your driving plans when walking towards your car. SAS727 will inform the offer author by sms if the number is in the profile in the international form (e.g. +358501234567), when matching offers are found in SAS727.
-
-  %p
-    Before posting offers or requests with sms you have to have added your mobile phone number
-    - if logged_in?
-      = link_to("in your profile.", profile_person_settings_path(:person_id => @current_user.id)) + "." 
-    - else
-      in your profile.
-  
-  %p Messages should be sent to +358400312821 and be formed as: "SAS727 ride offer/request origin destination time (optional description)". For example:
-  %ul
-    %li SAS727 ride offer somestreet20 Helsinki 18:30 still place for two in the car
-    %li SAS727 ride request railwaystation,h채meenlinna Tampere 14:00
-  
-  %p Currently SAS727 separates all parts by spaces, so write addres numbers or other clarifications without space, to correct results. SAS727 will search for matching request and offers based on the locations given.
-  
-  %p The time is expected to be within next 24 hours, but it is possible to write exact date if you want, e.g. 24.11.2010-17:30.
-  
-  %p 
-    Sms features are still a work in progress, so there might be small glitches here and there. Please send  
-    = link_to "feedback", "#", :id => "give_feedback_link"
-    if you notice any problems or have ideas about how to improve the feature.
+  Whether you need an item, a favor, a ride or an apartment, they can all be found using IdealTasks's useful
+  = link_to("search", search_path)

@@ -707,7 +707,7 @@ var faceGrade = {
     $(selector).each(function() {
       var $list = $('<div class="grade_link_wrapper"></div>');
       // loop over every radio button in each container
-			var id = 1;
+			var id = 5;
       $(this)
         .find('input:radio')
         .each(function(i) {
@@ -718,7 +718,7 @@ var faceGrade = {
             .text(grade);
 					var $wrapper_div = $('<div></div>');
 					$wrapper_div.addClass('feedback_grade_image_' + id);	
-					id++;
+					id--;
           faceGrade.addHandlers($item);
 					$wrapper_div.append($item);
           $list.append($wrapper_div);

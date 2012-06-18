@@ -1,0 +1,11 @@
+= "your payment for one of your listings has been confirmed. Here are the details:"
+%br/
+%b
+  =link_to(@listing.title,@listing_path)
+  %br/
+  ="Amount: "+@listing.price
+%br/
+%br/
+
+= "To view the payment details,click the link below"
+= link_to(@url, @url)

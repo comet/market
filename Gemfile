@@ -45,6 +45,7 @@ gem 'postmark-rails'
 gem 'rails-i18n'
 gem 'devise'
 gem 'fastercsv'
+gem 'jquery_datepicker'
 group :test do
   gem "rspec-rails", "2.0.0.beta.19" #
   gem 'capybara', '0.3.9' #

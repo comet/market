@@ -1,0 +1,35 @@
+%h1=@title
+=render :partial=>"report_links"
+= render :partial=> "services/inbox_spacer"
+-#= render :partial=>"filter"
+- if @payments.size>0 && !@payments.nil? && @monies.size>0 && !@monies.nil?
+  -rich = calculate_report_riches(@payments,@monies)
+  .listed_listing_text
+    %h3
+      %div{:class=>"riches"}
+        %p
+          -@bal = rich[:in]-rich[:withdrawn]
+          = "Current available Balance: "+@bal.to_s
+    %div
+      %p{:class => "description"}
+        %h5= link_to "Total amount in",:controller=>"payments",:action=>"cashflow",:type =>"received"
+        %span
+          .float_right
+
+          %h3= rich[:in]
+
+      %p{:class => "description"}
+        %h5= link_to "Total amount out",:controller=>"payments",:action=>"cashflow",:type =>"sent"
+        %span
+          .float_right
+          %h3=rich[:withdrawn]
+
+      %p{:class => "description"}
+        %h5= "Total amount transacted"
+        %span
+          .float_right
+          %h3=rich[:both]
+- else
+  #no_conversations
+    = "You do not have any monetary records yet"
+

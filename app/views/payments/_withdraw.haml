@@ -1,0 +1,9 @@
+-begin
+  -@person = Person.find(@current_user.id)
+-rescue =>e
+  -Rails.logger.debug{"Failed retrieving user"}
+-if @person
+  -if @person.phone_number.nil?
+    =link_to "Please update your phone number to enable withdrawal",person_path(@current_user)
+  -else
+    =link_to "Withdraw this amount",:controller=>"payments",:action=>"withdraw",:user=>@current_user.id,:bb_f=>b_f

@@ -1,0 +1,12 @@
+%h1
+  =@title
+  =render :partial=>"report_links"
+  = render :partial=> "services/inbox_spacer"
+- if @payments.size>0 && !@payments.nil?
+
+  #conversations
+    = render :partial => "in", :collection => @payments, :as => :payment, :spacer_template => "services/inbox_spacer"
+  =will_paginate(@payments)
+- else
+  #no_conversations
+    = "No monetary records yet"

@@ -230,7 +230,12 @@ class Listing < ActiveRecord::Base
 
   def valid_until_is_not_nil
     if !rideshare? && !listing_type.eql?("request") && !valid_until
-      errors.add(:valid_until, "cannot be empty")
+      if listing_type.eql?("offer")
+        self.valid_until=DateTime.now + 1.year
+      else
+        errors.add(:valid_until, "cannot be empty")
+      end
+
     end
   end
 

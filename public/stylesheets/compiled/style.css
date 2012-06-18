@@ -4535,3 +4535,14 @@ div.delivered{
 div.not_delivered{
     background:url("/images/icons/light_bulb.png") 0px 20px no-repeat;
 }
+.request_spacer{
+    border-top: 1px solid #b5b4b4;
+    margin: 10px 0;
+    padding: 0;
+    height: 0;
+    width: 230px;
+
+}
+.date_picker.table{
+   background:  #f8792f;
+}

@@ -1,3 +1,6 @@
 .new_listing_form_field_container
-  = form.label :description, t('.buyer_instructions') + ":", :class => "input"
+  -if @listing.type.eql?("request")
+    = form.label :description, t('.buyer_instructions') + ":", :class => "input"
+  -else
+    = form.label :description, t('.seller_instructions') + ":", :class => "input"
   = form.text_area(:buyer_instruction, :maxlength => "1000")

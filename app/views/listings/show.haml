@@ -103,7 +103,7 @@
 
     = render :partial => "listed_listing",:collection=>(Person.find(@listing.author_id).listings),:as => :listing, :spacer_template => "listings/listing_spacer"
   .clear
-  #listing_comment_form
+  -#listing_comment_form
     %h2
       = t(".related_listings")
     = render :partial => "listed_listing",:collection=>Listing.predict_basic(@listing,3),:as => :listing, :spacer_template => "listings/listing_spacer"

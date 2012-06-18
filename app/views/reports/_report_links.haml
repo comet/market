@@ -1,0 +1,13 @@
+.inbox_container
+  #inbox_tabs
+    %div{:class => get_report_tab_class("index")}
+      = link_to "Transactions", :controller=>"reports",:action=>"index"
+    %div{:class => get_report_tab_class("money_in")}
+      = link_to "Received", :controller=>"reports",:action=>"money_in"
+    %div{:class => get_report_tab_class("money_out")}
+      = link_to "Sent", :controller=>"reports",:action=>"money_out"
+    %div{:class => get_report_tab_class("summary")}
+      = link_to "Summary", :controller=>"reports",:action=>"summary"
+  #inbox_tab_spacer
+
+  = yield

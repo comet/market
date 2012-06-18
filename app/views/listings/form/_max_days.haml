@@ -1,3 +1,4 @@
-.new_listing_form_field_container
-  = form.label :time_frame, t(".est_time") + "*:", :class => "input"
-  = select("listing", "time_frame", Listing::VALID_DURATIONS, {:selected => (@listing.time_frame || Listing::VALID_DURATIONS[0])}, { :class => "visibility_select" })
+-if @listing.listing_type.eql?("request")
+  .new_listing_form_field_container
+    = form.label :time_frame, t(".est_time") + "*:", :class => "input"
+    = select("listing", "time_frame", Listing::VALID_DURATIONS, {:selected => (@listing.time_frame || Listing::VALID_DURATIONS[0])}, { :class => "visibility_select" })
