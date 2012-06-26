@@ -8,3 +8,6 @@
       = image_tag "/images/icons/request_icon.png"
       .request_listing_link_label
         = "contact"+ " "+@listing.author.name
+    %p
+    = link_to t("listings.buy_now"),:controller=>'payments',:action=>'home',:id => @listing.id
+    &nbsp;&nbsp;

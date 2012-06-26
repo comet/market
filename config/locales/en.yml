@@ -579,7 +579,7 @@ en:
         no_file_upload: "No file to upload"
 
   listings:
-    filter_by: "Filter tasks by"
+    filter_by: "Sort tasks by"
     requested_tasks: "requested tasks"
     no_requested_tasks: "No requested tasks"
     request_new_task: "Request a task"

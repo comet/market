@@ -9,7 +9,7 @@
     .left_panel_section
       .left_panel_title
         %h3= ""
-      = link_to t(".all_categories"), "#", :class => "selected", :name => "categories_all"
+      = link_to t("listings.index.all_categories"), "#", :class => "selected", :name => "categories_all"
       = render :partial => "left_panel_link", :collection => Listing::VALID_CATEGORIES, :as => :title, :locals => { :type => "categories" }
     .left_panel_section
     .left_panel_title
@@ -29,7 +29,7 @@
 #listing_content_side.grid_16
   #listing_center.grid_9.alpha
     %h1
-      #{@listing.category}: #{@listing.title}
+      #{@listing.category}: #{"I will "+@listing.title+" for Ksh: "+@listing.price.to_s}
     - if @listing.category == "rideshare" && @listing.valid_until
       %p
         %strong

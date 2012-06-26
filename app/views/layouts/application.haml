@@ -3,7 +3,7 @@
 %html{html_attrs(I18n.locale).merge({"xmlns:og"=>"http://ogp.me/ns#"})}
   %head
     %title
-      Sell A Solution
+      IdealTasks
       - if @listing && action_name.eql?("show")
         = "- #{@listing.category}: #{@listing.title}"
       - else
