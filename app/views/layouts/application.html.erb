@@ -1,0 +1,191 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>Ideal Tasks</title>
+  <%= stylesheet_link_tag 'compiled/style.css' %>
+  <%= javascript_include_tag 'jquery', 'jquery.uniform.min', 'jquery.lightbox_me', 'pngfix.js', 'slimbox2', 'jquery.validate.min', 'jquery.pageless', 'jquery.autoresize.min', 'jquery.watermark.min', 'jquery.tabSlideOut.v1.3', 'rails', 'kassi', 'googlemaps', 'jquery.min', 'jquery.nivo.slider' %>
+  <%= yield(:extra_javascript) %>
+  <%= yield(:rating_scripts) %>
+  <%= csrf_meta_tag %>
+
+  <script type="text/javascript">
+      $(document).ready(function() {
+          $(document).ready(function() { initialize_defaults("#{t('header.search_kassi')}","#{t('layouts.application.default_feedback')}", "#{I18n.locale}"); #{yield :javascript} });
+      });
+  </script>
+  <% unless I18n.locale.to_s.eql?("fi") %>
+      <% if I18n.locale.to_s.eql?("ru") %>
+          <style type="text/css">
+              a.handle {
+                  background-position: -160px 0;
+              }
+
+              a.handle:hover {
+                  background-position: -200px 0;
+              }
+          </style>
+      <% else %>
+          <style type="text/css">
+              a.handle {
+                  background-position: -80px 0;
+              }
+
+              a.handle:hover {
+                  background-position: -120px 0;
+              }
+          </style>
+      <% end %>
+  <% end %>
+  <script type="text/javascript">
+      $(window).load(function() {
+          $('#slider').nivoSlider({
+              effect:'random',
+              slices:14,
+              animSpeed:500,
+              pauseTime:4000,
+              startSlide:0, //Set starting Slide (0 index)
+              directionNav:false,
+              directionNavHide:false, //Only show on hover
+              controlNav:false, //1,2,3...
+              controlNavThumbs:false, //Use thumbnails for Control Nav
+              pauseOnHover:true, //Stop animation while hovering
+              manualAdvance:false, //Force manual transitions
+              captionOpacity:0.8, //Universal caption opacity
+              beforeChange: function() {
+              },
+              afterChange: function() {
+              },
+              slideshowEnd: function() {
+              } //Triggers after all slides have been shown
+          });
+      });
+      function MM_swapImgRestore() { //v3.0
+          var i,x,a = document.MM_sr;
+          for (i = 0; a && i < a.length && (x = a[i]) && x.oSrc; i++) x.src = x.oSrc;
+      }
+      function MM_preloadImages() { //v3.0
+          var d = document;
+          if (d.images) {
+              if (!d.MM_p) d.MM_p = new Array();
+              var i,j = d.MM_p.length,a = MM_preloadImages.arguments;
+              for (i = 0; i < a.length; i++)
+                  if (a[i].indexOf("#") != 0) {
+                      d.MM_p[j] = new Image;
+                      d.MM_p[j++].src = a[i];
+                  }
+          }
+      }
+
+      function MM_findObj(n, d) { //v4.01
+          var p,i,x;
+          if (!d) d = document;
+          if ((p = n.indexOf("?")) > 0 && parent.frames.length) {
+              d = parent.frames[n.substring(p + 1)].document;
+              n = n.substring(0, p);
+          }
+          if (!(x = d[n]) && d.all) x = d.all[n];
+          for (i = 0; !x && i < d.forms.length; i++) x = d.forms[i][n];
+          for (i = 0; !x && d.layers && i < d.layers.length; i++) x = MM_findObj(n, d.layers[i].document);
+          if (!x && d.getElementById) x = d.getElementById(n);
+          return x;
+      }
+
+      function MM_swapImage() { //v3.0
+          var i,j = 0,x,a = MM_swapImage.arguments;
+          document.MM_sr = new Array;
+          for (i = 0; i < (a.length - 2); i += 3)
+              if ((x = MM_findObj(a[i])) != null) {
+                  document.MM_sr[j++] = x;
+                  if (!x.oSrc) x.oSrc = x.src;
+                  x.src = a[i + 2];
+              }
+      }
+  </script>
+</head>
+
+<body onload="MM_preloadImages('/images/footer_fb_btns.png','/images/footer_tw_btns.png','/images/footer_linkedin_btns.png')">
+<!--if statement here-->
+<div id="wrapper">
+  <div id="top_banner">
+    <div id="logo"></div>
+    <h1>Kenya's largest city for small services starting at Ksh 500<br/>
+      Buy,Sell,Have a blast! </h1>
+    <div id="btn"></div>
+  </div>
+  <div id="banner">
+
+    <div id="slide" style="z-index:1;">
+      <!-- Navigation -->
+      <div class="navigation_area">
+        <div class="nav_mid">
+          <div id="navigation">
+            <ul>
+              <li><a href="#" class="active">Home</a>|</li>
+              <li><a href="#">About us </a>|</li>
+              <li><a href="#">Join us</a> |</li>
+              <li><a href="#">Log in </a>|</li>
+              <li><a href="#">How it works </a></li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+      <!-- End Navigation -->
+      <% if logged_in? %>
+          <%= render :partial=>"new_request" %>
+      <% else %>
+
+          <div id="slider">
+            <a href="#"><img src="/images/slideshow/01.jpg" alt="1" title="Find people from all over Nairobi with the skills you need."/></a>
+            <a href="#"><img src="/images/slideshow/03.jpg" alt="3" title="Delegate various tasks to experts and have them done in no time. "/></a>
+            <a href="#"><img src="/images/slideshow/02.jpg" alt="2" title="Get your tasks done on time"/></a></div>
+          <!------------------------------------------------------- End of Slider Div------------------------------------------------>
+          </div><!------------------------------------------------------- End of Slide----------------------------------------------- Div-->
+      <% end %>
+      <div style="clear:both;"></div>
+      </div>
+  <div id="txt_area">
+   <%= content_for?(:content) ? yield(:content) : yield %>
+  </div>
+      <div class="clear"></div>
+  <div id="footer">
+    <div class="footer-content">
+      <ul class="footer-column social_links">
+        <li class="footer-social header">Follow us on:</li>
+        <li class="footer-items">
+          <a href="http://www.facebook.com/idealtasks" target="blank"></a><a href="www.facebook.com" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('facebook','','/images/footer_fb_btns.png',1)"><img src="/images/footer_fb_btns1.png" alt="ideal tasks on facebook" name="facebook" width="79" height="16" border="0" id="facebook"/></a>
+        </li>
+        <li class="footer-items">
+          <a href="http://twitter.com/idealtasks" class="twitter" target="blank"></a><a href="www.twitter.com" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('twitter','','/images/footer_tw_btns.png',1)"><img src="/images/footer_tw_btns1.png" alt="Find us in Twitter" name="twitter" width="79" height="15" border="0" id="twitter"/></a>
+        </li>
+        <li class="footer-items">
+          <a href="https://plus.google.com/108306936820925170087/posts" class="google-plus" target="blank" title="Google+"></a>
+        </li>
+        <li class="footer-items">
+          <a href="http://www.linkedin.com/company/idealtasks.com" class="linked-in" target="blank" title=" LinkedIn"></a><a href="www.linkedin.com" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Linkedin','','/images/footer_linkedin_btns.png',1)"><img src="/images/footer_linkedin_btns1.png" alt="Linkedin" name="Linkedin" width="79" height="17" border="0" id="Linkedin"/></a>
+        </li>
+      </ul>
+
+
+      <ul class="footer-column">
+        <li class="footer-general header">General</li>
+        <li class="footer-items"><a href="http://fiverr.com/terms_of_service">Terms of Service</a></li>
+        <li class="footer-items"><a href="/levels">Join us</a></li>
+        <li class="footer-items"><a href="http://fiverr.com/feedback">Feedback</a></li>
+        <li class="footer-items"><a href="http://fiverr.com/news">Log in</a></li>
+        <li class="footer-items"><a href="http://blog.fiverr.com">About us</a></li>
+        <li class="footer-items"><a href="/archives">How it works</a></li>
+      </ul>
+
+      <div class="copyright-container">
+        <h5 class="copyright">Copyright © 2011 Ideal Tasks. All rights reserved.</h5>
+
+      </div>
+      <div class="clear"></div>
+    </div>
+  </div>
+</div>
+</div>
+</body>
+</html>

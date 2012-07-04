@@ -5,19 +5,6 @@
 -else
   =render :partial=>"teaser"
 #browse_page.grid_24
-  .grid_6.alpha
-    %h1=""
-    #left_link_panel_browse
-      .left_panel_section
-        .left_panel_title
-          .categories
-            %h3= ""
-          = link_to t(".all_categories"), "#", :class => "selected", :name => "categories_all"
-          = render :partial => "left_panel_link", :collection => Listing::VALID_CATEGORIES, :as => :title, :locals => { :type => "categories" }
-      .left_panel_section
-      .left_panel_title
-    %h2= t("listings.requested_tasks")
-    = render :partial => "listed_listing_requests"
   .grid_18.omega
     .grid_10.alpha
     #search_form_spacer
@@ -25,11 +12,10 @@
       = t("listings.filter_by")
       = render :partial => "top_links_panel", :collection => Listing::SORT_PARAMETERS, :as => :title, :locals => { :type => "categories" },:spacer=>"sort_spacer"
       &nbsp;
-    .clear
+      .clear
     #search_results
 
       - if @listing_style == "listing"
         = render :partial => "listed_listings"
       - else
         = render :partial => "listings_on_map"
-
