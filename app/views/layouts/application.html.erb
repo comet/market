@@ -2,41 +2,31 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-  <title>Ideal Tasks</title>
+  <title>Ideal Tasks
+    <% if @listing && action_name.eql?("show") %>
+        <%= "- #{@listing.category}: #{@listing.title}" %>
+    <% else %>
+        <%= "- #{@current_community.name}" %>
+    <% end %>
+  </title>
+  <%= yield :head %>
   <%= stylesheet_link_tag 'compiled/style.css' %>
   <%= javascript_include_tag 'jquery', 'jquery.uniform.min', 'jquery.lightbox_me', 'pngfix.js', 'slimbox2', 'jquery.validate.min', 'jquery.pageless', 'jquery.autoresize.min', 'jquery.watermark.min', 'jquery.tabSlideOut.v1.3', 'rails', 'kassi', 'googlemaps', 'jquery.min', 'jquery.nivo.slider' %>
   <%= yield(:extra_javascript) %>
   <%= yield(:rating_scripts) %>
+  <%= yield(:browse_script) %>
   <%= csrf_meta_tag %>
 
   <script type="text/javascript">
       $(document).ready(function() {
-          $(document).ready(function() { initialize_defaults("#{t('header.search_kassi')}","#{t('layouts.application.default_feedback')}", "#{I18n.locale}"); #{yield :javascript} });
+          $(document).ready(function() {
+              //initialize_defaults("#{t('header.search_kassi')}", "#{t('layouts.application.default_feedback')}", "#{I18n.locale}");
+              initialize_browse_view('request','listing','#{I18n.locale}');
+              #{yield :javascript}
+          });
       });
   </script>
-  <% unless I18n.locale.to_s.eql?("fi") %>
-      <% if I18n.locale.to_s.eql?("ru") %>
-          <style type="text/css">
-              a.handle {
-                  background-position: -160px 0;
-              }
 
-              a.handle:hover {
-                  background-position: -200px 0;
-              }
-          </style>
-      <% else %>
-          <style type="text/css">
-              a.handle {
-                  background-position: -80px 0;
-              }
-
-              a.handle:hover {
-                  background-position: -120px 0;
-              }
-          </style>
-      <% end %>
-  <% end %>
   <script type="text/javascript">
       $(window).load(function() {
           $('#slider').nivoSlider({
@@ -103,7 +93,6 @@
       }
   </script>
 </head>
-
 <body onload="MM_preloadImages('/images/footer_fb_btns.png','/images/footer_tw_btns.png','/images/footer_linkedin_btns.png')">
 <!--if statement here-->
 <div id="wrapper">
@@ -111,30 +100,30 @@
     <div id="logo"></div>
     <h1>Kenya's largest city for small services starting at Ksh 500<br/>
       Buy,Sell,Have a blast! </h1>
+
     <div id="btn"></div>
   </div>
   <div id="banner">
 
     <div id="slide" style="z-index:1;">
+      <% if logged_in? %>
+          <%= render :partial=>"layouts/logged_in_links" %>
+      <% else %>
       <!-- Navigation -->
       <div class="navigation_area">
         <div class="nav_mid">
           <div id="navigation">
             <ul>
-              <li><a href="#" class="active">Home</a>|</li>
-              <li><a href="#">About us </a>|</li>
-              <li><a href="#">Join us</a> |</li>
-              <li><a href="#">Log in </a>|</li>
-              <li><a href="#">How it works </a></li>
+              <li><%= link_to t("header.home"), requests_path %>|</li>
+              <li><%= link_to t("header.about"), about_infos_path %>|</li>
+              <li><%= link_to t("header.join"), sign_up_path, :title => t('header.sign_up') %>|</li>
+              <li><%= link_to t("header.login"),login_path, :title => t('header.login') %></li>
             </ul>
           </div>
 
         </div>
       </div>
       <!-- End Navigation -->
-      <% if logged_in? %>
-          <%= render :partial=>"new_request" %>
-      <% else %>
 
           <div id="slider">
             <a href="#"><img src="/images/slideshow/01.jpg" alt="1" title="Find people from all over Nairobi with the skills you need."/></a>
@@ -146,9 +135,9 @@
       <div style="clear:both;"></div>
       </div>
   <div id="txt_area">
-   <%= content_for?(:content) ? yield(:content) : yield %>
+    <%= content_for?(:content) ? yield(:content) : yield %>
   </div>
-      <div class="clear"></div>
+  <div class="clear"></div>
   <div id="footer">
     <div class="footer-content">
       <ul class="footer-column social_links">

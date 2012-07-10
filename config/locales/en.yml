@@ -319,14 +319,21 @@ en:
     send: Send
     your_email_address: "Your email address"
   header:
-    about: "About IDEALTASKS"
+    about: "About"
     community: City
     home: Home
+    join: "Create Account"
+    login: "Log In"
+    sign_up: "Sign up"
     mobile_version: "Mobile version"
     offers: "Request Tasks"
     requests: Home
     search_kassi: "Search IDEALTASKS"
     profile: "Dashboard"
+    messages: Messages
+    notifications: Notifications
+    settings: Settings
+    logout: "Log out"
   homepage:
     additional_private_listings_slate:
       additionally_one_private_offer_exists: "Additionally  there is <b>one other offer</b>,"
