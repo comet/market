@@ -20,10 +20,11 @@ class HomepageController < ApplicationController
       @private_listings = {}
       @private_listings["request"] = Listing.requests.open.private_to_community(@current_community).count
       @private_listings["offer"] = Listing.offers.open.private_to_community(@current_community).count
+
     end
     
     if request.xhr? # checks if AJAX request
-      render :partial => "additional_listings", :locals => {:type => :request, :requests => @requests, :offers => @offers}   
+      render :partial => "additional_listings", :locals => {:type => :request, :requests => @requests, :offers => @offers}
     end
   end
 

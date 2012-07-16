@@ -579,7 +579,6 @@ function reload_browse_view(link, listing_type, listing_style, locale) {
 }
 
  function initialize_browse_view(listing_type, listing_style, locale) {
-     alert("Initialising browse view");
        $('#left_link_panel_browse').find('a').click(
        		function() {
             	if (listing_style == 'listing') {

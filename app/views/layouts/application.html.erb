@@ -16,13 +16,10 @@
   <%= yield(:rating_scripts) %>
   <%= yield(:browse_script) %>
   <%= csrf_meta_tag %>
-
   <script type="text/javascript">
       $(document).ready(function() {
-          $(document).ready(function() {
-              initialize_defaults("#{t('header.search_kassi')}", "#{t('layouts.application.default_feedback')}", "#{I18n.locale}");
-              #{yield :javascript}
-          });
+          //initialize_defaults("#{t('header.search_kassi')}", "#{t('layouts.application.default_feedback')}", "#{I18n.locale}");
+          initialize_browse_view("request",'#{@listing_style}',"en");
       });
   </script>
 
