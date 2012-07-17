@@ -69,7 +69,7 @@
         %span{:class => "smaller"}
           = t(".#{@listing.listing_type}_created") + " " + l(@listing.created_at, :format => :short)
 
-  #listing_right_panel.grid_7.omega
+  -#listing_right_panel.grid_7.omega
     #listing_reply_link
       = render :partial => "reply_link"
     - if @listing.origin_loc && @listing.origin_loc.address != ""
@@ -78,7 +78,7 @@
         = render :partial => "origin", :locals => { :origin_loc => @listing.origin_loc }
         - if @listing.category == "rideshare"
           = render :partial => "destination", :locals => { :destination_loc => @listing.destination_loc }
-        - if @listing.location != nil 
+        - if @listing.location != nil
           #single_listing_location
             = @listing.location.address
     #additional_listing_links
@@ -89,14 +89,14 @@
         = facebook_like
         - fb_image = @listing.listing_images.empty? ? "images/kassi_logo.png" : @listing.listing_images.first.image.url(:medium)
         - content_for :head do
-          %meta{ :property => "og:title", :content => @listing.title} 
+          %meta{ :property => "og:title", :content => @listing.title}
           %meta{ :property => "og:type", :content =>"website"}
-          %meta{ :property => "og:url", :content =>"http://#{@current_community.domain}.#{request.domain}/listings/#{@listing.id.to_s}"}   
+          %meta{ :property => "og:url", :content =>"http://#{@current_community.domain}.#{request.domain}/listings/#{@listing.id.to_s}"}
           %meta{ :property => "og:image", :content =>"http://#{@current_community.domain}.#{request.domain}/#{fb_image}"}
           %meta{ :property => "og:site_name", :content =>"Kassi: "}
           %meta{ :property => "fb:admins", :content =>"823616678"}
           %meta{ :property => "og:description", :content => @listing.content}
-        
+
   .clear
   
   #comments

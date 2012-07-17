@@ -17,12 +17,16 @@
   <%= yield(:browse_script) %>
   <%= csrf_meta_tag %>
   <script type="text/javascript">
+
       $(document).ready(function() {
           //initialize_defaults("#{t('header.search_kassi')}", "#{t('layouts.application.default_feedback')}", "#{I18n.locale}");
           initialize_browse_view("request",'#{@listing_style}',"en");
       });
-  </script>
 
+  </script>
+  <script type="text/javascript">
+
+  </script>
   <script type="text/javascript">
       $(window).load(function() {
           $('#slider').nivoSlider({
@@ -96,8 +100,7 @@
     <div id="logo"></div>
     <h1>Kenya's largest city for small services starting at Ksh 500<br/>
       Buy,Sell,Have a blast! </h1>
-
-    <div id="btn"></div>
+    <div id="btn"><a id="how_it_works"href="#"></a></div>
   </div>
   <div id="banner">
 
@@ -132,6 +135,7 @@
       </div>
   <div id="txt_area">
     <%= content_for?(:content) ? yield(:content) : yield %>
+    <%= render :partial=>"layouts/how_it_works_texts/how_it_works" %>
   </div>
   <div class="clear"></div>
   <div id="footer">

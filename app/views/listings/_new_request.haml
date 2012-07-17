@@ -3,7 +3,7 @@
 .i-will
   .textx
     =form_tag('/listings/new', :method => :get)
-    = label_tag :title, t("listings.form.title.i_will") + "*:", :class => "input"
+    = label_tag :title, t("listings.form.title.i_will"), :class => "input"
   .textx
     = text_field_tag :title,nil,:maxlength => "300",:class=>"text_iwill"
   .textx
