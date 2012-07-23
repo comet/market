@@ -117,7 +117,7 @@ a:active {
 }
 
 a:hover {
-    color: #febf01;
+    color: #712c04;
 }
 
 form, input {
@@ -2001,47 +2001,7 @@ div.checkbox_float {
 /* Single listing view */
 #listing_center h1 {
     line-height: 28px;
-    color:  #febf01;
-    font-weight: bold;
-    font-size: 26px;
-    width: 600px;
-    float: left;
 }
-
-#pro_header{
-	width: 740px;
-	float: left;
-}
-
-#pro_header .buttons{
-	width:120px;
-	float: left;
-}
-
-#pro_header a.buynow{
-	float: left;
-	font-weight: bold;
-	font-size: 18px;
-	clear: both;
-	display: block;
-	background: #59B200;
-	color: #fefefe;
-	padding: .5em 1em;
-	margin: 20px 0 3px 5px;
-	border-radius: 3px;
-}
-
-#pro_header a.buynow:hover{
-	background: #eebd01;
-}
-#pro_header a.contact-author{
-	margin-left: 5px;
-	font-weight: normal;
-	text-decoration: underline;
-	background: url(../../img/icons/light_bulb.png) 0 0 no-repeat;
-	padding-left:18px;
-}
-
 
 #googlemap {
     margin-left: 10px;
@@ -2158,14 +2118,7 @@ a.edit_profile:hover {
 
 #share_types_and_tags {
     padding: 10px;
-    background: #eaeaea;
-    color: #999;
-}
-
-#listing_center p{
-	font-family: Garamond;
-	font-style: italic;
-	font-size: 14px;
+    border: 1px solid #464646;
 }
 
 #listing_author {
@@ -3124,10 +3077,8 @@ a.edit_profile:hover {
 #comments h2 {
     padding: 0;
     font-size: 18px;
-    width: 700px;
+    width: 620px;
     border-bottom: 2px solid #464646;
-    background: url(../../images/icons/comment_icon.png) 0 5px no-repeat;
-    padding-left: 22px;
 }
 
 #search_page input.text_field, #browse_page input.text_field {
@@ -3221,20 +3172,20 @@ a.edit_profile:hover {
 }
 
 #left_link_panel_browse a:hover {
-    background: url("/images/left_panel_arrows2.png") 0 -24px no-repeat;
+    background: #E2E8EF url("/images/left_panel_arrows2.png") 0 -24px no-repeat;
 }
 
 #left_link_panel_browse a:focus {
-    background: url("/images/left_panel_arrows2.png") 0 -24px no-repeat;
+    background: #E2E8EF url("/images/left_panel_arrows2.png") 0 -24px no-repeat;
 }
 
 #left_link_panel_browse a:active {
-    background: url("/images/left_panel_arrows2.png") 0 -48px no-repeat;
+    background: #E2E8EF url("/images/left_panel_arrows2.png") 0 -48px no-repeat;
     color: #464646;
 }
 
 #left_link_panel_browse a.selected {
-    background: url("/images/left_panel_arrows2.png") 0 0 no-repeat;
+    background: #E2E8EF url("/images/left_panel_arrows2.png") 0 0 no-repeat;
     color: #464646;
 }
 

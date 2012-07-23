@@ -37,7 +37,7 @@
     %p
       - text_with_line_breaks do
         = @listing.description.blank? ? t(".no_description") : @listing.description
-    
+
     #share_types_and_tags
       - unless @listing.share_types.empty? && @listing.tag_list.empty?    
         - unless @listing.tag_list.empty?
