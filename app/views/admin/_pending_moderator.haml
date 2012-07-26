@@ -1,0 +1,12 @@
+.conversation{:class => "read", :id => "conversation_#{listing.id.to_s}"}
+  .conversation_center
+    %h3= link_to listing.title.blank? ? "Unnamed listing" : listing.title, listing_path(listing)
+    %span= link_to(truncate((listing.content.nil? ? listing.title : listing.content), :length => 60, :omission => "..."), listing_path(listing))
+  .conversation_right
+    %div{:id => "conversation_#{listing.id.to_s}_status"}
+      -#= render :partial => "deliver", :locals => { :listing => listing }
+      -# = unless listing.status.eql?("cancelled")
+      .conversation_status_link{:class => "accept"}
+        -action= "Reject"
+        - path =  edit_listing_path(listing)
+        = link_to(image_tag("/images/icons/reject_icon.png") + action, path)

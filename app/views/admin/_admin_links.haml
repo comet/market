@@ -1,0 +1,17 @@
+.inbox_container
+  %h1= t(".moderate")
+  #inbox_tabs
+    %div{:class => admin_tabs("new")}
+      = link_to t('.unapproved_tasks'), :controller=>"admin",:action=>"listings"
+    %div{:class => admin_tabs("deliver")}
+      = link_to t('.recent_services'), :controller=>"admin",:action=>"services"
+    %div{:class => admin_tabs("cash")}
+      = link_to t('.cashflow'), :controller=>"reports",:action=>"index"
+    %div{:class => admin_tabs("in")}
+      = link_to t('.incoming_payments'), :controller=>"reports",:action=>"money_in"
+    %div{:class => admin_tabs("sent")}
+      = link_to t('.sent_payment'), :controller=>"reports",:action=>"money_out"
+    %div{:class => admin_tabs("users")}
+      = link_to t('.users'), :controller=>"admin",:action=>"users"
+  #inbox_tab_spacer
+  = yield

@@ -1,0 +1,12 @@
+.conversation{:class => "read", :id => "conversation_#{service.id.to_s}"}
+  .conversation_center
+    %h3= link_to service.title.blank? ? "Unnamed service" : service.title, service_path(service)
+    %span= link_to(truncate((service.content.nil? ? service.title : service.content), :length => 60, :omission => "..."), service_path(service))
+  .conversation_right
+    %div{:id => "conversation_#{service.id.to_s}_status"}
+      -#= render :partial => "deliver", :locals => { :service => service }
+      -# = unless service.status.eql?("cancelled")
+      .conversation_status_link{:class => "accept"}
+        -action= "Cancel"
+        - path =  "#"
+        = link_to(image_tag("/images/icons/reject_icon.png") + action, path)

@@ -1,0 +1,12 @@
+= @title
+= render :partial=>"admin/admin_links"
+= render :partial=> "services/inbox_spacer"
+- if @users && !@users.nil?
+  #conversations
+    = render :partial => "user", :collection => @users, :as => :user, :spacer_template => "conversations/inbox_spacer"
+
+    = will_paginate(@users)
+    = pageless(@users.total_pages, '#conversations', "in_progress", t('.loading_more_users'))
+- else
+  #no_conversations
+    = t(".no_#{@title}_messages")

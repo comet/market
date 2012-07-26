@@ -1,0 +1,11 @@
+.conversation{:class => "read", :id => "conversation_#{user.id.to_s}"}
+  .conversation_center
+    %h3= link_to user.given_name_or_username.blank? ? "Unnamed user" : user.given_name_or_username, person_path(user)
+  .conversation_right
+    %div{:id => "conversation_#{user.id.to_s}_status"}
+      -#= render :partial => "deliver", :locals => { :user => user }
+      -# = unless user.status.eql?("cancelled")
+      .conversation_status_link{:class => "accept"}
+        -action= "Cancel"
+        - path =  "#"
+        = link_to(image_tag("/images/icons/reject_icon.png") + action, path)

@@ -3,7 +3,9 @@ require 'subdomain'
 Kassi::Application.routes.draw do
 
   get "ratings/update"
-
+  get "admin/services"
+  get "admin/listings"
+  get "admin/users"
   get "ratings/destroy"
 
   get "ratings/new"

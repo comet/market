@@ -63,7 +63,7 @@ class ListingsController < ApplicationController
   # the type of request and if @to_render is set
   def load
     @title = params[:listing_type]
-    Rails.logger.debug{params.inspect}
+    #Rails.logger.debug{params.inspect}
     @tag = params[:tag]
     @to_render ||= {:partial => "listings/listed_listings"}
     @listings = Listing.open.order("created_at DESC").find_with(params, @current_user, @current_community).paginate(:per_page => 15, :page => params[:page])

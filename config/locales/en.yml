@@ -48,6 +48,14 @@ en:
         image: "Badge picture"
         name: "Badge name"
         save_badge: "Save badge"
+    admin_links:
+      moderate: "Monitor panel"
+      unapproved_tasks: "To Approve"
+      recent_services: "Deliverables"
+      cashflow: "Transactions"
+      incoming_payments: "Payments"
+      sent_payment: "Payout"
+      users: Users
   common:
     cancel: Cancel
     fields_that_are_mandatory: "Fields marked with star (*) are mandatory."

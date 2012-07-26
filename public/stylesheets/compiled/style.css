@@ -2004,7 +2004,7 @@ div.checkbox_float {
     color:  #febf01;
     font-weight: bold;
     font-size: 26px;
-    width: 600px;
+    width: 580px;
     float: left;
 }
 
@@ -2014,7 +2014,7 @@ div.checkbox_float {
 }
 
 #pro_header .buttons{
-	width:120px;
+	width:140px;
 	float: left;
 }
 
@@ -2038,7 +2038,7 @@ div.checkbox_float {
 	margin-left: 5px;
 	font-weight: normal;
 	text-decoration: underline;
-	background: url(../../img/icons/light_bulb.png) 0 0 no-repeat;
+	background: url(../../images/icons/light_bulb.png) 0 0 no-repeat;
 	padding-left:18px;
 }
 
