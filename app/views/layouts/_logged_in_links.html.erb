@@ -5,23 +5,17 @@
       <ul>
         <li><%= link_to t("header.home"), requests_path %>|</li>
         <%  if Conversation.unread_count(@current_user.id) > 0 %>
-            <li><%= link_to "("+Conversation.unread_count(@current_user.id).to_s+") Messages", received_person_messages_path(:person_id => @current_user.id), :title => t('header.messages') %>
-              |
-            </li>
+            <li><%= link_to "("+Conversation.unread_count(@current_user.id).to_s+") Messages", received_person_messages_path(:person_id => @current_user.id), :title => t('header.messages') %>|</li>
         <% else %>
             <li><%= link_to t("header.messages"), received_person_messages_path(:person_id => @current_user.id), :title => t('header.messages') %>|</li>
         <% end %>
         <%  if @current_user.notifications.unread.count > 0 %>
-            <li><%= link_to @current_user.notifications.unread.count.to_s, notifications_person_messages_path(:person_id => @current_user.id), :title => t('.notifications'), :id => "notifications_link" %>
-              |
-            </li>
+            <li><%= link_to @current_user.notifications.unread.count.to_s, notifications_person_messages_path(:person_id => @current_user.id), :title => t('.notifications'), :id => "notifications_link" %>|</li>
         <% else %>
             <li><%= link_to t("header.notifications"), notifications_person_messages_path(:person_id => @current_user.id), :title => t('header.notifications'), :id => "notifications_link" %>|</li>
         <% end %>
-        <li><%= link_to t("header.settings"), person_settings_path(:person_id => @current_user.id), :title => t('header.settings') %>
-          |
-        </li>
-        <li><%= link_to t("header.logout"), logout_path %>|</li>
+        <li><%= link_to t("header.settings"),person_settings_path(:person_id => @current_user.id), :title => t('header.settings') %>|</li>
+        <li><%= link_to t("header.logout"),logout_path %></li>
       </ul>
     </div>
 
