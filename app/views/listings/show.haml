@@ -13,79 +13,100 @@
       = render :partial => "left_panel_link", :collection => Listing::VALID_CATEGORIES, :as => :title, :locals => { :type => "categories" }
     .left_panel_section
     .left_panel_title
-#listing_image_side.grid_8
-  .image
-    - if @listing.listing_images.empty?
-      %div{:id => "listing_category_big_icon_#{@listing.category}"}
-    - @listing.listing_images.each do |listing_image|
-      = image_tag listing_image.image.url(:medium), :class => "listing_main_image", :alt => @listing.title
-  - if current_user?(@listing.author) || (@current_user && @current_user.has_admin_rights_in?(@current_community))
-    #edit_links
-      = render :partial => "edit_links"
-  - else 
-    #follow_links
-      = render :partial => "follow_links"
-    
 #listing_content_side.grid_16
   #listing_center.grid_9.alpha
     #pro_header
       %h1
         #{@listing.category}: #{"I will "+@listing.title+" for Ksh: "+@listing.price.to_s}
       .buttons
-        %a{:href => "#",:class=>"buynow"} Buy Now
-        %a{:href => "#",:class=>"contact-author"} Contact Author
-    - if @listing.category == "rideshare" && @listing.valid_until
-      %p
-        %strong
-          = t("listings.form.departure_time.departure_time") + ": " + l(@listing.valid_until, :format => :short)
+        = link_to t("listings.buy_now"),{:controller=>'payments',:action=>'home',:id => @listing.id},:class=>"buynow"
+
+        = link_to t("listings.contact_author"), reply_to_listing_path(:id => @listing.id), :class=>"contact-author"
     %p
       - text_with_line_breaks do
         = @listing.description.blank? ? t(".no_description") : @listing.description
-
-    #share_types_and_tags
-      - unless @listing.share_types.empty? && @listing.tag_list.empty?    
+    %span{:class => "smaller"}
+      = "created at" + " " + l(@listing.created_at, :format => :short)+ " IN "+@listing.category
+    %br
+      - unless @listing.share_types.empty? && @listing.tag_list.empty?
         - unless @listing.tag_list.empty?
           %strong
             = t(".tags") + ":"
-          - @listing.tag_list.collect do |tag| 
+          - @listing.tag_list.collect do |tag|
             = tag + ((tag.eql?(@listing.tag_list.last)) ? "" : ", ")
         - unless @listing.share_types.empty? || @listing.tag_list.empty?
           %br/
         - unless @listing.share_types.empty?
           %strong
             = t(".share_types_#{@listing.listing_type}") + ":"
-          - @listing.share_types.collect do |st| 
+          - @listing.share_types.collect do |st|
             = t("common.share_types.#{st.name}")  + ((st.name.eql?(@listing.share_types.last.name)) ? "" : ", ")
         - unless @listing.share_types.empty? && @listing.tag_list.empty?
           %br/
-      %strong
-        = t(".times_viewed") + ":"
-      = pluralize(@listing.times_viewed.to_s, t(".time"), t(".times")) 
-            
-    #listing_author
-      .float_left
-        = small_avatar_thumb(@listing.author)
-      #listing_author_description
-        %strong
-          = t(".#{@listing.listing_type}_author") + ":"
-          = link_to @listing.author.name, @listing.author, :id => "listing_author_link"
-        %br/
-        %span{:class => "smaller"}
-          = t(".#{@listing.listing_type}_created") + " " + l(@listing.created_at, :format => :short)
+    #share_types_and_tags
+      %ul{:class=>"stats"}
+        %li{:class=>"author"}
+          #listing_author
+            .float_left
+              = small_avatar_thumb(@listing.author)
 
-  -#listing_right_panel.grid_7.omega
-    #listing_reply_link
-      = render :partial => "reply_link"
-    - if @listing.origin_loc && @listing.origin_loc.address != ""
-      #googlemap
-        = render :partial => "googlemap", :locals => { :rideshare => (@listing.category == "rideshare")}
-        = render :partial => "origin", :locals => { :origin_loc => @listing.origin_loc }
-        - if @listing.category == "rideshare"
-          = render :partial => "destination", :locals => { :destination_loc => @listing.destination_loc }
-        - if @listing.location != nil
-          #single_listing_location
-            = @listing.location.address
-    #additional_listing_links
+            %strong
+              = t(".#{@listing.listing_type}_author") + ":"
+              = link_to @listing.author.name, @listing.author, :id => "listing_author_link"
+            %br
+              =  "Rated 97%"
+        %li
+          %span
+            =@listing.times_viewed.to_s
+          %br
+            TIMES VIEWED
+        %li
+          %span
+            = pluralize(@listing.time_frame.to_s, "day", "days")
+          %br
+            EST. DELIVERY
+        %li
+          %span
+            100
+          %br
+            RATING
+        %li
+          %span
+            3
+          %br
+            ORDERS IN QUEUE
+  .clear
+  #listing_image_side.grid_8
+    .image
+      - if @listing.listing_images.empty?
+        %div{:id => "listing_category_big_icon_#{@listing.category}"}
+      - @listing.listing_images.each do |listing_image|
+        = image_tag listing_image.image.url(:medium), :class => "listing_main_image", :alt => @listing.title
+    - if current_user?(@listing.author) || (@current_user && @current_user.has_admin_rights_in?(@current_community))
+      #edit_links
+        = render :partial => "edit_links"
+    - else
+      #follow_links
+        = render :partial => "follow_links"
+  .clear
+  #reviews_bar
+    %ul{:class=>"stats"}
+      %li
+        %span
+          ="10"
+        %br
+          POSITIVE REVIEW
+      %li
+        %span
+          = "0"
+        %br
+          NEGATIVE REVIEW
+      %li
+        %span
+          100
+        %br
+          FAVORITED
+    -#additional_listing_links
       .float_left
         = link_to(t(".share"), "http://twitter.com/share", :class => "twitter-share-button", "data-count" => "horizontal", "data-via" => "kassi_eu", "data-related" => "avoinyritys:Our company blog.")
         %script{:type => "text/javascript", :src => "http://platform.twitter.com/widgets.js"}
@@ -100,9 +121,7 @@
           %meta{ :property => "og:site_name", :content =>"Kassi: "}
           %meta{ :property => "fb:admins", :content =>"823616678"}
           %meta{ :property => "og:description", :content => @listing.content}
-
   .clear
-  
   #comments
     %h2
       = t(".comments")

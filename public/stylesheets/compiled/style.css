@@ -2156,7 +2156,7 @@ a.edit_profile:hover {
     padding: 30px 0 0 30px;
 }
 
-#share_types_and_tags {
+#share_types_and_tags,#reviews_bar {
     padding: 10px;
     background: #eaeaea;
     color: #999;
