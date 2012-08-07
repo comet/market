@@ -55,10 +55,20 @@ Kassi::Application.configure do
   end
   
   # Sendmail is used for some mails (e.g. Newsletter) so configure it even when postmark is the main method
-  ActionMailer::Base.sendmail_settings = {
-    :location       => '/usr/sbin/sendmail',
-    :arguments      => '-i -t'
-  }  
+  #ActionMailer::Base.sendmail_settings = {
+  #  :location       => '/usr/sbin/sendmail',
+  #  :arguments      => '-i -t'
+  #}
+  ActionMailer::Base.smtp_settings = {
+      :address              => APP_CONFIG.local_email_address,
+      :port                 => APP_CONFIG.local_email_port,
+      :domain               => 'localhost',
+      :user_name            => APP_CONFIG.local_email_user_name,
+      :password             => APP_CONFIG.local_email_password,
+      :authentication       => 'plain',
+      :enable_starttls_auto => true
+    }
+
   
     
     

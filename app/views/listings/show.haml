@@ -85,7 +85,7 @@
   #listing_image_side.grid_8
     .image
       - if @listing.listing_images.empty?
-        %div{:id => "listing_category_big_icon_#{@listing.category}"}
+        %div{:id => "listing_category_big_icon_item"}
       - @listing.listing_images.each do |listing_image|
         = image_tag listing_image.image.url(:medium), :class => "listing_main_image", :alt => @listing.title
     - if current_user?(@listing.author) || (@current_user && @current_user.has_admin_rights_in?(@current_community))

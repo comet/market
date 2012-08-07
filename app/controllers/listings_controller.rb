@@ -160,7 +160,7 @@ class ListingsController < ApplicationController
     @listing = @current_user.create_listing params[:listing]
 
     if @listing.new_record?
-    #  1.times { @listing.listing_images.build } if @listing.listing_images.empty?
+      1.times { @listing.listing_images.build } if @listing.listing_images.empty?
       render :action => :new
     else
       path = new_request_category_path(:type => @listing.listing_type, :category => @listing.category)
