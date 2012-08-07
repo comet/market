@@ -655,7 +655,7 @@ en:
         housing: Housing
         item: Item
         offer_something: "Request a task"
-        request_something: "Publish your tasks"
+        request_something: "Publish your task"
         rideshare: Rideshare
       googlemap:
         googlemap_copy: "End Points From Map"

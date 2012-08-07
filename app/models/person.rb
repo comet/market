@@ -210,7 +210,9 @@ class Person < ActiveRecord::Base
       return person_hash["username"]
     end
   end
-
+   def average_rating
+     return 100
+   end
   def name(cookie=nil)
     # We rather return the username than blank if no name is set
     return username unless show_real_name_to_other_users

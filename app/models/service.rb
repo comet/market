@@ -32,6 +32,18 @@ class Service < ActiveRecord::Base
       end
     end
   end
+  def self.get_reviews(listing_id,type)
+
+  end
+
+  def self.get_queued(listing_id)
+     array_queue = pending.where(:listing_id=>listing_id)
+     #Rails.logger.debug(array_queue.inspect)
+    return array_queue.size
+  end
+  def self.get_favorites(listing_id)
+
+  end
 
   def create_reminder(service)
     dj = Delayed::Job.enqueue(ServiceReminderJob.new(service), :run_at => time_to_run)

@@ -25,15 +25,21 @@
     %p
       - text_with_line_breaks do
         = @listing.description.blank? ? t(".no_description") : @listing.description
+    %p
+      - text_with_line_breaks do
+        = @listing.buyer_instruction.blank? ? "satisfaction guaranteed" : @listing.buyer_instruction
     %span{:class => "smaller"}
-      = "created at" + " " + l(@listing.created_at, :format => :short)+ " IN "+@listing.category
+      = "created " + " " + time_ago(@listing.created_at)+ " ago IN "
+    %span{:class =>"tags-or-categories"}
+      =@listing.category
     %br
       - unless @listing.share_types.empty? && @listing.tag_list.empty?
         - unless @listing.tag_list.empty?
           %strong
             = t(".tags") + ":"
-          - @listing.tag_list.collect do |tag|
-            = tag + ((tag.eql?(@listing.tag_list.last)) ? "" : ", ")
+          %span{:class =>"tags-or-categories"}
+            - @listing.tag_list.collect do |tag|
+              = tag + ((tag.eql?(@listing.tag_list.last)) ? "" : ", ")
         - unless @listing.share_types.empty? || @listing.tag_list.empty?
           %br/
         - unless @listing.share_types.empty?
@@ -54,7 +60,7 @@
               = t(".#{@listing.listing_type}_author") + ":"
               = link_to @listing.author.name, @listing.author, :id => "listing_author_link"
             %br
-              =  "Rated 97%"
+              = "Rated: "+@listing.author.average_rating.to_s
         %li
           %span
             =@listing.times_viewed.to_s
@@ -67,12 +73,12 @@
             EST. DELIVERY
         %li
           %span
-            100
+            =@listing.rating.to_s
           %br
             RATING
         %li
           %span
-            3
+            =@listing.queued_orders.to_s
           %br
             ORDERS IN QUEUE
   .clear
@@ -91,21 +97,21 @@
   .clear
   #reviews_bar
     %ul{:class=>"stats"}
-      %li
+      %li{:class=>"float_left"}
         %span
-          ="10"
+          =@listing.reviews("positive")
         %br
-          POSITIVE REVIEW
-      %li
+          Positive reviews
+      %li{:class=>"float_center"}
         %span
-          = "0"
+          = @listing.reviews("negative").to_s
         %br
-          NEGATIVE REVIEW
-      %li
+          Negative reviews
+      %li{:class=>"float_right"}
         %span
-          100
+          =@listing.favorited.to_s
         %br
-          FAVORITED
+          Favorited
     -#additional_listing_links
       .float_left
         = link_to(t(".share"), "http://twitter.com/share", :class => "twitter-share-button", "data-count" => "horizontal", "data-via" => "kassi_eu", "data-related" => "avoinyritys:Our company blog.")

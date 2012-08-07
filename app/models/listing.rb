@@ -243,6 +243,22 @@ class Listing < ActiveRecord::Base
   def to_param
     "#{id}-#{title.gsub(/\W/, '-').downcase}"
   end
+   def queued_orders
+     return Service.get_queued(id)
+   end
+  def rating
+    return 100
+  end
+  def reviews(type)
+    type = "negative"
+    if type.eql?"positive"
+      type = "positive"
+    end
+    return 10
+  end
+  def favorited
+    return 5
+  end
 
   def self.predict_basic(listing, threshold)
     accepted_closer_listings=[]
