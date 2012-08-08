@@ -60,7 +60,7 @@
               = t(".#{@listing.listing_type}_author") + ":"
               = link_to @listing.author.name, @listing.author, :id => "listing_author_link"
             %br
-              = "Rated: "+@listing.author.average_rating.to_s
+              = "Rated: "+@listing.author.average_rating.to_s+" %"
         %li
           %span
             =@listing.times_viewed.to_s
